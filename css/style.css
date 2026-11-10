@@ -2806,17 +2806,14 @@ body[data-leitura="foco"] .texto-encerramento {
 }
 
 .integrante-avatar {
-  display: grid;
+  display: block;
   width: 72px;
   height: 72px;
   grid-row: span 3;
-  place-items: center;
+  object-fit: cover;
+  object-position: center;
   border: 1px solid rgba(87, 56, 189, .12);
   border-radius: 22px;
-  font-family: Manrope, "DM Sans", Arial, sans-serif;
-  font-size: 1.35rem;
-  font-weight: 800;
-  letter-spacing: -.06em;
 }
 
 .integrante-avatar-lilas { background: #eee8ff; color: #5738bd; }
