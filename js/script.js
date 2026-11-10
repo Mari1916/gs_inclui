@@ -1,4 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const lerTemaSalvo = () => {
+    try {
+      return localStorage.getItem('inclui-tema');
+    } catch (erro) {
+      console.warn('Não foi possível carregar o tema salvo.', erro);
+      return null;
+    }
+  };
+  const salvarTema = (tema) => {
+    try {
+      localStorage.setItem('inclui-tema', tema);
+    } catch (erro) {
+      console.warn('Não foi possível salvar o tema escolhido.', erro);
+    }
+  };
+  const imagensLogo = document.querySelectorAll('[data-logo-claro][data-logo-escuro]');
+  const aplicarLogoDoTema = (tema) => {
+    imagensLogo.forEach((imagem) => {
+      imagem.src = imagem.dataset[tema === 'escuro' ? 'logoEscuro' : 'logoClaro'];
+    });
+  };
+  const temaSalvo = lerTemaSalvo();
+  if (temaSalvo === 'claro' || temaSalvo === 'escuro') {
+    document.body.dataset.tema = temaSalvo;
+  }
+  aplicarLogoDoTema(document.body.dataset.tema);
+
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach((item) => {
     const button = item.querySelector('.faq-question');
@@ -92,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
     opcao.addEventListener('change', () => {
       if (opcao.checked) {
         document.body.dataset.tema = opcao.value;
+        salvarTema(opcao.value);
+        aplicarLogoDoTema(opcao.value);
         seletorTema.forEach((tema) => {
           tema.checked = tema.value === opcao.value;
         });
@@ -165,4 +194,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   atualizarPreferencias();
   aplicarTamanhoFonte();
+
+  if (window.location.hash === '#acessibilidade') abrirPainelAcessibilidade();
 });
