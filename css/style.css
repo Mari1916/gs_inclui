@@ -3136,3 +3136,305 @@ body[data-tema="escuro"] .integrante-links a:hover {
     color: #e1d8ff;
   }
 }
+
+.pagina-contato {
+  min-height: 100vh;
+  background: var(--fundo);
+}
+
+.contato-principal {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr);
+  align-items: start;
+  gap: clamp(42px, 7vw, 92px);
+  padding-block: 74px 64px;
+}
+
+.contato-introducao {
+  padding-top: 18px;
+}
+
+.contato-introducao .chamada {
+  margin-bottom: 15px;
+}
+
+.contato-introducao h1 {
+  margin-bottom: 18px;
+  font-size: clamp(2.8rem, 5vw, 4.65rem);
+  letter-spacing: -.075em;
+  line-height: 1.05;
+}
+
+.contato-introducao h1 span {
+  color: var(--roxo);
+}
+
+.contato-descricao {
+  max-width: 480px;
+  margin-bottom: 30px;
+  color: var(--texto-suave);
+  font-size: 1.02rem;
+  line-height: 1.8;
+}
+
+.contato-conexao {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 18px;
+  border: 1px solid var(--borda);
+  border-radius: 17px;
+  background: var(--superficie);
+}
+
+.contato-icone-equipe,
+.contato-formulario-icone {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--lavanda);
+  color: var(--roxo);
+  font-size: 1.25rem;
+}
+
+.contato-conexao h2 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+  letter-spacing: -.035em;
+}
+
+.contato-conexao p {
+  margin: 0 0 9px;
+  color: var(--texto-suave);
+  font-size: .82rem;
+  line-height: 1.6;
+}
+
+.contato-conexao a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--roxo-escuro);
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.contato-conexao a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contato-frase {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 32px;
+  color: var(--roxo-escuro);
+}
+
+.contato-frase span {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.contato-frase p {
+  margin: 4px 0 0;
+  font-family: Manrope, "DM Sans", Arial, sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.cartao-formulario-contato {
+  padding: clamp(22px, 3.2vw, 34px);
+  border: 1px solid var(--borda);
+  border-radius: 22px;
+  background: var(--superficie);
+  box-shadow: var(--sombra);
+}
+
+.contato-formulario-cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 23px;
+}
+
+.contato-formulario-icone {
+  width: 48px;
+  height: 48px;
+  font-size: 1.35rem;
+}
+
+.contato-formulario-cabecalho .chamada {
+  margin-bottom: 3px;
+  font-size: .63rem;
+}
+
+.contato-formulario-cabecalho h2 {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: -.045em;
+}
+
+.campos-contato-linha {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.campo-contato {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 15px;
+}
+
+.campo-contato label {
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.campo-contato input,
+.campo-contato select,
+.campo-contato textarea {
+  width: 100%;
+  min-height: 46px;
+  padding: 11px 13px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  background: var(--fundo);
+  color: var(--texto);
+  font: inherit;
+  font-size: .82rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.campo-contato textarea {
+  min-height: 132px;
+  resize: vertical;
+}
+
+.campo-contato input::placeholder,
+.campo-contato textarea::placeholder {
+  color: var(--texto-suave);
+  opacity: .8;
+}
+
+.campo-contato input:focus,
+.campo-contato select:focus,
+.campo-contato textarea:focus {
+  border-color: var(--roxo);
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(115, 84, 219, .14);
+}
+
+.botao-enviar-contato {
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1px;
+}
+
+.aviso-formulario-contato {
+  margin: 12px 0 0;
+  color: var(--texto-suave);
+  font-size: .7rem;
+  line-height: 1.6;
+}
+
+.contato-nota {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding-block: 0 56px;
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+.contato-nota span {
+  color: #d66f93;
+}
+
+.contato-nota p {
+  margin: 0;
+  font-size: .82rem;
+}
+
+body[data-tema="escuro"] .contato-conexao,
+body[data-tema="escuro"] .cartao-formulario-contato {
+  border-color: var(--borda);
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+body[data-tema="escuro"] .campo-contato input,
+body[data-tema="escuro"] .campo-contato select,
+body[data-tema="escuro"] .campo-contato textarea {
+  border-color: var(--borda);
+  background: #2b2938;
+  color: var(--texto);
+}
+
+body[data-tema="escuro"] .campo-contato input::placeholder,
+body[data-tema="escuro"] .campo-contato textarea::placeholder {
+  color: #aaa5ba;
+}
+
+@media (max-width: 900px) {
+  .contato-principal {
+    grid-template-columns: minmax(0, .85fr) minmax(360px, 1.15fr);
+    gap: 34px;
+  }
+}
+
+@media (max-width: 740px) {
+  .contato-principal {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-block: 54px 38px;
+  }
+
+  .contato-introducao {
+    padding-top: 0;
+  }
+
+  .contato-descricao {
+    margin-bottom: 22px;
+  }
+
+  .contato-frase {
+    margin-top: 22px;
+  }
+
+  .contato-nota {
+    padding-bottom: 44px;
+  }
+}
+
+@media (max-width: 520px) {
+  .contato-principal {
+    width: calc(100% - 32px);
+  }
+
+  .contato-introducao h1 {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+
+  .campos-contato-linha {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .cartao-formulario-contato {
+    padding: 21px 17px;
+  }
+
+  .contato-nota {
+    align-items: flex-start;
+    text-align: left;
+  }
+}

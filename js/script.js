@@ -151,6 +151,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearNode = document.querySelector('[data-current-year]');
   if (yearNode) yearNode.textContent = new Date().getFullYear();
 
+  const formularioContato = document.querySelector('#formulario-contato');
+  const estadoFormularioContato = document.querySelector('#estado-formulario-contato');
+  formularioContato?.addEventListener('submit', (evento) => {
+    evento.preventDefault();
+    if (!formularioContato.reportValidity()) return;
+
+    const dados = new FormData(formularioContato);
+    const assunto = `[INCLUI] ${dados.get('assunto')}`;
+    const mensagem = [
+      `Nome: ${dados.get('nome')}`,
+      `E-mail para resposta: ${dados.get('email')}`,
+      '',
+      String(dados.get('mensagem')),
+    ].join('\n');
+    const linkEmail = document.createElement('a');
+    linkEmail.href = `mailto:?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(mensagem)}`;
+    linkEmail.hidden = true;
+    document.body.append(linkEmail);
+    linkEmail.click();
+    linkEmail.remove();
+
+    if (estadoFormularioContato) {
+      estadoFormularioContato.textContent = 'Abrimos seu aplicativo de e-mail com a mensagem pronta. Informe o destinatário antes de enviar; o INCLUI não recebe nem armazena os dados por este formulário.';
+    }
+  });
+
   const recursos = document.querySelectorAll('[data-recurso]');
   const seletorTema = document.querySelectorAll('input[name="tema"]');
   const estadoAcessibilidade = document.querySelector('#estado-acessibilidade');

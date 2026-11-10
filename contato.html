@@ -1,18 +1,176 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contato | INCLUI</title>
+    <meta
+      name="description"
+      content="Entre em contato com a equipe do INCLUI. Envie uma mensagem ou conheça os canais da equipe."
+    />
+    <meta name="theme-color" content="#faf9ff" />
+    <title>Contato — INCLUI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <main class="pagina-em-construcao">
-      <div class="container">
-        <h1>Contato</h1>
-        <p>Não iniciado.</p>
-      </div>
+  <body class="pagina-contato">
+    <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho-site">
+      <a class="marca" href="index.html" aria-label="INCLUI — início">
+        <img
+          class="imagem-logo"
+          src="assets/images/logo.png"
+          data-logo-claro="assets/images/logo.png"
+          data-logo-escuro="assets/images/logo-escuro.png"
+          alt="INCLUI"
+        />
+      </a>
+
+      <button
+        class="botao-menu-mobile"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="navegacao-principal"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="navegacao-principal" id="navegacao-principal" aria-label="Navegação principal">
+        <a href="index.html#inicio">Início</a>
+        <a href="sobre.html">Sobre o INCLUI</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="integrantes.html">Integrantes</a>
+        <a href="faq.html">Perguntas frequentes</a>
+        <a class="link-cabecalho" href="contato.html" aria-current="page">
+          Fale com a gente <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section class="contato-principal limite-secao" aria-labelledby="titulo-contato">
+        <div class="contato-introducao">
+          <p class="chamada"><span aria-hidden="true"></span> ESTAMOS AQUI PARA OUVIR</p>
+          <h1 id="titulo-contato">Vamos conversar<span>?</span></h1>
+          <p class="contato-descricao">
+            Tem uma dúvida, sugestão ou quer saber mais sobre o INCLUI?
+            Mande uma mensagem para a equipe. Vamos adorar conhecer sua ideia.
+          </p>
+
+          <aside class="contato-conexao">
+            <span class="contato-icone-equipe" aria-hidden="true">✳</span>
+            <div>
+              <h2>Quer conhecer a equipe?</h2>
+              <p>Veja quem está por trás do INCLUI e encontre nossos perfis.</p>
+              <a href="integrantes.html">Conheça os integrantes <span aria-hidden="true">↗</span></a>
+            </div>
+          </aside>
+
+          <div class="contato-frase">
+            <span aria-hidden="true">“</span>
+            <p>A internet precisa falar a língua de todos.</p>
+          </div>
+        </div>
+
+        <section class="cartao-formulario-contato" aria-labelledby="titulo-formulario-contato">
+          <div class="contato-formulario-cabecalho">
+            <span class="contato-formulario-icone" aria-hidden="true">✉</span>
+            <div>
+              <p class="chamada">SUA MENSAGEM</p>
+              <h2 id="titulo-formulario-contato">Escreva para a gente</h2>
+            </div>
+          </div>
+
+          <form id="formulario-contato">
+            <div class="campos-contato-linha">
+              <div class="campo-contato">
+                <label for="nome-contato">Seu nome</label>
+                <input
+                  id="nome-contato"
+                  name="nome"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Como podemos chamar você?"
+                  required
+                />
+              </div>
+              <div class="campo-contato">
+                <label for="email-contato">Seu e-mail</label>
+                <input
+                  id="email-contato"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="voce@exemplo.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="campo-contato">
+              <label for="assunto-contato">Assunto</label>
+              <select id="assunto-contato" name="assunto" required>
+                <option value="" selected disabled>Escolha um assunto</option>
+                <option value="Dúvida">Tenho uma dúvida</option>
+                <option value="Sugestão">Quero enviar uma sugestão</option>
+                <option value="Parceria">Quero falar sobre parceria</option>
+                <option value="Outro assunto">Outro assunto</option>
+              </select>
+            </div>
+
+            <div class="campo-contato">
+              <label for="mensagem-contato">Sua mensagem</label>
+              <textarea
+                id="mensagem-contato"
+                name="mensagem"
+                rows="5"
+                placeholder="Conte para a gente como podemos ajudar..."
+                required
+              ></textarea>
+            </div>
+
+            <button class="botao botao-primario botao-enviar-contato" type="submit">
+              Preparar e-mail <span aria-hidden="true">↗</span>
+            </button>
+            <p class="aviso-formulario-contato" id="estado-formulario-contato" aria-live="polite">
+              Esta página não envia nem armazena seus dados. Ao continuar, seu aplicativo de e-mail será aberto com a mensagem pronta; você poderá informar o destinatário antes de enviar.
+            </p>
+          </form>
+        </section>
+      </section>
+
+      <section class="contato-nota limite-secao" aria-label="Informações sobre o envio da mensagem">
+        <span aria-hidden="true">♡</span>
+        <p>Seu contato é importante para tornar o INCLUI cada vez melhor e mais acessível.</p>
+      </section>
     </main>
+
+    <footer class="rodape-site">
+      <div class="limite-secao conteudo-rodape">
+        <a class="marca marca-rodape" href="index.html" aria-label="INCLUI — voltar ao início">
+          <img
+            class="imagem-logo imagem-logo-rodape"
+            src="assets/images/logo.png"
+            data-logo-claro="assets/images/logo.png"
+            data-logo-escuro="assets/images/logo-escuro.png"
+            alt="INCLUI"
+          />
+        </a>
+        <p class="slogan-rodape">A internet precisa falar a língua de todos.</p>
+        <nav class="navegacao-rodape" aria-label="Navegação do rodapé">
+          <a href="index.html">Início</a>
+          <a href="sobre.html">Sobre o INCLUI</a>
+          <a href="integrantes.html">Integrantes</a>
+          <a href="faq.html">Perguntas frequentes</a>
+        </nav>
+      </div>
+    </footer>
     <script src="js/script.js"></script>
   </body>
 </html>
