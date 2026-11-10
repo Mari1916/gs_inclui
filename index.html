@@ -42,26 +42,26 @@
     <main id="conteudo">
       <section class="secao-destaque limite-secao" id="inicio" aria-labelledby="titulo-destaque">
         <div class="texto-destaque">
-          <p class="chamada"><span></span> ACESSO É UM DIREITO DE TODAS AS PESSOAS</p>
+          <p class="chamada"><span></span> CONHEÇA O INCLUI</p>
           <h1 id="titulo-destaque">
-            A internet precisa falar <span>a língua de todos.</span>
+            Serviços públicos com informação <span>clara e acessível.</span>
           </h1>
           <p class="descricao-destaque">
-            Informação importante não deveria ser difícil de entender.
-            Encontre serviços e orientações no jeito que funciona melhor para você.
+            O INCLUI é um guia digital que ajuda a encontrar e entender orientações
+            sobre documentos, saúde, benefícios e outros serviços — com diferentes
+            formas de acessar a informação.
           </p>
           <div class="acoes-destaque">
             <a class="botao botao-primario" href="#acessibilidade">
-              Conheça o INCLUI <span aria-hidden="true">↗</span>
+              Conheça as formas de acesso <span aria-hidden="true">↓</span>
             </a>
             <a class="botao botao-secundario" href="#sobre">
-              <span class="icone-reproducao" aria-hidden="true">▶</span>
-              Nossa proposta
+              Entenda como funciona
             </a>
           </div>
           <p class="nota-destaque">
             <span class="verificacao-nota" aria-hidden="true">✓</span>
-            Um espaço mais simples, acolhedor e acessível para todo mundo.
+            Você escolhe os recursos que fazem sentido para você.
           </p>
         </div>
 
@@ -81,8 +81,8 @@
               <span class="pessoa pessoa-dois"><i></i></span>
               <span class="coracao">♡</span>
             </div>
-            <p class="saudacao-boas-vindas">Olá, que bom ter você aqui! <span>✦</span></p>
-            <p class="pergunta-boas-vindas">Como podemos facilitar sua experiência?</p>
+            <p class="saudacao-boas-vindas">Informação para o seu dia a dia <span>✦</span></p>
+            <p class="pergunta-boas-vindas">Orientações sobre serviços públicos, com mais clareza.</p>
             <div class="escolhas-boas-vindas" aria-hidden="true">
               <span><b>♫</b> Ouvir</span>
               <span><b>◉</b> Ver melhor</span>
@@ -112,89 +112,133 @@
       >
         <div class="cabecalho-secao">
           <div>
-            <p class="chamada">UM ESPAÇO QUE SE ADAPTA A VOCÊ</p>
+            <p class="chamada">ACESSIBILIDADE EM DIFERENTES FORMAS</p>
             <h2 id="titulo-acessibilidade">
-              Como podemos facilitar sua experiência?
+              O que cada recurso faz — e como pode ajudar?
             </h2>
           </div>
           <p class="introducao-secao">
-            Escolha uma ou mais opções.<br />
-            Você pode mudar quando quiser.
+            Acessibilidade pode significar coisas diferentes para cada pessoa.
+            Conheça algumas formas de tornar o acesso mais fácil.
           </p>
         </div>
 
-        <fieldset class="grade-preferencias">
-          <legend class="visualmente-oculto">
-            Escolha suas preferências de acessibilidade
-          </legend>
+        <fieldset class="seletor-tema" aria-describedby="descricao-tema">
+          <legend>Escolha o tema da página</legend>
+          <p id="descricao-tema">O tema claro vem ativado. Você pode trocar quando quiser.</p>
+          <label><input type="radio" name="tema" value="claro" checked /> Claro</label>
+          <label><input type="radio" name="tema" value="escuro" /> Escuro</label>
+        </fieldset>
 
-          <label class="cartao-preferencia">
-            <input type="checkbox" name="preferencias" value="audio" />
+        <fieldset class="grade-preferencias" aria-describedby="descricao-preferencias">
+          <legend class="visualmente-oculto">Selecione os recursos de acessibilidade que deseja usar</legend>
+          <p class="visualmente-oculto" id="descricao-preferencias">Marque ou desmarque os recursos. As alterações visuais são aplicadas na hora.</p>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="audio" />
             <span class="icone-preferencia icone-preferencia-audio" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M11 5 6 9H3v6h3l5 4V5Zm4 4a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12" />
-              </svg>
+              <svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 4a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12" /></svg>
             </span>
-            <span class="texto-preferencia">
-              <strong>Quero ouvir</strong>
-              <small>Navegação por voz e áudio.</small>
-            </span>
-            <span class="verificacao-preferencia" aria-hidden="true">✓</span>
+            <span class="texto-preferencia"><strong>Ouvir o conteúdo</strong><small>Ativa a leitura em voz alta da página. Pode ajudar pessoas cegas, com baixa visão ou dificuldade de leitura.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
           </label>
 
-          <label class="cartao-preferencia">
-            <input type="checkbox" name="preferencias" value="libras" />
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="libras" />
             <span class="icone-preferencia icone-preferencia-libras" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M7 11V5a1.5 1.5 0 0 1 3 0v5-7a1.5 1.5 0 0 1 3 0v7-5a1.5 1.5 0 0 1 3 0v6-3a1.5 1.5 0 0 1 3 0v7a7 7 0 0 1-7 7h-1c-2.2 0-3.7-1-5-3l-3-4a1.8 1.8 0 0 1 2.8-2.2L7 15" />
-              </svg>
+              <svg viewBox="0 0 24 24"><path d="M7 11V5a1.5 1.5 0 0 1 3 0v5-7a1.5 1.5 0 0 1 3 0v7-5a1.5 1.5 0 0 1 3 0v6-3a1.5 1.5 0 0 1 3 0v7a7 7 0 0 1-7 7h-1c-2.2 0-3.7-1-5-3l-3-4a1.8 1.8 0 0 1 2.8-2.2L7 15" /></svg>
             </span>
-            <span class="texto-preferencia">
-              <strong>Quero Libras</strong>
-              <small>Conteúdo em língua de sinais.</small>
-            </span>
-            <span class="verificacao-preferencia" aria-hidden="true">✓</span>
+            <span class="texto-preferencia"><strong>Libras</strong><small>Registra sua preferência por vídeos em Língua Brasileira de Sinais, úteis para muitas pessoas surdas.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
           </label>
 
-          <label class="cartao-preferencia">
-            <input type="checkbox" name="preferencias" value="visao" />
-            <span class="icone-preferencia icone-preferencia-visao" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
-                <circle cx="12" cy="12" r="3" />
-                <path d="M4 20 20 4" />
-              </svg>
-            </span>
-            <span class="texto-preferencia">
-              <strong>Quero enxergar melhor</strong>
-              <small>Contraste, zoom e leitura.</small>
-            </span>
-            <span class="verificacao-preferencia" aria-hidden="true">✓</span>
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="legendas" />
+            <span class="icone-preferencia icone-preferencia-libras" aria-hidden="true"><span class="sigla-icone">CC</span></span>
+            <span class="texto-preferencia"><strong>Legendas</strong><small>Registra sua preferência por legendas em vídeos, que mostram falas e sons importantes.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
           </label>
 
-          <label class="cartao-preferencia">
-            <input type="checkbox" name="preferencias" value="linguagem-simples" />
-            <span class="icone-preferencia icone-preferencia-simples" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 3 2.5 8v8L12 21l9.5-5V8L12 3Z" />
-                <path d="m2.8 8.2 9.2 5 9.2-5M12 13v8" />
-              </svg>
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="leitor-tela" />
+            <span class="icone-preferencia icone-preferencia-visao" aria-hidden="true"><span class="sigla-icone">Aa</span></span>
+            <span class="texto-preferencia"><strong>Leitor de tela</strong><small>Compatibilidade com programas que transformam textos e botões em fala ou braile, usados por pessoas cegas.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="teclado" />
+            <span class="icone-preferencia icone-preferencia-teclado" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2" /><path d="M6 9h.01M9 9h.01M12 9h.01M15 9h.01M18 9h.01M6 12h.01M9 12h.01M12 12h.01M15 12h.01M18 12h.01M8 15h8" /></svg>
             </span>
-            <span class="texto-preferencia">
-              <strong>Quero linguagem simples</strong>
-              <small>Textos claros e passo a passo.</small>
-            </span>
-            <span class="verificacao-preferencia" aria-hidden="true">✓</span>
+            <span class="texto-preferencia"><strong>Navegar pelo teclado</strong><small>Use Tab para avançar e Enter para ativar links e botões, sem precisar de mouse ou tela sensível ao toque.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="fonte-grande" />
+            <span class="icone-preferencia icone-preferencia-visao" aria-hidden="true"><span class="sigla-icone">A+</span></span>
+            <span class="texto-preferencia"><strong>Aumentar o tamanho da fonte</strong><small>Amplia os textos da página para facilitar a leitura de pessoas com baixa visão ou que preferem letras maiores.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="daltonismo" />
+            <span class="icone-preferencia icone-preferencia-daltonismo" aria-hidden="true"><span class="sigla-icone">◐</span></span>
+            <span class="texto-preferencia"><strong>Cores mais distinguíveis</strong><small>Usa uma paleta azul e laranja e reforça contornos, para não depender só das cores. Pode ajudar pessoas daltônicas.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="contraste" />
+            <span class="icone-preferencia icone-preferencia-contraste" aria-hidden="true"><span class="sigla-icone">◑</span></span>
+            <span class="texto-preferencia"><strong>Alto contraste</strong><small>Deixa textos, botões e bordas mais contrastantes para facilitar a identificação dos elementos.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="espacamento" />
+            <span class="icone-preferencia icone-preferencia-espacamento" aria-hidden="true"><span class="sigla-icone">↔</span></span>
+            <span class="texto-preferencia"><strong>Mais espaço entre letras</strong><small>Aumenta o espaçamento das letras e linhas, o que pode ajudar pessoas com dislexia ou baixa visão.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="fonte-legivel" />
+            <span class="icone-preferencia icone-preferencia-simples" aria-hidden="true"><span class="sigla-icone">Aa</span></span>
+            <span class="texto-preferencia"><strong>Fonte mais legível</strong><small>Troca para uma fonte sem enfeites e de desenho simples, que pode facilitar a leitura.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="linguagem-simples" />
+            <span class="icone-preferencia icone-preferencia-simples" aria-hidden="true"><span class="sigla-icone">Aa</span></span>
+            <span class="texto-preferencia"><strong>Linguagem simples</strong><small>Registra sua preferência por palavras comuns e instruções diretas, úteis para entender informações novas ou complexas.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="sem-animacoes" />
+            <span class="icone-preferencia icone-preferencia-calma" aria-hidden="true"><span class="sigla-icone">Ⅱ</span></span>
+            <span class="texto-preferencia"><strong>Reduzir animações</strong><small>Remove movimentos decorativos para pessoas que sentem desconforto ou distração com animações.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" data-recurso="leitura-facil" />
+            <span class="icone-preferencia icone-preferencia-teclado" aria-hidden="true"><span class="sigla-icone">¶</span></span>
+            <span class="texto-preferencia"><strong>Modo de leitura</strong><small>Esconde enfeites e limita a largura do texto para ajudar a manter o foco na leitura.</small></span>
+            <span class="indicador-selecao" aria-hidden="true">✓</span>
           </label>
         </fieldset>
 
-        <p class="nota-privacidade">
-          <svg viewBox="0 0 20 20" aria-hidden="true">
-            <rect x="4" y="8" width="12" height="9" rx="2" />
-            <path d="M7 8V5a3 3 0 0 1 6 0v3" />
-          </svg>
-          Você pode selecionar várias opções.
-        </p>
+        <div class="acoes-acessibilidade">
+          <button class="botao botao-primario" id="botao-ouvir-pagina" type="button" disabled>Ouvir esta página</button>
+          <button class="botao botao-secundario" id="botao-parar-leitura" type="button" disabled>Parar leitura</button>
+          <p class="nota-privacidade" id="estado-acessibilidade" aria-live="polite">
+            Selecione os recursos que deseja usar; suas escolhas ficam ativas enquanto esta página estiver aberta.
+          </p>
+        </div>
       </section>
 
       <section class="secao-servicos" id="servicos" aria-labelledby="titulo-servicos">
@@ -431,5 +475,6 @@
         <span class="observacao-rodape">Feito para incluir. <span aria-hidden="true">♡</span></span>
       </div>
     </footer>
+    <script src="js/script.js"></script>
   </body>
 </html>
