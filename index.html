@@ -1,460 +1,174 @@
-<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="INCLUI — informação e serviços para todas as pessoas."
-    />
-    <meta name="theme-color" content="#faf9ff" />
-    <title>INCLUI — A internet precisa falar a língua de todos</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
+    <title>INCLUI | Acesso e inclusão</title>
+    <meta name="description" content="Plataforma de inclusão digital e acessibilidade em português do Brasil." />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="cabecalho">
+      <div class="container barra-navegacao">
+        <a href="index.html" class="marca" aria-label="Página inicial INCLUI">
+          <span class="marca-simbolo">i</span>
+          <span>INCLUI</span>
+        </a>
 
-    <header class="site-header">
-      <a class="brand" href="#" aria-label="INCLUI — início">
-        <svg class="brand-mark" viewBox="0 0 52 52" aria-hidden="true">
-          <path
-            class="brand-orbit"
-            d="M7 37C10 17 30 4 43 9c8 3 6 14 2 19M45 15C40 35 21 48 9 43c-7-3-6-12-3-17"
-          />
-          <rect x="9" y="9" width="15" height="15" rx="4" />
-          <rect x="28" y="9" width="15" height="15" rx="4" />
-          <rect x="9" y="28" width="15" height="15" rx="4" />
-          <rect x="28" y="28" width="15" height="15" rx="4" />
-          <path
-            class="brand-symbols"
-            d="M15.5 13v5m-2.5-2.5h5m17-2 2.3 2.3m0-2.3L35 17.8M12.5 35h8m11 1.3h8"
-          />
-        </svg>
-        <span class="brand-name">INCLUI<span>.</span></span>
-      </a>
+        <nav class="links-navegacao" aria-label="Navegação principal">
+          <a href="index.html" class="ativo">Início</a>
+          <a href="sobre.html">Sobre</a>
+          <a href="integrantes.html">Integrantes</a>
+          <a href="pagina-solucao-1.html">Soluções</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contato.html">Contato</a>
+        </nav>
 
-      <nav class="main-nav" aria-label="Navegação principal">
-        <a href="#inicio">Início</a>
-        <a href="#sobre">Sobre o INCLUI</a>
-        <a href="#acessibilidade">Acessibilidade</a>
-      </nav>
-
-      <a class="header-link" href="#inicio">
-        Acessar plataforma <span aria-hidden="true">↗</span>
-      </a>
+        <a href="contato.html" class="botao-navegacao">Fale conosco</a>
+      </div>
     </header>
 
-    <main id="conteudo">
-      <section class="hero section-shell" id="inicio" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow"><span></span> ACESSO É UM DIREITO DE TODAS AS PESSOAS</p>
-          <h1 id="hero-title">
-            A internet precisa falar <span>a língua de todos.</span>
-          </h1>
-          <p class="hero-description">
-            Informação importante não deveria ser difícil de entender.
-            Encontre serviços e orientações no jeito que funciona melhor para você.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#acessibilidade">
-              Conheça o INCLUI <span aria-hidden="true">↗</span>
-            </a>
-            <a class="button button-secondary" href="#sobre">
-              <span class="play-icon" aria-hidden="true">▶</span>
-              Nossa proposta
-            </a>
-          </div>
-          <p class="hero-note">
-            <span class="note-check" aria-hidden="true">✓</span>
-            Um espaço mais simples, acolhedor e acessível para todo mundo.
-          </p>
-        </div>
-
-        <div class="hero-visual" aria-label="Ilustração da experiência acessível do INCLUI">
-          <div class="visual-orbit orbit-outer"></div>
-          <div class="visual-orbit orbit-inner"></div>
-
-          <div class="welcome-card">
-            <div class="welcome-top">
-              <span class="welcome-brand"><span>i</span> INCLUI</span>
-              <span class="welcome-status"><i></i> AQUI COM VOCÊ</span>
-            </div>
-            <div class="people-illustration" aria-hidden="true">
-              <span class="sun"></span>
-              <span class="hill"></span>
-              <span class="person person-one"><i></i></span>
-              <span class="person person-two"><i></i></span>
-              <span class="heart">♡</span>
-            </div>
-            <p class="welcome-greeting">Olá, que bom ter você aqui! <span>✦</span></p>
-            <p class="welcome-question">Como podemos facilitar sua experiência?</p>
-            <div class="welcome-choices" aria-hidden="true">
-              <span><b>♫</b> Ouvir</span>
-              <span><b>◉</b> Ver melhor</span>
-              <span><b>✳</b> Simplificar</span>
-            </div>
-            <div class="welcome-progress"><span></span></div>
-          </div>
-
-          <div class="floating-card audio-card">
-            <span class="floating-icon audio-icon" aria-hidden="true">♫</span>
-            <span><strong>Ouça as orientações</strong><small>Uma etapa por vez</small></span>
-            <span class="floating-check" aria-hidden="true">✓</span>
-          </div>
-          <div class="floating-card sign-card">
-            <span class="floating-icon sign-icon" aria-hidden="true">手</span>
-            <span><strong>Informação acessível</strong><small>Libras, áudio e texto simples</small></span>
-          </div>
-          <span class="decorative-star star-one" aria-hidden="true">✳</span>
-          <span class="decorative-star star-two" aria-hidden="true">✦</span>
-        </div>
-      </section>
-
-      <section
-        class="accessibility-section section-shell"
-        id="acessibilidade"
-        aria-labelledby="accessibility-title"
-      >
-        <div class="section-heading accessibility-heading">
+    <main class="pagina-principal">
+      <section class="secao-principal">
+        <div class="container grade-principal">
           <div>
-            <p class="eyebrow">UM ESPAÇO QUE SE ADAPTA A VOCÊ</p>
-            <h2 id="accessibility-title">
-              Como podemos facilitar sua experiência?
-            </h2>
-          </div>
-          <p class="section-intro">
-            Escolha uma ou mais opções.<br />
-            Você pode mudar quando quiser.
-          </p>
-        </div>
+            <span class="chamada">Acessibilidade com propósito</span>
+            <h1 class="titulo-principal">Uma internet que acolhe todas as pessoas.</h1>
+            <p class="texto-principal">
+              Conectamos informação, inclusão e tecnologia para que cada pessoa tenha acesso a oportunidades,
+              serviços e conteúdo com clareza, respeito e autonomia.
+            </p>
 
-        <fieldset class="preference-grid">
-          <legend class="visually-hidden">
-            Escolha suas preferências de acessibilidade
-          </legend>
-
-          <label class="preference-card">
-            <input type="checkbox" name="preferencias" value="audio" />
-            <span class="preference-icon audio-preference-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M11 5 6 9H3v6h3l5 4V5Zm4 4a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12" />
-              </svg>
-            </span>
-            <span class="preference-copy">
-              <strong>Quero ouvir</strong>
-              <small>Navegação por voz e áudio.</small>
-            </span>
-            <span class="preference-check" aria-hidden="true">✓</span>
-          </label>
-
-          <label class="preference-card">
-            <input type="checkbox" name="preferencias" value="libras" />
-            <span class="preference-icon sign-preference-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M7 11V5a1.5 1.5 0 0 1 3 0v5-7a1.5 1.5 0 0 1 3 0v7-5a1.5 1.5 0 0 1 3 0v6-3a1.5 1.5 0 0 1 3 0v7a7 7 0 0 1-7 7h-1c-2.2 0-3.7-1-5-3l-3-4a1.8 1.8 0 0 1 2.8-2.2L7 15" />
-              </svg>
-            </span>
-            <span class="preference-copy">
-              <strong>Quero Libras</strong>
-              <small>Conteúdo em língua de sinais.</small>
-            </span>
-            <span class="preference-check" aria-hidden="true">✓</span>
-          </label>
-
-          <label class="preference-card">
-            <input type="checkbox" name="preferencias" value="visao" />
-            <span class="preference-icon vision-preference-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
-                <circle cx="12" cy="12" r="3" />
-                <path d="M4 20 20 4" />
-              </svg>
-            </span>
-            <span class="preference-copy">
-              <strong>Quero enxergar melhor</strong>
-              <small>Contraste, zoom e leitura.</small>
-            </span>
-            <span class="preference-check" aria-hidden="true">✓</span>
-          </label>
-
-          <label class="preference-card">
-            <input type="checkbox" name="preferencias" value="linguagem-simples" />
-            <span class="preference-icon simple-preference-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 3 2.5 8v8L12 21l9.5-5V8L12 3Z" />
-                <path d="m2.8 8.2 9.2 5 9.2-5M12 13v8" />
-              </svg>
-            </span>
-            <span class="preference-copy">
-              <strong>Quero linguagem simples</strong>
-              <small>Textos claros e passo a passo.</small>
-            </span>
-            <span class="preference-check" aria-hidden="true">✓</span>
-          </label>
-        </fieldset>
-
-        <p class="privacy-note">
-          <svg viewBox="0 0 20 20" aria-hidden="true">
-            <rect x="4" y="8" width="12" height="9" rx="2" />
-            <path d="M7 8V5a3 3 0 0 1 6 0v3" />
-          </svg>
-          Você pode selecionar várias opções.
-        </p>
-      </section>
-
-      <section class="services-section" id="servicos" aria-labelledby="services-title">
-        <div class="section-shell">
-          <div class="services-heading">
-            <div>
-              <p class="eyebrow">COMECE POR AQUI</p>
-              <h2 id="services-title">O que você precisa resolver?</h2>
+            <div class="acoes">
+              <a href="sobre.html" class="botao-primario">Conhecer a proposta</a>
+              <a href="pagina-solucao-1.html" class="botao-secundario">Ver soluções</a>
             </div>
-            <p class="services-intro">
-              Informação organizada para ajudar<br />
-              você a dar o próximo passo.
-            </p>
-          </div>
 
-          <div class="service-search">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="10.8" cy="10.8" r="6.8" />
-              <path d="m16 16 5 5" />
-            </svg>
-            <label class="visually-hidden" for="service-search">
-              Busque por um serviço ou assunto
-            </label>
-            <input
-              id="service-search"
-              type="search"
-              placeholder="Ex.: tirar um documento, pedir benefício..."
-              autocomplete="off"
-            />
-            <span class="search-hint">Encontre uma orientação</span>
-          </div>
-
-          <div class="service-grid">
-            <article class="service-card">
-              <span class="service-icon document-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <rect x="4" y="3" width="16" height="18" rx="3" />
-                  <circle cx="9" cy="10" r="2" />
-                  <path d="M7 16c.5-2 3.5-2 4 0m2-6h4m-4 4h4" />
-                </svg>
-              </span>
-              <div class="service-copy">
-                <span class="service-category">DOCUMENTOS</span>
-                <h3>Tirar meus documentos</h3>
-                <p>Saiba por onde começar e o que levar.</p>
-              </div>
-              <span class="service-arrow" aria-hidden="true">↗</span>
-            </article>
-
-            <article class="service-card">
-              <span class="service-icon benefits-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z" />
-                  <path d="M8 12h8m-4-4v8" />
-                </svg>
-              </span>
-              <div class="service-copy">
-                <span class="service-category">APOIO E BENEFÍCIOS</span>
-                <h3>Conhecer benefícios</h3>
-                <p>Descubra quais apoios podem existir para você.</p>
-              </div>
-              <span class="service-arrow" aria-hidden="true">↗</span>
-            </article>
-
-            <article class="service-card">
-              <span class="service-icon health-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z" />
-                  <path d="M12 8v8m-4-4h8" />
-                </svg>
-              </span>
-              <div class="service-copy">
-                <span class="service-category">SAÚDE</span>
-                <h3>Acessar serviços de saúde</h3>
-                <p>Encontre orientações para cuidar de você.</p>
-              </div>
-              <span class="service-arrow" aria-hidden="true">↗</span>
-            </article>
-
-            <article class="service-card">
-              <span class="service-icon work-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <rect x="3" y="7" width="18" height="14" rx="3" />
-                  <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m-13 5h18m-11 0v2h4v-2" />
-                </svg>
-              </span>
-              <div class="service-copy">
-                <span class="service-category">TRABALHO</span>
-                <h3>Procurar trabalho</h3>
-                <p>Veja orientações para buscar oportunidades.</p>
-              </div>
-              <span class="service-arrow" aria-hidden="true">↗</span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="understand-section section-shell" id="entenda" aria-labelledby="understand-title">
-        <div class="understand-copy">
-          <p class="eyebrow"><span class="understand-sparkle" aria-hidden="true">✳</span> MENOS BUROCRACIA, MAIS AUTONOMIA</p>
-          <h2 id="understand-title">
-            Tem um texto difícil?<br />
-            <span>A gente explica.</span>
-          </h2>
-          <p class="understand-description">
-            Orientações públicas podem vir cheias de palavras complicadas.
-            O INCLUI ajuda a transformar a informação em passos mais fáceis de entender.
-          </p>
-          <ul class="understand-benefits">
-            <li><span aria-hidden="true">✓</span> Explicações com palavras mais simples</li>
-            <li><span aria-hidden="true">✓</span> Instruções organizadas passo a passo</li>
-            <li><span aria-hidden="true">✓</span> Mais clareza para saber o que fazer</li>
-          </ul>
-        </div>
-
-        <div class="understand-demo">
-          <div class="demo-header">
-            <span class="demo-document-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24">
-                <path d="M6 3h8l5 5v13H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
-                <path d="M14 3v6h5M8 13h8m-8 4h6" />
-              </svg>
-            </span>
-            <span class="demo-title">
-              <strong>Entenda por mim</strong>
-              <small>Uma orientação por vez. No seu tempo.</small>
-            </span>
-            <span class="demo-sparkle" aria-hidden="true">✳</span>
-          </div>
-
-          <label class="visually-hidden" for="text-to-simplify">
-            Texto que você quer entender melhor
-          </label>
-          <textarea
-            id="text-to-simplify"
-            rows="4"
-            placeholder="Cole aqui uma orientação ou um texto que você quer entender melhor..."
-          ></textarea>
-
-          <details class="example-details">
-            <summary>Ver um exemplo de texto</summary>
-            <p>
-              Para solicitar a segunda via do documento de identidade, compareça
-              ao posto de atendimento com sua certidão de nascimento ou casamento
-              e comprovante de residência.
-            </p>
-          </details>
-
-          <button class="button button-primary explain-button" type="button" disabled>
-            ✳ Simplificar texto — em breve
-          </button>
-          <p class="demo-note">
-            Esta é uma prévia da funcionalidade. O texto digitado não é enviado nem salvo.
-          </p>
-        </div>
-      </section>
-
-      <section class="ways-section" id="sobre" aria-labelledby="ways-title">
-        <div class="section-shell">
-          <div class="ways-heading">
-            <div>
-              <p class="eyebrow">ACESSIBILIDADE NÃO É UM BOTÃO</p>
-              <h2 id="ways-title">É poder chegar junto.</h2>
+            <div class="nota-inline">
+              <span class="check">✓</span>
+              <span>Mais acesso, mais entendimento e mais inclusão.</span>
             </div>
-            <p>
-              O mesmo direito. Diferentes caminhos.<br />
-              Você escolhe o seu.
+          </div>
+
+          <div class="area-visual" aria-label="Ilustração de inclusão digital">
+            <div class="cartao-flutuante cartao-esquerdo">
+              <span class="icone-flutuante">♫</span>
+              <span class="texto-flutuante">
+                <strong>Áudio</strong>
+                <small>Conteúdo acessível</small>
+              </span>
+            </div>
+
+            <div class="cartao-flutuante cartao-direito">
+              <span class="icone-flutuante">✦</span>
+              <span class="texto-flutuante">
+                <strong>Clareza</strong>
+                <small>Texto simples</small>
+              </span>
+            </div>
+
+            <div class="painel-central">
+              <div class="painel-superior">
+                <span class="selo">INCLUI</span>
+                <span class="status">Ativo</span>
+              </div>
+
+              <div class="ilustracao" aria-hidden="true">
+                <span class="pessoa pessoa-esquerda"></span>
+                <span class="pessoa pessoa-direita"></span>
+              </div>
+
+              <h2 class="titulo-cartao">Vamos construir acesso para todos</h2>
+              <p class="texto-cartao">Design pensado para pessoas, comunidades e experiências humanas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao">
+        <div class="container">
+          <div class="cabecalho-secao">
+            <div>
+              <span class="chamada">Nosso foco</span>
+              <h2 class="titulo-secao">O que a INCLUI oferece</h2>
+            </div>
+            <p class="texto-secao">
+              Desenvolvemos caminhos mais simples para informações importantes, com comunicação clara e suporte em diferentes formatos.
             </p>
           </div>
 
-          <div class="ways-grid">
-            <article class="way-card">
-              <span class="way-number">01</span>
-              <span class="way-icon way-audio-icon" aria-hidden="true">♫</span>
-              <h3>Ouça sem precisar ler</h3>
-              <p>Orientações em áudio para entender cada etapa com calma.</p>
+          <div class="grade-três">
+            <article class="cartao-destaque">
+              <div class="icone-caixa purple">A</div>
+              <h3>Acessibilidade</h3>
+              <p>Estruturas pensadas para leitura, navegação e compreensão mais fácil.</p>
             </article>
 
-            <article class="way-card">
-              <span class="way-number">02</span>
-              <span class="way-icon way-sign-icon" aria-hidden="true">手</span>
-              <h3>Veja em Libras</h3>
-              <p>Conteúdos visuais, legendas e materiais em língua de sinais.</p>
+            <article class="cartao-destaque">
+              <div class="icone-caixa orange">S</div>
+              <h3>Simplicidade</h3>
+              <p>Conteúdo organizado em linguagem clara, direta e acolhedora.</p>
             </article>
 
-            <article class="way-card">
-              <span class="way-number">03</span>
-              <span class="way-icon way-simple-icon" aria-hidden="true">✳</span>
-              <h3>Entenda com clareza</h3>
-              <p>Informação simples, com exemplos e instruções passo a passo.</p>
-            </article>
-
-            <article class="way-card">
-              <span class="way-number">04</span>
-              <span class="way-icon way-choice-icon" aria-hidden="true">◉</span>
-              <h3>Escolha o seu jeito</h3>
-              <p>Personalize sua experiência conforme as suas necessidades.</p>
+            <article class="cartao-destaque">
+              <div class="icone-caixa green">P</div>
+              <h3>Participação</h3>
+              <p>Ferramentas e jornadas que aproximam pessoas de serviços e oportunidades.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="closing-section section-shell" aria-labelledby="closing-title">
-        <div class="closing-mark" aria-hidden="true">
-          <span>i</span>
-          <i></i>
+      <section class="secao fundo-branco">
+        <div class="container">
+          <div class="cabecalho-secao">
+            <div>
+              <span class="chamada">Soluções</span>
+              <h2 class="titulo-secao">Como ajudamos</h2>
+            </div>
+          </div>
+
+          <div class="grade-solucoes">
+            <article class="cartao-solucao">
+              <h3>Orientações para serviços públicos</h3>
+              <p>Explicações acessíveis sobre processos e procedimentos para que as pessoas saibam por onde começar.</p>
+              <div class="meta-solucoes">
+                <span>Passo a passo</span>
+                <span>Texto simples</span>
+              </div>
+            </article>
+
+            <article class="cartao-solucao">
+              <h3>Conteúdo em formatos diversos</h3>
+              <p>Estratégias para transmissão de informações em formatos visuais, sonoros e de linguagem mais clara.</p>
+              <div class="meta-solucoes">
+                <span>Áudio</span>
+                <span>Leitura</span>
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="closing-copy">
-          <p class="eyebrow">TECNOLOGIA COM PROPÓSITO</p>
-          <h2 id="closing-title">
-            Nenhuma barreira deve impedir alguém de exercer sua cidadania.
-          </h2>
-        </div>
-        <a class="button button-light" href="#servicos">
-          Vamos começar? <span aria-hidden="true">↗</span>
-        </a>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <div class="section-shell footer-inner">
-        <a class="brand footer-brand" href="#inicio" aria-label="INCLUI — voltar ao início">
-          <svg class="brand-mark" viewBox="0 0 52 52" aria-hidden="true">
-            <path
-              class="brand-orbit"
-              d="M7 37C10 17 30 4 43 9c8 3 6 14 2 19M45 15C40 35 21 48 9 43c-7-3-6-12-3-17"
-            />
-            <rect x="9" y="9" width="15" height="15" rx="4" />
-            <rect x="28" y="9" width="15" height="15" rx="4" />
-            <rect x="9" y="28" width="15" height="15" rx="4" />
-            <rect x="28" y="28" width="15" height="15" rx="4" />
-            <path
-              class="brand-symbols"
-              d="M15.5 13v5m-2.5-2.5h5m17-2 2.3 2.3m0-2.3L35 17.8M12.5 35h8m11 1.3h8"
-            />
-          </svg>
-          <span class="brand-name">INCLUI<span>.</span></span>
-        </a>
+    <footer class="rodape">
+      <div class="container conteudo-rodape">
+        <div>
+          <strong>INCLUI</strong>
+          <span> — acesso e inclusão para todas as pessoas.</span>
+        </div>
 
-        <p class="footer-tagline">A internet precisa falar a língua de todos.</p>
+        <div class="links-rodape">
+          <a href="index.html">Início</a>
+          <a href="sobre.html">Sobre</a>
+          <a href="faq.html">FAQ</a>
+          <a href="contato.html">Contato</a>
+        </div>
 
-        <nav class="footer-nav" aria-label="Navegação do rodapé">
-          <a href="#servicos">Serviços</a>
-          <a href="#entenda">Entenda por mim</a>
-          <a href="#acessibilidade">Acessibilidade</a>
-        </nav>
-
-        <span class="footer-note">Feito para incluir. <span aria-hidden="true">♡</span></span>
+        <span>© <span data-current-year></span> INCLUI</span>
       </div>
     </footer>
+
+    <script src="js/script.js"></script>
   </body>
 </html>
