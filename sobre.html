@@ -1,17 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sobre | INCLUI</title>
+    <meta
+      name="description"
+      content="Conheça o INCLUI: informação e serviços públicos com mais clareza, acessibilidade e autonomia."
+    />
+    <meta name="theme-color" content="#faf9ff" />
+    <title>Sobre o INCLUI — Informação acessível para todas as pessoas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <main class="pagina-em-construcao">
-      <div class="container">
-        <h1>Sobre</h1>
-          <p>Não iniciado.</p>
+  <body class="pagina-sobre">
+    <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho-site">
+      <a class="marca" href="index.html" aria-label="INCLUI — início">
+        <img class="imagem-logo" src="assets/images/logo.png" alt="INCLUI" />
+      </a>
+
+      <nav class="navegacao-principal" aria-label="Navegação principal">
+        <a href="index.html#inicio">Início</a>
+        <a href="sobre.html" aria-current="page">Sobre o INCLUI</a>
+        <a href="index.html#acessibilidade">Acessibilidade</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="integrantes.html">Integrantes</a>
+        <a href="faq.html">Perguntas frequentes</a>
+      </nav>
+
+      <a class="link-cabecalho" href="contato.html">
+        Fale com a gente <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main id="conteudo">
+      <section class="sobre-destaque limite-secao" aria-labelledby="titulo-sobre">
+        <div class="sobre-texto-destaque">
+          <p class="chamada"><span></span> SOBRE O INCLUI</p>
+          <h1 id="titulo-sobre">
+            Informação importante precisa ser <span>fácil de acessar.</span>
+          </h1>
+          <p class="sobre-descricao-destaque">
+            O INCLUI aproxima as pessoas de orientações e serviços públicos com
+            linguagem simples, recursos acessíveis e caminhos claros para cada necessidade.
+          </p>
+          <a class="botao botao-primario" href="#como-funciona">
+            Entenda nossa proposta <span aria-hidden="true">↓</span>
+          </a>
         </div>
+
+        <aside class="sobre-resumo" aria-label="Princípios do INCLUI">
+          <span class="sobre-resumo-icone" aria-hidden="true">✳</span>
+          <p class="sobre-resumo-chamada">Nosso compromisso</p>
+          <h2>Mais autonomia. Menos barreiras.</h2>
+          <p>
+            Cada pessoa deve poder encontrar, compreender e usar a informação
+            do jeito que funciona melhor para ela.
+          </p>
+          <div class="sobre-etiquetas" aria-label="Características da proposta">
+            <span>Clareza</span>
+            <span>Acessibilidade</span>
+            <span>Autonomia</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="sobre-problema" aria-labelledby="titulo-problema">
+        <div class="limite-secao sobre-grade-problema">
+          <div>
+            <p class="chamada">O DESAFIO QUE QUEREMOS ENFRENTAR</p>
+            <h2 id="titulo-problema">
+              Encontrar um serviço não deveria ser mais uma dificuldade.
+            </h2>
+          </div>
+          <div class="sobre-texto-problema">
+            <p>
+              Informações públicas podem estar espalhadas, usar termos difíceis
+              ou não considerar diferentes formas de comunicação. Isso torna
+              mais complicado saber qual é o próximo passo.
+            </p>
+            <p>
+              O INCLUI propõe uma experiência digital que organiza orientações
+              e ajuda cada pessoa a seguir seu caminho com mais segurança e independência.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="sobre-como-funciona limite-secao"
+        id="como-funciona"
+        aria-labelledby="titulo-como-funciona"
+      >
+        <div class="cabecalho-secao">
+          <div>
+            <p class="chamada">COMO A PROPOSTA FUNCIONA</p>
+            <h2 id="titulo-como-funciona">Um caminho mais simples, passo a passo.</h2>
+          </div>
+          <p class="introducao-secao">
+            A tecnologia é o meio. O objetivo é facilitar o acesso das pessoas à informação.
+          </p>
+        </div>
+
+        <div class="sobre-etapas">
+          <article class="sobre-etapa">
+            <span class="sobre-etapa-numero">01</span>
+            <span class="sobre-etapa-icone" aria-hidden="true">⌕</span>
+            <h3>Encontre</h3>
+            <p>Busque orientações sobre serviços e assuntos do seu dia a dia.</p>
+          </article>
+          <article class="sobre-etapa">
+            <span class="sobre-etapa-numero">02</span>
+            <span class="sobre-etapa-icone" aria-hidden="true">Aa</span>
+            <h3>Compreenda</h3>
+            <p>Acesse conteúdo organizado, com palavras claras e instruções objetivas.</p>
+          </article>
+          <article class="sobre-etapa">
+            <span class="sobre-etapa-numero">03</span>
+            <span class="sobre-etapa-icone" aria-hidden="true">↗</span>
+            <h3>Siga em frente</h3>
+            <p>Saiba quais passos pode tomar e onde buscar mais informações.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="sobre-acessibilidade" aria-labelledby="titulo-acessibilidade-sobre">
+        <div class="limite-secao sobre-grade-acessibilidade">
+          <div class="sobre-selo-acessibilidade" aria-hidden="true">
+            <span>INCLUI</span>
+            <strong>+</strong>
+          </div>
+          <div>
+            <p class="chamada">ACESSIBILIDADE FAZ PARTE DA PROPOSTA</p>
+            <h2 id="titulo-acessibilidade-sobre">
+              Diferentes pessoas. Diferentes formas de acessar.
+            </h2>
+            <p>
+              A experiência considera recursos como áudio, Libras, contraste,
+              ampliação e linguagem simples. As escolhas devem respeitar as
+              necessidades e preferências de cada pessoa.
+            </p>
+            <a class="link-cabecalho sobre-link-acessibilidade" href="index.html#acessibilidade">
+              Conheça as opções de acessibilidade <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="sobre-chamada-final limite-secao" aria-labelledby="titulo-chamada-final">
+        <div>
+          <p class="chamada">INFORMAÇÃO QUE APROXIMA</p>
+          <h2 id="titulo-chamada-final">A internet precisa falar a língua de todos.</h2>
+        </div>
+        <a class="botao botao-claro" href="index.html#servicos">
+          Explorar a página inicial <span aria-hidden="true">↗</span>
+        </a>
+      </section>
     </main>
+
+    <footer class="rodape-site">
+      <div class="limite-secao conteudo-rodape">
+        <a class="marca marca-rodape" href="index.html" aria-label="INCLUI — voltar ao início">
+          <img class="imagem-logo imagem-logo-rodape" src="assets/images/logo.png" alt="INCLUI" />
+        </a>
+        <p class="slogan-rodape">A internet precisa falar a língua de todos.</p>
+        <nav class="navegacao-rodape" aria-label="Navegação do rodapé">
+          <a href="index.html">Início</a>
+          <a href="integrantes.html">Integrantes</a>
+          <a href="faq.html">Perguntas frequentes</a>
+          <a href="contato.html">Contato</a>
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>
