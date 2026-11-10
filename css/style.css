@@ -56,6 +56,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
+select:focus-visible,
 summary:focus-visible,
 label:has(input:focus-visible) {
   outline: 3px solid #aa96ff;
@@ -1391,132 +1392,6 @@ body[data-audio="ativo"] [data-leitura] {
   font-size: 1.1rem;
 }
 
-.secao-comunicacao {
-  padding-block: 76px;
-}
-
-.grade-comunicacao {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.botao-comunicacao {
-  display: flex;
-  min-height: 88px;
-  align-items: center;
-  gap: 13px;
-  padding: 16px;
-  border: 1px solid var(--borda);
-  border-radius: 15px;
-  background: var(--superficie);
-  color: var(--texto);
-  text-align: left;
-  cursor: pointer;
-}
-
-.botao-comunicacao:hover,
-.botao-comunicacao[aria-pressed="true"] {
-  border-color: var(--roxo);
-  background: var(--lavanda);
-}
-
-.botao-comunicacao > span {
-  display: grid;
-  width: 44px;
-  height: 44px;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 13px;
-  background: var(--fundo-alternado);
-  font-size: 1.45rem;
-}
-
-.botao-comunicacao strong {
-  font-size: .9rem;
-}
-
-.resultado-comunicacao {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  margin-top: 16px;
-  padding: 17px 19px;
-  border: 1px solid var(--borda);
-  border-radius: 14px;
-  background: var(--fundo-alternado);
-}
-
-.resultado-comunicacao p {
-  margin: 0;
-  font-size: 1.08rem;
-  font-weight: 700;
-}
-
-.nota-comunicacao {
-  margin: 10px 0 0;
-  color: var(--texto-suave);
-  font-size: .78rem;
-}
-
-.estado-comunicacao {
-  min-height: 1.4em;
-  margin: 8px 0 0;
-  color: var(--texto-suave);
-  font-size: .78rem;
-}
-
-.acoes-traducao-comunicacao {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 9px;
-  margin-top: 12px;
-}
-
-.acoes-traducao-comunicacao label {
-  font-size: .82rem;
-  font-weight: 700;
-}
-
-.acoes-traducao-comunicacao select {
-  min-height: 42px;
-  padding: 8px 11px;
-  border: 1px solid var(--borda);
-  border-radius: 10px;
-  background: var(--superficie);
-  color: var(--texto);
-}
-
-.acoes-traducao-comunicacao .botao {
-  min-height: 42px;
-  padding: 0 13px;
-  font-size: .78rem;
-}
-
-.resultado-traducao-comunicacao {
-  margin: 12px 0 0;
-  padding: 15px 18px;
-  border-left: 4px solid var(--roxo);
-  border-radius: 10px;
-  background: var(--lavanda);
-  color: var(--texto);
-  font-size: 1.08rem;
-  font-weight: 700;
-}
-
-.resultado-traducao-comunicacao[hidden] {
-  display: none;
-}
-
-.nota-traducao-comunicacao {
-  margin: 8px 0 0;
-  color: var(--texto-suave);
-  font-size: .76rem;
-  line-height: 1.6;
-}
-
 .secao-compreensao {
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
@@ -1994,13 +1869,8 @@ body[data-audio="ativo"] [data-leitura] {
   }
 
   .secao-servicos,
-  .secao-caminhos,
-  .secao-comunicacao {
+  .secao-caminhos {
     padding-block: 64px;
-  }
-
-  .grade-comunicacao {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .cabecalho-secao,
@@ -2172,25 +2042,6 @@ body[data-audio="ativo"] [data-leitura] {
     width: 100%;
   }
 
-  .grade-comunicacao {
-    grid-template-columns: 1fr;
-  }
-
-  .acoes-traducao-comunicacao {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .acoes-traducao-comunicacao select,
-  .acoes-traducao-comunicacao .botao {
-    width: 100%;
-  }
-
-  .resultado-comunicacao {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
   .cartao-acessibilidade {
     min-height: 0;
     flex-direction: row;
@@ -2352,14 +2203,12 @@ body[data-tema="escuro"] .sobre-acessibilidade {
 }
 
 body[data-tema="escuro"] .botao-secundario,
-body[data-tema="escuro"] .demonstracao-compreensao textarea,
-body[data-tema="escuro"] .acoes-traducao-comunicacao select {
+body[data-tema="escuro"] .demonstracao-compreensao textarea {
   border-color: var(--borda);
   background: #2b2938;
   color: var(--texto);
 }
 
-body[data-tema="escuro"] .resultado-traducao-comunicacao,
 body[data-tema="escuro"] .aviso-linguagem-simples {
   border-color: var(--borda);
   background: #332d4b;

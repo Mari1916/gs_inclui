@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fala = new SpeechSynthesisUtterance(textoPreparado);
     fala.lang = 'pt-BR';
     const vozPortugues = window.speechSynthesis.getVoices()
-      .find((voz) => /^pt(-|_)/i.test(voz.lang));
+      .find((voz) => voz.lang.toLowerCase().startsWith('pt'));
     if (vozPortugues) fala.voice = vozPortugues;
     fala.onstart = () => {
       if (leituraAtual === idLeitura) mostrarIndicadorLeitura();
@@ -742,54 +742,6 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn('Não foi possível iniciar a busca por voz.', erro);
       if (estadoBuscaVoz) estadoBuscaVoz.textContent = 'Não foi possível iniciar o microfone. Digite o assunto no campo de busca.';
     }
-  });
-
-  const fraseComunicacao = document.querySelector('#frase-comunicacao-selecionada');
-  const estadoComunicacao = document.querySelector('#estado-comunicacao');
-  const botaoOuvirFrase = document.querySelector('#ouvir-frase-comunicacao');
-  const idiomaTraducaoComunicacao = document.querySelector('#idioma-traducao-comunicacao');
-  const botaoTraduzirFrase = document.querySelector('#traduzir-frase-comunicacao');
-  const resultadoTraducaoComunicacao = document.querySelector('#resultado-traducao-comunicacao');
-  let botaoComunicacaoSelecionado = null;
-  document.querySelectorAll('[data-frase-comunicacao]').forEach((botao) => {
-    botao.setAttribute('aria-pressed', 'false');
-    botao.addEventListener('click', () => {
-      document.querySelectorAll('[data-frase-comunicacao]').forEach((opcao) => {
-        opcao.setAttribute('aria-pressed', String(opcao === botao));
-      });
-      botaoComunicacaoSelecionado = botao;
-      if (fraseComunicacao) fraseComunicacao.textContent = botao.dataset.fraseComunicacao;
-      if (botaoOuvirFrase) botaoOuvirFrase.disabled = false;
-      if (idiomaTraducaoComunicacao) idiomaTraducaoComunicacao.disabled = false;
-      if (idiomaTraducaoComunicacao) idiomaTraducaoComunicacao.value = '';
-      if (botaoTraduzirFrase) botaoTraduzirFrase.disabled = false;
-      if (resultadoTraducaoComunicacao) {
-        resultadoTraducaoComunicacao.hidden = true;
-        resultadoTraducaoComunicacao.textContent = '';
-        resultadoTraducaoComunicacao.lang = 'pt-BR';
-      }
-      if (estadoComunicacao) estadoComunicacao.textContent = 'Mensagem selecionada. Você pode mostrá-la ou pedir para o navegador falar.';
-    });
-  });
-  botaoOuvirFrase?.addEventListener('click', () => {
-    if (fraseComunicacao?.textContent) {
-      if (estadoComunicacao) estadoComunicacao.textContent = 'Lendo a mensagem em português com a mesma voz de “Ouvir o conteúdo”.';
-      lerTexto(fraseComunicacao.textContent, true, estadoComunicacao);
-    }
-  });
-  botaoTraduzirFrase?.addEventListener('click', () => {
-    const idioma = idiomaTraducaoComunicacao?.value;
-    const atributoTraducao = idioma === 'en' ? 'traducaoEn' : idioma === 'es' ? 'traducaoEs' : '';
-    const traducao = atributoTraducao && botaoComunicacaoSelecionado?.dataset[atributoTraducao];
-    if (!traducao || !resultadoTraducaoComunicacao) {
-      if (estadoComunicacao) estadoComunicacao.textContent = 'Escolha uma mensagem e um idioma para ver a tradução.';
-      idiomaTraducaoComunicacao?.focus();
-      return;
-    }
-    resultadoTraducaoComunicacao.textContent = traducao;
-    resultadoTraducaoComunicacao.lang = idioma === 'en' ? 'en' : 'es';
-    resultadoTraducaoComunicacao.hidden = false;
-    if (estadoComunicacao) estadoComunicacao.textContent = `Tradução de apoio exibida em ${idioma === 'en' ? 'inglês' : 'espanhol'}.`;
   });
 
   const exemplosEntenda = {
