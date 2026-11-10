@@ -1,18 +1,174 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Integrantes | INCLUI</title>
+    <meta
+      name="description"
+      content="Conheça as quatro pessoas que criaram o INCLUI: Ana Julia, Maria Eduarda, Mariana e Vitor."
+    />
+    <meta name="theme-color" content="#faf9ff" />
+    <title>Integrantes — INCLUI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <main class="pagina-em-construcao">
-      <div class="container">
-        <h1>Integrantes</h1>
-        <p>Não iniciado.</p>
-      </div>
+  <body class="pagina-integrantes">
+    <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho-site">
+      <a class="marca" href="index.html" aria-label="INCLUI — início">
+        <img
+          class="imagem-logo"
+          src="assets/images/logo.png"
+          data-logo-claro="assets/images/logo.png"
+          data-logo-escuro="assets/images/logo-escuro.png"
+          alt="INCLUI"
+        />
+      </a>
+
+      <nav class="navegacao-principal" aria-label="Navegação principal">
+        <a href="index.html#inicio">Início</a>
+        <a href="sobre.html">Sobre o INCLUI</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="integrantes.html" aria-current="page">Integrantes</a>
+        <a href="faq.html">Perguntas frequentes</a>
+      </nav>
+
+      <a class="link-cabecalho" href="contato.html">
+        Fale com a gente <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main id="conteudo">
+      <section class="equipe-apresentacao" aria-labelledby="titulo-integrantes">
+        <div class="limite-secao equipe-apresentacao-conteudo">
+          <p class="chamada"><span aria-hidden="true"></span> QUEM FAZ O INCLUI</p>
+          <h1 id="titulo-integrantes">Quatro pessoas, <span>um propósito.</span></h1>
+          <p>
+            Somos estudantes e criadores do INCLUI. Acreditamos que a informação
+            fica melhor quando é clara, acessível e pensada para todas as pessoas.
+          </p>
+          <a class="equipe-descer" href="#equipe" aria-label="Conheça as pessoas da equipe">
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+        <div class="equipe-forma-equipe" aria-hidden="true">
+          <span>INCLUI</span>
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+      </section>
+
+      <section class="equipe-secao limite-secao" id="equipe" aria-labelledby="titulo-equipe">
+        <div class="equipe-cabecalho">
+          <div>
+            <p class="chamada">NOSSA EQUIPE</p>
+            <h2 id="titulo-equipe">Conheça quem está por trás da ideia.</h2>
+          </div>
+          <p>Conecte-se com a gente e acompanhe nossos projetos.</p>
+        </div>
+
+        <div class="equipe-grade">
+          <article class="cartao-integrante">
+            <div class="integrante-avatar integrante-avatar-lilas" aria-hidden="true">AJ</div>
+            <p class="integrante-identificacao">INTEGRANTE 01</p>
+            <h3>Ana Julia Castilho Soares</h3>
+            <p class="integrante-curso">RM00000 <span aria-hidden="true">·</span> 1TDSPS</p>
+            <div class="integrante-links" aria-label="Redes de Ana Julia Castilho Soares">
+              <a href="https://github.com/AnaJu1203" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Ana Julia Castilho Soares">
+                GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <a href="https://www.linkedin.com/in/ana-julia-castilho-13b8a02b3" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Ana Julia Castilho Soares">
+                LinkedIn <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="cartao-integrante">
+            <div class="integrante-avatar integrante-avatar-pessego" aria-hidden="true">ME</div>
+            <p class="integrante-identificacao">INTEGRANTE 02</p>
+            <h3>Maria Eduarda Alcantara dos Santos</h3>
+            <p class="integrante-curso">RM00000 <span aria-hidden="true">·</span> 1TDSPS</p>
+            <div class="integrante-links" aria-label="Redes de Maria Eduarda Alcantara dos Santos">
+              <a href="https://github.com/DuAlcantara" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Maria Eduarda Alcantara dos Santos">
+                GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <a href="https://www.linkedin.com/in/maria-eduarda-alcantara-dos-santos-213596389/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Maria Eduarda Alcantara dos Santos">
+                LinkedIn <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="cartao-integrante">
+            <div class="integrante-avatar integrante-avatar-verde" aria-hidden="true">MF</div>
+            <p class="integrante-identificacao">INTEGRANTE 03</p>
+            <h3>Mariana da Silva Freitas</h3>
+            <p class="integrante-curso">RM574261 <span aria-hidden="true">·</span> 1TDSPS</p>
+            <div class="integrante-links" aria-label="Redes de Mariana da Silva Freitas">
+              <a href="https://github.com/Mari1916" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Mariana da Silva Freitas">
+                GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <a href="https://www.linkedin.com/in/mariana-freitas-3b756433a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Mariana da Silva Freitas">
+                LinkedIn <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="cartao-integrante">
+            <div class="integrante-avatar integrante-avatar-azul" aria-hidden="true">VH</div>
+            <p class="integrante-identificacao">INTEGRANTE 04</p>
+            <h3>Vitor Hugo Silva Rodrigues</h3>
+            <p class="integrante-curso">RM00000 <span aria-hidden="true">·</span> 1TDSPS</p>
+            <div class="integrante-links" aria-label="Redes de Vitor Hugo Silva Rodrigues">
+              <a href="https://github.com/VitorHugo226" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Vitor Hugo Silva Rodrigues">
+                GitHub <span aria-hidden="true">↗</span>
+              </a>
+              <a href="https://www.linkedin.com/in/vitor-hugo-rodrigues-765921300/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Vitor Hugo Silva Rodrigues">
+                LinkedIn <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="equipe-chamada limite-secao" aria-labelledby="titulo-chamada-equipe">
+        <div>
+          <p class="chamada">JUNTOS, A GENTE INCLUI</p>
+          <h2 id="titulo-chamada-equipe">A internet precisa falar a língua de todos.</h2>
+        </div>
+        <a class="botao botao-claro" href="index.html#inicio">
+          Conheça o INCLUI <span aria-hidden="true">↗</span>
+        </a>
+      </section>
     </main>
+
+    <footer class="rodape-site">
+      <div class="limite-secao conteudo-rodape">
+        <a class="marca marca-rodape" href="index.html" aria-label="INCLUI — voltar ao início">
+          <img
+            class="imagem-logo imagem-logo-rodape"
+            src="assets/images/logo.png"
+            data-logo-claro="assets/images/logo.png"
+            data-logo-escuro="assets/images/logo-escuro.png"
+            alt="INCLUI"
+          />
+        </a>
+        <p class="slogan-rodape">A internet precisa falar a língua de todos.</p>
+        <nav class="navegacao-rodape" aria-label="Navegação do rodapé">
+          <a href="index.html">Início</a>
+          <a href="sobre.html">Sobre o INCLUI</a>
+          <a href="faq.html">Perguntas frequentes</a>
+          <a href="contato.html">Contato</a>
+        </nav>
+      </div>
+    </footer>
     <script src="js/script.js"></script>
   </body>
 </html>
