@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoOuvir = document.querySelector('#botao-ouvir-pagina');
   const botaoParar = document.querySelector('#botao-parar-leitura');
   const recursoAudio = document.querySelector('[data-recurso="audio"]');
+  const conteudoPrincipal = document.querySelector('main');
   const botaoDiminuirFonte = document.querySelector('#diminuir-fonte');
   const botaoAumentarFonte = document.querySelector('#aumentar-fonte');
   const valorFonte = document.querySelector('#valor-fonte');
@@ -56,6 +57,61 @@ document.addEventListener('DOMContentLoaded', () => {
     '#abrir-acessibilidade-flutuante, a[href="#acessibilidade"]',
   );
   const botaoFecharAcessibilidade = document.querySelector('.fechar-acessibilidade');
+  let temporizadorLeitura = null;
+  let ultimoAlvoLido = null;
+  let idLeitura = 0;
+  const suporteLeitura = 'speechSynthesis' in window
+    && 'SpeechSynthesisUtterance' in window;
+
+  const pararLeitura = (mensagem) => {
+    window.clearTimeout(temporizadorLeitura);
+    idLeitura += 1;
+    if (suporteLeitura) window.speechSynthesis.cancel();
+    if (botaoParar) botaoParar.disabled = true;
+    if (mensagem && estadoAcessibilidade) estadoAcessibilidade.textContent = mensagem;
+  };
+
+  const lerTexto = (texto, anunciarEstado = true) => {
+    if (!suporteLeitura) {
+      if (anunciarEstado && estadoAcessibilidade) {
+        estadoAcessibilidade.textContent = 'A leitura em voz alta não está disponível neste navegador.';
+      }
+      return;
+    }
+
+    const textoPreparado = texto.replace(/\s+/g, ' ').trim();
+    if (!textoPreparado) return;
+
+    const leituraAtual = ++idLeitura;
+    window.clearTimeout(temporizadorLeitura);
+    window.speechSynthesis.cancel();
+    const fala = new SpeechSynthesisUtterance(textoPreparado);
+    fala.lang = 'pt-BR';
+    const vozPortugues = window.speechSynthesis.getVoices()
+      .find((voz) => /^pt(-|_)/i.test(voz.lang));
+    if (vozPortugues) fala.voice = vozPortugues;
+    fala.onend = () => {
+      if (leituraAtual !== idLeitura) return;
+      if (botaoParar) botaoParar.disabled = true;
+      if (anunciarEstado && estadoAcessibilidade) {
+        estadoAcessibilidade.textContent = 'Leitura concluída.';
+      }
+    };
+    fala.onerror = () => {
+      if (leituraAtual !== idLeitura) return;
+      if (botaoParar) botaoParar.disabled = true;
+      if (estadoAcessibilidade) {
+        estadoAcessibilidade.textContent = 'Não foi possível concluir a leitura em voz alta.';
+      }
+    };
+
+    window.speechSynthesis.speak(fala);
+    if (botaoParar) botaoParar.disabled = false;
+    if (anunciarEstado && estadoAcessibilidade) {
+      estadoAcessibilidade.textContent = 'Lendo o conteúdo da página em voz alta.';
+    }
+  };
+
   const atributosRecursos = {
     daltonismo: ['paleta', 'daltonismo'],
     contraste: ['contraste', 'alto'],
@@ -87,11 +143,13 @@ document.addEventListener('DOMContentLoaded', () => {
       mensagem += ` Preferência por ${preferencias.join(' e ')} registrada para conteúdos quando disponíveis.`;
     }
 
+    if (recursoAudio?.checked) {
+      mensagem += ' Passe o mouse sobre um texto ou use Tab para ouvi-lo.';
+    }
     if (estadoAcessibilidade) estadoAcessibilidade.textContent = mensagem;
     if (botaoOuvir) botaoOuvir.disabled = !recursoAudio?.checked;
-    if (!recursoAudio?.checked && 'speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      if (botaoParar) botaoParar.disabled = true;
+    if (!recursoAudio?.checked) {
+      pararLeitura();
     }
   };
 
@@ -165,31 +223,46 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   botaoOuvir?.addEventListener('click', () => {
-    if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) {
-      if (estadoAcessibilidade) estadoAcessibilidade.textContent = 'A leitura em voz alta não está disponível neste navegador.';
-      return;
-    }
-
-    window.speechSynthesis.cancel();
-    const fala = new SpeechSynthesisUtterance(document.querySelector('main')?.innerText ?? '');
-    fala.lang = 'pt-BR';
-    fala.onend = () => {
-      if (botaoParar) botaoParar.disabled = true;
-    };
-    fala.onerror = () => {
-      if (botaoParar) botaoParar.disabled = true;
-      if (estadoAcessibilidade) estadoAcessibilidade.textContent = 'Não foi possível concluir a leitura em voz alta.';
-    };
-
-    window.speechSynthesis.speak(fala);
-    if (botaoParar) botaoParar.disabled = false;
-    if (estadoAcessibilidade) estadoAcessibilidade.textContent = 'Lendo o conteúdo da página em voz alta.';
+    const copiaConteudo = conteudoPrincipal?.cloneNode(true);
+    copiaConteudo?.querySelectorAll('dialog, [aria-hidden="true"], [hidden]')
+      .forEach((elemento) => elemento.remove());
+    lerTexto(copiaConteudo?.innerText ?? '');
   });
 
   botaoParar?.addEventListener('click', () => {
-    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-    botaoParar.disabled = true;
-    if (estadoAcessibilidade) estadoAcessibilidade.textContent = 'Leitura em voz alta pausada.';
+    pararLeitura('Leitura em voz alta interrompida.');
+  });
+
+  const lerAlvoApontado = (evento) => {
+    if (!recursoAudio?.checked || evento.pointerType === 'touch') return;
+    const alvo = evento.target.closest(
+      'h1, h2, h3, h4, p, li, a, button, summary, blockquote, figcaption',
+    );
+    if (!alvo || !conteudoPrincipal?.contains(alvo) || alvo.closest('dialog, [aria-hidden="true"]')) return;
+    if (alvo === ultimoAlvoLido || (evento.relatedTarget && alvo.contains(evento.relatedTarget))) return;
+
+    ultimoAlvoLido = alvo;
+    window.clearTimeout(temporizadorLeitura);
+    temporizadorLeitura = window.setTimeout(() => {
+      temporizadorLeitura = null;
+      lerTexto(alvo.innerText, false);
+    }, 350);
+  };
+
+  conteudoPrincipal?.addEventListener('pointerover', lerAlvoApontado);
+  conteudoPrincipal?.addEventListener('focusin', lerAlvoApontado);
+  conteudoPrincipal?.addEventListener('pointerleave', () => {
+    window.clearTimeout(temporizadorLeitura);
+    temporizadorLeitura = null;
+    ultimoAlvoLido = null;
+  });
+
+  document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Escape'
+      && suporteLeitura
+      && (window.speechSynthesis.speaking || temporizadorLeitura !== null)) {
+      pararLeitura();
+    }
   });
 
   atualizarPreferencias();
