@@ -911,6 +911,194 @@ a:focus-visible {
   font-size: 15px;
 }
 
+.understand-section {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  align-items: center;
+  gap: 72px;
+  padding-top: 94px;
+  padding-bottom: 94px;
+}
+
+.understand-sparkle {
+  color: var(--purple);
+  font-size: 16px;
+}
+
+.understand-copy h2 {
+  margin: 18px 0 16px;
+  font: 750 39px/1.2 "Manrope", sans-serif;
+  letter-spacing: -.05em;
+}
+
+.understand-copy h2 span {
+  color: var(--purple);
+}
+
+.understand-description {
+  max-width: 410px;
+  margin: 0 0 21px;
+  color: #7e7a89;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.understand-benefits {
+  display: grid;
+  gap: 12px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.understand-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #5e5a69;
+  font-size: 10px;
+}
+
+.understand-benefits li span {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: #ede7ff;
+  color: #6841c6;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.understand-demo {
+  padding: 22px;
+  border: 1px solid #eeeaf5;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 17px 44px #35245b0e;
+}
+
+.demo-header {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 16px;
+}
+
+.demo-document-icon {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 11px;
+  background: #f0e9ff;
+  color: var(--purple);
+}
+
+.demo-document-icon svg {
+  width: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.demo-title {
+  min-width: 0;
+}
+
+.demo-title strong,
+.demo-title small {
+  display: block;
+}
+
+.demo-title strong {
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.demo-title small {
+  color: #93909d;
+  font-size: 9px;
+}
+
+.demo-sparkle {
+  margin-left: auto;
+  color: #aa8ce9;
+  font-size: 21px;
+}
+
+.understand-demo textarea {
+  display: block;
+  width: 100%;
+  min-height: 105px;
+  resize: vertical;
+  padding: 13px;
+  border: 1px solid #eae8f0;
+  border-radius: 9px;
+  color: #343044;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.understand-demo textarea::placeholder {
+  color: #aaa6b2;
+}
+
+.understand-demo textarea:focus-visible,
+.example-details summary:focus-visible {
+  outline: 3px solid #f1a94b;
+  outline-offset: 3px;
+}
+
+.example-details {
+  margin: 12px 0;
+  color: #777284;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.example-details summary {
+  width: fit-content;
+  color: var(--purple);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.example-details p {
+  padding: 10px 12px;
+  margin: 9px 0 0;
+  border-radius: 8px;
+  background: #faf8ff;
+}
+
+.explain-button {
+  width: 100%;
+  min-height: 44px;
+  cursor: not-allowed;
+  font-size: 11px;
+}
+
+.explain-button:disabled {
+  background: #8d75c5;
+  box-shadow: none;
+  opacity: .8;
+}
+
+.demo-note {
+  margin: 11px 0 0;
+  color: #8f8b99;
+  font-size: 9px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   .site-header {
     padding-inline: 24px;
@@ -938,6 +1126,10 @@ a:focus-visible {
 
   .service-grid {
     gap: 10px;
+  }
+
+  .understand-section {
+    gap: 38px;
   }
 }
 
@@ -1122,6 +1314,21 @@ a:focus-visible {
 
   .service-copy p {
     font-size: 9px;
+  }
+
+  .understand-section {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding-top: 66px;
+    padding-bottom: 66px;
+  }
+
+  .understand-copy h2 {
+    font-size: 35px;
+  }
+
+  .understand-demo {
+    padding: 17px;
   }
 }
 
