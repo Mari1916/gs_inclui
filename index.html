@@ -302,75 +302,99 @@
             <input
               id="campo-busca-servicos"
               type="search"
-              placeholder="Ex.: tirar um documento, pedir benefício..."
+              placeholder="Ex.: vacinação, curso gratuito, serviço digital..."
               autocomplete="off"
+              aria-controls="lista-pilares"
             />
-            <span class="dica-busca">Encontre uma orientação</span>
+            <span class="dica-busca">Busque por tema</span>
           </div>
 
-          <div class="grade-servicos">
-            <article class="cartao-servico">
+          <p class="estado-busca" id="estado-busca-servicos" role="status" aria-live="polite">
+            3 temas disponíveis. Escolha um para ver o guia.
+          </p>
+
+          <div class="grade-servicos" id="lista-pilares">
+            <a class="cartao-servico" href="vacinacao.html" data-termos="saude sus vacina vacinacao imunizacao unidade posto">
               <span class="icone-servico icone-documentos" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <rect x="4" y="3" width="16" height="18" rx="3" />
-                  <circle cx="9" cy="10" r="2" />
-                  <path d="M7 16c.5-2 3.5-2 4 0m2-6h4m-4 4h4" />
-                </svg>
-              </span>
-              <div class="texto-servico">
-                <span class="categoria-servico">DOCUMENTOS</span>
-                <h3>Tirar meus documentos</h3>
-                <p>Saiba por onde começar e o que levar.</p>
-              </div>
-              <span class="seta-servico" aria-hidden="true">↗</span>
-            </article>
-
-            <article class="cartao-servico">
-              <span class="icone-servico icone-beneficios" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z" />
-                  <path d="M8 12h8m-4-4v8" />
-                </svg>
-              </span>
-              <div class="texto-servico">
-                <span class="categoria-servico">APOIO E BENEFÍCIOS</span>
-                <h3>Conhecer benefícios</h3>
-                <p>Descubra quais apoios podem existir para você.</p>
-              </div>
-              <span class="seta-servico" aria-hidden="true">↗</span>
-            </article>
-
-            <article class="cartao-servico">
-              <span class="icone-servico icone-saude" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
                   <path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z" />
                   <path d="M12 8v8m-4-4h8" />
                 </svg>
               </span>
               <div class="texto-servico">
-                <span class="categoria-servico">SAÚDE</span>
-                <h3>Acessar serviços de saúde</h3>
-                <p>Encontre orientações para cuidar de você.</p>
+                <span class="categoria-servico">SAÚDE E SUS</span>
+                <h3>Vacinação</h3>
+                <p>Consulte orientações oficiais para manter a vacinação em dia.</p>
               </div>
               <span class="seta-servico" aria-hidden="true">↗</span>
-            </article>
+            </a>
 
-            <article class="cartao-servico">
-              <span class="icone-servico icone-trabalho" aria-hidden="true">
+            <a class="cartao-servico" href="cursos-gratuitos.html" data-termos="educacao curso cursos gratuito gratuitos online inscricao certificado">
+              <span class="icone-servico icone-beneficios" aria-hidden="true">
                 <svg viewBox="0 0 24 24">
-                  <rect x="3" y="7" width="18" height="14" rx="3" />
-                  <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m-13 5h18m-11 0v2h4v-2" />
+                  <path d="m3 9 9-5 9 5-9 5-9-5Z" />
+                  <path d="M7 11.2V16c3 2.5 7 2.5 10 0v-4.8M21 9v6" />
                 </svg>
               </span>
               <div class="texto-servico">
-                <span class="categoria-servico">TRABALHO</span>
-                <h3>Procurar trabalho</h3>
-                <p>Veja orientações para buscar oportunidades.</p>
+                <span class="categoria-servico">EDUCAÇÃO</span>
+                <h3>Cursos gratuitos</h3>
+                <p>Encontre cursos on-line e confira requisitos e prazos.</p>
               </div>
               <span class="seta-servico" aria-hidden="true">↗</span>
-            </article>
+            </a>
+
+            <a class="cartao-servico" href="servicos-digitais.html" data-termos="tecnologia governo gov.br servico servicos digital digitais portal burocracia">
+              <span class="icone-servico icone-trabalho" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="M3 9h18m-12 5h6m-6 3h4" />
+                </svg>
+              </span>
+              <div class="texto-servico">
+                <span class="categoria-servico">SERVIÇOS GOVERNAMENTAIS</span>
+                <h3>Serviços digitais</h3>
+                <p>Entenda como localizar um serviço no portal oficial.</p>
+              </div>
+              <span class="seta-servico" aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
+      </section>
+
+      <section class="secao-glossario limite-secao" id="glossario" aria-labelledby="titulo-glossario">
+        <div class="cabecalho-secao">
+          <div>
+            <p class="chamada">PALAVRAS MAIS CLARAS</p>
+            <h2 id="titulo-glossario">Glossário de serviços públicos</h2>
+          </div>
+          <p class="introducao-secao">Consulte explicações curtas para termos que aparecem em orientações oficiais.</p>
+        </div>
+        <label class="rotulo-busca-glossario" for="busca-glossario">Busque uma palavra</label>
+        <input class="campo-busca-glossario" id="busca-glossario" type="search" placeholder="Ex.: requisito, protocolo, prazo..." aria-controls="lista-glossario" />
+        <p class="estado-busca" id="estado-busca-glossario" role="status" aria-live="polite">5 termos disponíveis.</p>
+        <dl class="lista-glossario" id="lista-glossario">
+          <div class="termo-glossario" data-termos="requisito exigencia condicao">
+            <dt>Requisito</dt>
+            <dd>Condição que precisa ser atendida para solicitar ou concluir um serviço.</dd>
+          </div>
+          <div class="termo-glossario" data-termos="prazo data tempo">
+            <dt>Prazo</dt>
+            <dd>Período ou data limite informada pelo órgão responsável para uma etapa.</dd>
+          </div>
+          <div class="termo-glossario" data-termos="protocolo numero acompanhamento pedido">
+            <dt>Protocolo</dt>
+            <dd>Número ou registro que ajuda a identificar e acompanhar uma solicitação.</dd>
+          </div>
+          <div class="termo-glossario" data-termos="orgao responsavel instituicao">
+            <dt>Órgão responsável</dt>
+            <dd>Instituição pública que oferece o serviço ou responde por ele.</dd>
+          </div>
+          <div class="termo-glossario" data-termos="canal oficial portal atendimento">
+            <dt>Canal oficial</dt>
+            <dd>Site, aplicativo, telefone ou local de atendimento mantido pelo órgão responsável.</dd>
+          </div>
+        </dl>
       </section>
 
       <section class="secao-compreensao limite-secao" id="entenda" aria-labelledby="titulo-compreensao">
@@ -382,7 +406,7 @@
           </h2>
           <p class="descricao-compreensao">
             Orientações públicas podem vir cheias de palavras complicadas.
-            O INCLUI ajuda a transformar a informação em passos mais fáceis de entender.
+            A proposta do INCLUI é apresentar a informação em passos mais fáceis de entender.
           </p>
           <ul class="beneficios-compreensao">
             <li><span aria-hidden="true">✓</span> Explicações com palavras mais simples</li>
@@ -418,9 +442,8 @@
           <details class="detalhes-exemplo">
             <summary>Ver um exemplo de texto</summary>
             <p>
-              Para solicitar a segunda via do documento de identidade, compareça
-              ao posto de atendimento com sua certidão de nascimento ou casamento
-              e comprovante de residência.
+              Exemplo genérico, sem relação com um serviço específico:
+              confira as instruções do órgão responsável antes de iniciar uma solicitação.
             </p>
           </details>
 
@@ -511,6 +534,7 @@
 
         <nav class="navegacao-rodape" aria-label="Navegação do rodapé">
           <a href="#servicos">Serviços</a>
+          <a href="#glossario">Glossário</a>
           <a href="#entenda">Entenda por mim</a>
           <a href="#acessibilidade">Acessibilidade</a>
         </nav>

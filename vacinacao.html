@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Guia informativo do INCLUI sobre vacinação no SUS, com etapas, lista de verificação local e fonte oficial."
+    />
+    <meta name="theme-color" content="#faf9ff" />
+    <title>Vacinação no SUS — INCLUI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="pagina-guia">
+    <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho-site">
+      <a class="marca" href="index.html" aria-label="INCLUI — início">
+        <img
+          class="imagem-logo"
+          src="assets/images/logo.png"
+          data-logo-claro="assets/images/logo.png"
+          data-logo-escuro="assets/images/logo-escuro.png"
+          alt="INCLUI"
+        />
+      </a>
+      <button class="botao-menu-mobile" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navegacao-principal">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="navegacao-principal" id="navegacao-principal" aria-label="Navegação principal">
+        <a href="index.html#inicio">Início</a>
+        <a href="sobre.html">Sobre o INCLUI</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="integrantes.html">Integrantes</a>
+        <a href="faq.html">Perguntas frequentes</a>
+        <a class="link-cabecalho" href="contato.html">Fale com a gente <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <nav class="migalha-guia limite-secao" aria-label="Você está aqui">
+        <a href="index.html">Início</a><span aria-hidden="true">/</span><a href="index.html#servicos">Serviços</a><span aria-hidden="true">/</span><span aria-current="page">Saúde e SUS</span>
+      </nav>
+
+      <section class="guia-apresentacao limite-secao" aria-labelledby="titulo-guia">
+        <p class="chamada">SAÚDE E SUS</p>
+        <h1 id="titulo-guia">Como consultar orientações sobre vacinação</h1>
+        <p class="guia-resumo">
+          A vacinação no SUS é gratuita. Consulte o calendário oficial e confirme
+          as orientações adequadas para sua situação com uma unidade de saúde.
+        </p>
+        <p class="aviso-revisao">
+          <strong>Conteúdo pendente de validação pelo grupo</strong>
+          <span>Esta é uma proposta inicial de guia. Calendários e recomendações podem mudar; confirme as informações na fonte oficial ou com profissionais de saúde.</span>
+        </p>
+      </section>
+
+      <div class="guia-layout limite-secao">
+        <article class="guia-conteudo">
+          <section aria-labelledby="titulo-etapas">
+            <div class="cabecalho-secao">
+              <div>
+                <p class="chamada">UM PASSO DE CADA VEZ</p>
+                <h2 id="titulo-etapas">Veja por onde começar</h2>
+              </div>
+            </div>
+            <ol class="etapas-guia">
+              <li>
+                <span>01</span>
+                <div><h3>Consulte o calendário oficial</h3><p>As vacinas recomendadas variam conforme a idade e outras condições. Confira as orientações atuais do Ministério da Saúde.</p></div>
+              </li>
+              <li>
+                <span>02</span>
+                <div><h3>Confira as orientações da sua unidade</h3><p>Entre em contato com uma unidade de saúde da sua região para confirmar horários e como funciona a vacinação no local.</p></div>
+              </li>
+              <li>
+                <span>03</span>
+                <div><h3>Procure uma unidade de saúde</h3><p>Se alguma dose estiver pendente, o Ministério da Saúde orienta procurar uma unidade para atualizar a vacinação. A equipe poderá orientar sobre os próximos passos.</p></div>
+              </li>
+            </ol>
+          </section>
+
+          <section class="lista-verificacao-guia" aria-labelledby="titulo-lista-verificacao">
+            <p class="chamada">SUA LISTA DE VERIFICAÇÃO</p>
+            <h2 id="titulo-lista-verificacao">Marque o que já fez</h2>
+            <p>As marcações ficam somente neste navegador. Elas não são enviadas ao INCLUI nem comprovam atendimento ou vacinação.</p>
+            <div class="itens-lista-verificacao" data-lista-verificacao="saude-vacinacao">
+              <label><input type="checkbox" data-item-verificacao="calendario" /> Consultei o calendário oficial de vacinação.</label>
+              <label><input type="checkbox" data-item-verificacao="unidade" /> Confirmei as orientações com uma unidade de saúde.</label>
+              <label><input type="checkbox" data-item-verificacao="proximo-passo" /> Identifiquei o próximo passo com a equipe de saúde.</label>
+              <p class="estado-lista-verificacao" data-status-lista-verificacao role="status" aria-live="polite"></p>
+            </div>
+          </section>
+        </article>
+
+        <aside class="painel-fonte-guia" aria-labelledby="titulo-fonte">
+          <p class="chamada">FONTE OFICIAL</p>
+          <h2 id="titulo-fonte">Ministério da Saúde</h2>
+          <p>A página oficial reúne informações sobre a importância da vacinação e orienta procurar uma unidade de saúde para atualizar doses pendentes.</p>
+          <p class="data-revisao-guia">Fonte consultada em <time datetime="2026-11-10">10/11/2026</time>.</p>
+          <a class="botao botao-primario" href="https://www.gov.br/saude/pt-br/vacinacao" target="_blank" rel="noopener noreferrer">
+            Consultar vacinação no SUS <span aria-hidden="true">↗</span>
+          </a>
+          <p class="nota-link-externo">O link abre o site oficial do Ministério da Saúde. O INCLUI não agenda atendimento.</p>
+        </aside>
+      </div>
+
+      <nav class="outros-guias limite-secao" aria-label="Outros temas">
+        <h2>Explore outros temas</h2>
+        <a href="cursos-gratuitos.html">Cursos gratuitos <span aria-hidden="true">↗</span></a>
+        <a href="servicos-digitais.html">Serviços digitais <span aria-hidden="true">↗</span></a>
+        <a href="index.html#glossario">Glossário <span aria-hidden="true">↗</span></a>
+      </nav>
+    </main>
+
+    <footer class="rodape-site">
+      <div class="limite-secao conteudo-rodape">
+        <a class="marca marca-rodape" href="index.html" aria-label="INCLUI — voltar ao início">
+          <img class="imagem-logo imagem-logo-rodape" src="assets/images/logo.png" data-logo-claro="assets/images/logo.png" data-logo-escuro="assets/images/logo-escuro.png" alt="INCLUI" />
+        </a>
+        <p class="slogan-rodape">A internet precisa falar a língua de todos.</p>
+        <nav class="navegacao-rodape" aria-label="Navegação do rodapé">
+          <a href="index.html#servicos">Serviços</a>
+          <a href="index.html#glossario">Glossário</a>
+          <a href="faq.html">Perguntas frequentes</a>
+          <a href="contato.html">Contato</a>
+        </nav>
+      </div>
+    </footer>
+    <script src="js/script.js"></script>
+  </body>
+</html>

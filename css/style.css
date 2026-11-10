@@ -3745,3 +3745,412 @@ body[data-tema="escuro"] .faq-answer a {
     width: 100%;
   }
 }
+
+.cartao-servico[hidden],
+.termo-glossario[hidden] {
+  display: none;
+}
+
+.cartao-servico:focus-visible {
+  outline: 3px solid #aa96ff;
+  outline-offset: 4px;
+}
+
+.estado-busca {
+  margin: -7px 0 16px;
+  color: var(--texto-suave);
+  font-size: .82rem;
+}
+
+.secao-glossario {
+  padding-block: 74px 82px;
+}
+
+.secao-glossario .cabecalho-secao {
+  margin-bottom: 24px;
+}
+
+.rotulo-busca-glossario {
+  display: block;
+  margin-bottom: 7px;
+  font-size: .84rem;
+  font-weight: 700;
+}
+
+.campo-busca-glossario {
+  width: min(100%, 520px);
+  min-height: 48px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  background: var(--superficie);
+  color: var(--texto);
+  font: inherit;
+}
+
+.campo-busca-glossario::placeholder {
+  color: var(--texto-suave);
+}
+
+.lista-glossario {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.termo-glossario {
+  padding: 18px 20px;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background: var(--superficie);
+}
+
+.termo-glossario dt {
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.termo-glossario dd {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: .9rem;
+}
+
+.pagina-guia {
+  min-height: 100vh;
+  background: var(--fundo);
+}
+
+.migalha-guia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  padding-block: 20px;
+  color: var(--texto-suave);
+  font-size: .82rem;
+}
+
+.migalha-guia a {
+  color: var(--roxo-escuro);
+  font-weight: 700;
+}
+
+.migalha-guia a:hover,
+.outros-guias a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.guia-apresentacao {
+  padding-block: 36px 34px;
+}
+
+.guia-apresentacao h1 {
+  max-width: 850px;
+  margin: 0 0 14px;
+  font-family: Manrope, "DM Sans", Arial, sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  letter-spacing: -.065em;
+  line-height: 1.12;
+}
+
+.guia-resumo {
+  max-width: 760px;
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.aviso-revisao {
+  display: grid;
+  gap: 3px;
+  max-width: 850px;
+  margin-top: 23px;
+  padding: 15px 18px;
+  border: 1px solid var(--borda);
+  border-left: 4px solid var(--roxo);
+  border-radius: 10px;
+  background: var(--superficie);
+  font-size: .88rem;
+}
+
+.aviso-revisao span {
+  color: var(--texto-suave);
+}
+
+.guia-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  align-items: start;
+  gap: 28px;
+  padding-block: 24px 64px;
+}
+
+.guia-conteudo {
+  display: grid;
+  gap: 28px;
+  min-width: 0;
+}
+
+.guia-conteudo .cabecalho-secao {
+  margin-bottom: 18px;
+}
+
+.guia-conteudo .cabecalho-secao h2,
+.lista-verificacao-guia h2,
+.resumo-curso h2,
+.painel-fonte-guia h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  letter-spacing: -.045em;
+  line-height: 1.25;
+}
+
+.etapas-guia {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.etapas-guia li {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 14px;
+  padding: 17px;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background: var(--superficie);
+}
+
+.etapas-guia li > span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--lavanda);
+  color: var(--roxo-escuro);
+  font-weight: 800;
+}
+
+.etapas-guia h3 {
+  margin: 2px 0 5px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.etapas-guia p {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: .91rem;
+}
+
+.lista-verificacao-guia,
+.resumo-curso,
+.painel-fonte-guia {
+  padding: 22px;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  background: var(--superficie);
+}
+
+.lista-verificacao-guia .chamada,
+.resumo-curso .chamada,
+.painel-fonte-guia .chamada {
+  margin-bottom: 7px;
+}
+
+.lista-verificacao-guia > p:not(.chamada),
+.resumo-curso li,
+.painel-fonte-guia > p:not(.chamada) {
+  color: var(--texto-suave);
+  font-size: .88rem;
+}
+
+.lista-verificacao-guia > p:not(.chamada) {
+  margin: 8px 0 15px;
+}
+
+.itens-lista-verificacao {
+  display: grid;
+  gap: 11px;
+}
+
+.itens-lista-verificacao label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: .9rem;
+}
+
+.itens-lista-verificacao input {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  margin: 2px 0 0;
+  accent-color: var(--roxo);
+}
+
+.estado-lista-verificacao {
+  min-height: 1.4em;
+  margin: 1px 0 0;
+  color: var(--texto-suave);
+  font-size: .78rem;
+}
+
+.resumo-curso ul {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding-left: 21px;
+}
+
+.resumo-curso li {
+  padding-left: 2px;
+}
+
+.painel-fonte-guia {
+  position: sticky;
+  top: 100px;
+}
+
+.painel-fonte-guia h2 {
+  margin-bottom: 10px;
+}
+
+.painel-fonte-guia > p:not(.chamada) {
+  margin: 0 0 14px;
+}
+
+.painel-fonte-guia .data-revisao-guia {
+  font-size: .78rem;
+}
+
+.painel-fonte-guia .botao {
+  width: 100%;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.painel-fonte-guia .nota-link-externo {
+  margin: 12px 0 0;
+  font-size: .76rem;
+}
+
+.outros-guias {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding-block: 0 64px;
+}
+
+.outros-guias h2 {
+  flex-basis: 100%;
+  margin: 0 0 3px;
+  font-size: 1.25rem;
+}
+
+.outros-guias a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  background: var(--superficie);
+  color: var(--roxo-escuro);
+  font-size: .86rem;
+  font-weight: 700;
+}
+
+body[data-tema="escuro"] .termo-glossario,
+body[data-tema="escuro"] .aviso-revisao,
+body[data-tema="escuro"] .etapas-guia li,
+body[data-tema="escuro"] .lista-verificacao-guia,
+body[data-tema="escuro"] .resumo-curso,
+body[data-tema="escuro"] .painel-fonte-guia,
+body[data-tema="escuro"] .outros-guias a {
+  border-color: var(--borda);
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+body[data-tema="escuro"] .campo-busca-glossario {
+  border-color: var(--borda);
+  background: var(--superficie);
+  color: var(--texto);
+}
+
+@media (max-width: 900px) {
+  .guia-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 740px) {
+  .secao-glossario {
+    padding-block: 55px;
+  }
+
+  .lista-glossario {
+    grid-template-columns: 1fr;
+  }
+
+  .guia-apresentacao {
+    padding-block: 24px 20px;
+  }
+
+  .guia-resumo {
+    font-size: .98rem;
+  }
+
+  .guia-layout {
+    grid-template-columns: 1fr;
+    padding-block: 15px 46px;
+  }
+
+  .painel-fonte-guia {
+    position: static;
+    grid-row: 1;
+  }
+
+  .outros-guias {
+    padding-bottom: 46px;
+  }
+}
+
+@media (max-width: 480px) {
+  .guia-apresentacao h1 {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+  }
+
+  .lista-verificacao-guia,
+  .resumo-curso,
+  .painel-fonte-guia {
+    padding: 18px;
+  }
+
+  .etapas-guia li {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .etapas-guia li > span {
+    width: 32px;
+    height: 32px;
+  }
+
+  .outros-guias {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

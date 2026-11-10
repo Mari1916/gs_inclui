@@ -132,12 +132,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 740) fecharMenu();
+      if (window.innerWidth > 800) fecharMenu();
     });
   });
 
   const yearNode = document.querySelector('[data-current-year]');
   if (yearNode) yearNode.textContent = new Date().getFullYear();
+
+  const normalizarTextoBusca = (texto) => texto
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLocaleLowerCase('pt-BR')
+    .trim();
+
+  const configurarBusca = (seletorCampo, seletorItens, idEstado, rotulo) => {
+    const campo = document.querySelector(seletorCampo);
+    const itens = [...document.querySelectorAll(seletorItens)];
+    const estado = document.querySelector(`#${idEstado}`);
+    if (!campo || !estado || !itens.length) return;
+
+    const filtrar = () => {
+      const consulta = normalizarTextoBusca(campo.value);
+      let visiveis = 0;
+      itens.forEach((item) => {
+        const termos = normalizarTextoBusca(`${item.innerText} ${item.dataset.termos || ''}`);
+        const corresponde = !consulta || termos.includes(consulta);
+        item.hidden = !corresponde;
+        if (corresponde) visiveis += 1;
+      });
+
+      if (!consulta) {
+        estado.textContent = `${itens.length} ${rotulo}${itens.length === 1 ? '' : 's'} disponíveis.`;
+      } else if (visiveis) {
+        estado.textContent = `${visiveis} ${rotulo}${visiveis === 1 ? '' : 's'} encontrado${visiveis === 1 ? '' : 's'}.`;
+      } else {
+        estado.textContent = `Nenhum ${rotulo} encontrado. Tente outra palavra.`;
+      }
+    };
+
+    campo.addEventListener('input', filtrar);
+  };
+
+  configurarBusca('#campo-busca-servicos', '.cartao-servico[data-termos]', 'estado-busca-servicos', 'tema');
+  configurarBusca('#busca-glossario', '.termo-glossario[data-termos]', 'estado-busca-glossario', 'termo');
+
+  document.querySelectorAll('[data-lista-verificacao]').forEach((lista) => {
+    const nomeLista = lista.dataset.listaVerificacao;
+    const chaveArmazenamento = `inclui-lista-verificacao-${nomeLista}`;
+    const estado = lista.querySelector('[data-status-lista-verificacao]');
+    const itens = [...lista.querySelectorAll('[data-item-verificacao]')];
+    let marcacoes = {};
+    let armazenamentoDisponivel = true;
+
+    try {
+      const salvo = localStorage.getItem(chaveArmazenamento);
+      if (salvo) {
+        const dadosSalvos = JSON.parse(salvo);
+        if (!dadosSalvos || typeof dadosSalvos !== 'object' || Array.isArray(dadosSalvos)) {
+          throw new TypeError('O formato salvo não é válido.');
+        }
+        marcacoes = dadosSalvos;
+      }
+    } catch (erro) {
+      armazenamentoDisponivel = false;
+      console.warn('Não foi possível carregar as marcações locais da lista de verificação.', erro);
+    }
+
+    itens.forEach((item) => {
+      item.checked = marcacoes[item.dataset.itemVerificacao] === true;
+      item.addEventListener('change', () => {
+        marcacoes[item.dataset.itemVerificacao] = item.checked;
+        try {
+          localStorage.setItem(chaveArmazenamento, JSON.stringify(marcacoes));
+          armazenamentoDisponivel = true;
+          if (estado) estado.textContent = 'Marcação salva somente neste navegador.';
+        } catch (erro) {
+          armazenamentoDisponivel = false;
+          console.warn('Não foi possível salvar as marcações locais da lista de verificação.', erro);
+          if (estado) estado.textContent = 'Não foi possível salvar. Suas marcações ficarão disponíveis somente enquanto esta página estiver aberta.';
+        }
+      });
+    });
+
+    if (estado && !armazenamentoDisponivel) {
+      estado.textContent = 'O armazenamento local não está disponível. Suas marcações ficarão disponíveis somente enquanto esta página estiver aberta.';
+    } else if (estado) {
+      estado.textContent = 'As marcações são privadas e ficam neste navegador.';
+    }
+  });
 
   const formularioContato = document.querySelector('#formulario-contato');
   const estadoFormularioContato = document.querySelector('#estado-formulario-contato');
