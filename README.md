@@ -11,7 +11,7 @@ Projeto front-end estático em português do Brasil, com foco em inclusão, aces
 - `contato.html` — formulário que prepara uma mensagem no aplicativo de e-mail; não envia dados ao site
 - `vacinacao.html` — orientação informativa sobre vacinação no SUS
 - `cursos-gratuitos.html` — orientação para consultar cursos gratuitos do Aprenda Mais (MEC)
-- `servicos-digitais.html` — orientação para localizar serviços digitais nos canais oficiais
+- `servicos-digitais.html` — passo a passo para encontrar serviços no gov.br, conferir requisitos, lidar com barreiras de acesso e apoiar familiares sem compartilhar credenciais
 - `css/style.css` — estilos e responsividade
 - `js/script.js` — navegação, recursos de acessibilidade, filtros de busca e checklists locais
 - `assets/images/` — pasta para imagens
@@ -19,7 +19,7 @@ Projeto front-end estático em português do Brasil, com foco em inclusão, aces
 
 As listas de verificação guardam somente marcações neste navegador, usando `localStorage`. O site não possui backend nem contas de usuário e não coleta ou armazena dados pessoais; o formulário apenas prepara um e-mail para revisão e envio pela própria pessoa. Os links de serviços levam ao canal oficial responsável, onde requisitos, prazos e disponibilidade devem ser confirmados. Ao publicar o site, use HTTPS.
 
-Os três guias são uma proposta inicial de conteúdo e precisam ser revisados pelo grupo antes da apresentação final, conforme as decisões pendentes no documento de Engenharia de Software. A gestão editorial autenticada não faz parte deste protótipo front-end.
+Os guias são uma proposta inicial de conteúdo e precisam ser revisados pelo grupo antes da apresentação final, conforme as decisões pendentes no documento de Engenharia de Software. O catálogo do gov.br reúne muitos serviços e seus requisitos mudam; confirme as instruções na página oficial de cada serviço. A gestão editorial autenticada não faz parte deste protótipo front-end.
 
 ## Como visualizar
 

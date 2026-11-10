@@ -3950,6 +3950,90 @@ body[data-tema="escuro"] .faq-answer a {
   font-size: .91rem;
 }
 
+.orientacoes-praticas-guia {
+  padding: 22px;
+  border: 1px solid var(--borda);
+  border-radius: 16px;
+  background: var(--superficie);
+}
+
+.orientacoes-praticas-guia h2,
+.secao-dicas-praticas-guia h2 {
+  margin: 0 0 10px;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+  letter-spacing: -.04em;
+  line-height: 1.3;
+}
+
+.orientacoes-praticas-guia > p:not(.chamada),
+.orientacoes-praticas-guia li,
+.grade-dicas-praticas-guia p,
+.nota-pratica-guia {
+  color: var(--texto-suave);
+  font-size: .9rem;
+}
+
+.orientacoes-praticas-guia > p:not(.chamada) {
+  margin: 0 0 12px;
+}
+
+.orientacoes-praticas-guia ul,
+.orientacoes-praticas-guia ol {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 22px;
+}
+
+.orientacoes-praticas-guia li {
+  padding-left: 2px;
+}
+
+.orientacoes-praticas-guia strong {
+  color: var(--texto);
+}
+
+.secao-dicas-praticas-guia {
+  display: grid;
+  gap: 12px;
+}
+
+.secao-dicas-praticas-guia .chamada {
+  margin: 0;
+}
+
+.secao-dicas-praticas-guia h2 {
+  margin: -8px 0 2px;
+}
+
+.grade-dicas-praticas-guia {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.grade-dicas-praticas-guia article {
+  padding: 17px;
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  background: var(--superficie);
+}
+
+.grade-dicas-praticas-guia h3 {
+  margin: 0 0 7px;
+  font-size: .98rem;
+  line-height: 1.4;
+}
+
+.grade-dicas-praticas-guia p {
+  margin: 0;
+}
+
+.nota-pratica-guia {
+  margin: 0;
+  font-size: .82rem;
+}
+
 .lista-verificacao-guia,
 .resumo-curso,
 .painel-fonte-guia {
@@ -4073,6 +4157,8 @@ body[data-tema="escuro"] .faq-answer a {
 body[data-tema="escuro"] .termo-glossario,
 body[data-tema="escuro"] .aviso-revisao,
 body[data-tema="escuro"] .etapas-guia li,
+body[data-tema="escuro"] .orientacoes-praticas-guia,
+body[data-tema="escuro"] .grade-dicas-praticas-guia article,
 body[data-tema="escuro"] .lista-verificacao-guia,
 body[data-tema="escuro"] .resumo-curso,
 body[data-tema="escuro"] .painel-fonte-guia,
@@ -4122,6 +4208,10 @@ body[data-tema="escuro"] .campo-busca-glossario {
     grid-row: 1;
   }
 
+  .grade-dicas-praticas-guia {
+    grid-template-columns: 1fr;
+  }
+
   .outros-guias {
     padding-bottom: 46px;
   }
@@ -4133,6 +4223,7 @@ body[data-tema="escuro"] .campo-busca-glossario {
   }
 
   .lista-verificacao-guia,
+  .orientacoes-praticas-guia,
   .resumo-curso,
   .painel-fonte-guia {
     padding: 18px;
