@@ -1,18 +1,237 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAQ | INCLUI</title>
+    <meta
+      name="description"
+      content="Tire suas dúvidas sobre o INCLUI, os recursos de acessibilidade e como entrar em contato."
+    />
+    <meta name="theme-color" content="#faf9ff" />
+    <title>Perguntas frequentes — INCLUI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body>
-    <main class="pagina-em-construcao">
-      <div class="container">
-        <h1>FAQ</h1>
-        <p>Não iniciado.</p>
-      </div>
+  <body class="pagina-faq">
+    <a class="link-pular" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="cabecalho-site">
+      <a class="marca" href="index.html" aria-label="INCLUI — início">
+        <img
+          class="imagem-logo"
+          src="assets/images/logo.png"
+          data-logo-claro="assets/images/logo.png"
+          data-logo-escuro="assets/images/logo-escuro.png"
+          alt="INCLUI"
+        />
+      </a>
+
+      <button
+        class="botao-menu-mobile"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="navegacao-principal"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="navegacao-principal" id="navegacao-principal" aria-label="Navegação principal">
+        <a href="index.html#inicio">Início</a>
+        <a href="sobre.html">Sobre o INCLUI</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="integrantes.html">Integrantes</a>
+        <a href="faq.html" aria-current="page">Perguntas frequentes</a>
+        <a class="link-cabecalho" href="contato.html">
+          Fale com a gente <span aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section class="faq-apresentacao" aria-labelledby="titulo-faq">
+        <div class="limite-secao faq-apresentacao-conteudo">
+          <p class="chamada"><span aria-hidden="true"></span> DÚVIDAS SOBRE O INCLUI</p>
+          <h1 id="titulo-faq">Perguntas <span>frequentes.</span></h1>
+          <p>
+            Reunimos respostas para ajudar você a conhecer o INCLUI e os recursos
+            disponíveis. Se ainda tiver dúvidas, estamos aqui para conversar.
+          </p>
+          <a class="botao botao-primario" href="#perguntas">
+            Ver perguntas <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+        <div class="faq-forma" aria-hidden="true">?</div>
+      </section>
+
+      <section class="faq-secao limite-secao" id="perguntas" aria-labelledby="titulo-lista-faq">
+        <div class="faq-cabecalho">
+          <div>
+            <p class="chamada">RESPOSTAS CLARAS</p>
+            <h2 id="titulo-lista-faq">Como podemos ajudar?</h2>
+          </div>
+          <p>Selecione uma pergunta para ver a resposta. Você pode abrir mais de uma.</p>
+        </div>
+
+        <div class="faq-lista">
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>O que é o INCLUI?</span>
+              <span class="faq-sinal" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                O INCLUI é um guia digital que busca aproximar as pessoas de
+                orientações sobre serviços públicos. A proposta é organizar
+                informações sobre temas do dia a dia com clareza e acessibilidade.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>O INCLUI é um site oficial do governo?</span>
+              <span class="faq-sinal" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Não. O INCLUI é um projeto informativo e não substitui os canais
+                oficiais, órgãos públicos ou atendimento profissional. Confirme
+                prazos, documentos e procedimentos nos canais oficiais responsáveis.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Como funciona o recurso “Ouvir o conteúdo”?</span>
+              <span class="faq-sinal" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Ative “Ouvir o conteúdo” no botão flutuante de acessibilidade.
+                Depois, passe o mouse sobre textos ou navegue até eles com o
+                teclado para ouvi-los. O botão “Ouvir esta página” inicia a leitura
+                da página inteira. A voz é fornecida pelo navegador e pode variar
+                conforme o dispositivo.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Como uso a tradução em Libras?</span>
+              <span class="faq-sinal" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Ative a opção “Libras” no painel de acessibilidade. O widget
+                oficial VLibras será carregado; depois, use o botão dele para
+                iniciar a tradução. É necessário estar conectado à internet.
+                A tradução automática pode não representar perfeitamente todos
+                os sentidos do texto.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>O VLibras substitui um leitor de tela?</span>
+              <span class="faq-sinal" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Não. O VLibras traduz textos para Libras. Leitores de tela são
+                programas do dispositivo, como NVDA, VoiceOver e TalkBack, que
+                ajudam a navegar por páginas e outros aplicativos usando voz ou
+                braille. O recurso “Ouvir o conteúdo” do INCLUI também é diferente:
+                ele usa a voz do navegador para ler textos selecionados.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Quais opções de acessibilidade posso escolher?</span>
+              <span class="faq-sinal" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                No painel, você pode ajustar o tema e o tamanho da fonte, ativar
+                leitura em voz alta, VLibras, contraste, paleta de cores,
+                espaçamento, fonte legível, redução de animações e modo de leitura.
+                Cada opção pode ser ativada ou desativada conforme sua preferência.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>O formulário de contato envia meus dados pelo site?</span>
+              <span class="faq-sinal" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Não. Ao preparar a mensagem, o site abre o aplicativo de e-mail
+                do seu dispositivo com o conteúdo preenchido. Você informa o
+                destinatário e decide se quer enviar. O INCLUI não recebe nem
+                armazena as informações digitadas nesse formulário.
+              </p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Como posso falar com a equipe?</span>
+              <span class="faq-sinal" aria-hidden="true"></span>
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Acesse a página de <a href="contato.html">contato</a> para
+                preparar uma mensagem ou conheça a equipe e seus perfis na
+                página de <a href="integrantes.html">integrantes</a>.
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="faq-chamada limite-secao" aria-labelledby="titulo-contato-faq">
+        <div>
+          <p class="chamada">AINDA FICOU COM DÚVIDA?</p>
+          <h2 id="titulo-contato-faq">Pode falar com a gente.</h2>
+        </div>
+        <a class="botao botao-claro" href="contato.html">
+          Ir para contato <span aria-hidden="true">↗</span>
+        </a>
+      </section>
     </main>
+
+    <footer class="rodape-site">
+      <div class="limite-secao conteudo-rodape">
+        <a class="marca marca-rodape" href="index.html" aria-label="INCLUI — voltar ao início">
+          <img
+            class="imagem-logo imagem-logo-rodape"
+            src="assets/images/logo.png"
+            data-logo-claro="assets/images/logo.png"
+            data-logo-escuro="assets/images/logo-escuro.png"
+            alt="INCLUI"
+          />
+        </a>
+        <p class="slogan-rodape">A internet precisa falar a língua de todos.</p>
+        <nav class="navegacao-rodape" aria-label="Navegação do rodapé">
+          <a href="index.html">Início</a>
+          <a href="sobre.html">Sobre o INCLUI</a>
+          <a href="integrantes.html">Integrantes</a>
+          <a href="contato.html">Contato</a>
+        </nav>
+      </div>
+    </footer>
     <script src="js/script.js"></script>
   </body>
 </html>
