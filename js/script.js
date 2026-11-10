@@ -26,6 +26,77 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   aplicarLogoDoTema(document.body.dataset.tema);
 
+  if (!document.querySelector('#abrir-acessibilidade-flutuante')) {
+    const botaoAcessibilidade = document.createElement('button');
+    botaoAcessibilidade.className = 'botao-acessibilidade-flutuante';
+    botaoAcessibilidade.id = 'abrir-acessibilidade-flutuante';
+    botaoAcessibilidade.type = 'button';
+    botaoAcessibilidade.setAttribute('aria-haspopup', 'dialog');
+    botaoAcessibilidade.setAttribute('aria-controls', 'acessibilidade');
+    botaoAcessibilidade.innerHTML = '<span aria-hidden="true">♿</span> Acessibilidade';
+    document.body.append(botaoAcessibilidade);
+  }
+
+  if (!document.querySelector('#acessibilidade')) {
+    const opcoesAcessibilidade = [
+      ['audio', 'Ouvir o conteúdo', 'Lê textos em voz alta ao passar o mouse ou navegar com o teclado.'],
+      ['libras', 'Libras', 'Registra preferência por vídeos em Língua Brasileira de Sinais, quando disponíveis.'],
+      ['legendas', 'Legendas', 'Registra preferência por legendas em vídeos, quando disponíveis.'],
+      ['leitor-tela', 'Leitor de tela', 'Informações de compatibilidade com leitores de tela.'],
+      ['teclado', 'Navegar pelo teclado', 'Use Tab para avançar e Enter para ativar links e botões.'],
+      ['daltonismo', 'Cores mais distinguíveis', 'Usa cores e contornos mais fáceis de diferenciar.'],
+      ['contraste', 'Alto contraste', 'Aumenta o contraste de textos, botões e bordas.'],
+      ['espacamento', 'Mais espaço entre letras', 'Aumenta o espaço entre letras e linhas.'],
+      ['fonte-legivel', 'Fonte mais legível', 'Usa uma fonte simples e sem enfeites.'],
+      ['linguagem-simples', 'Linguagem simples', 'Registra preferência por palavras comuns e instruções diretas.'],
+      ['sem-animacoes', 'Reduzir animações', 'Reduz movimentos decorativos.'],
+      ['leitura-facil', 'Modo de leitura', 'Reduz enfeites e limita a largura do texto.'],
+    ];
+    const dialogoAcessibilidade = document.createElement('dialog');
+    dialogoAcessibilidade.className = 'painel-acessibilidade';
+    dialogoAcessibilidade.id = 'acessibilidade';
+    dialogoAcessibilidade.setAttribute('aria-labelledby', 'titulo-acessibilidade');
+    dialogoAcessibilidade.innerHTML = `
+      <button class="fechar-acessibilidade" type="button" aria-label="Fechar opções de acessibilidade">×</button>
+      <div class="cabecalho-secao">
+        <div>
+          <p class="chamada">ACESSIBILIDADE EM DIFERENTES FORMAS</p>
+          <h2 id="titulo-acessibilidade">O que cada recurso faz — e como pode ajudar?</h2>
+        </div>
+        <p class="introducao-secao">Escolha os recursos que tornam esta página mais confortável para você.</p>
+      </div>
+      <fieldset class="seletor-tema" aria-describedby="descricao-tema">
+        <legend>Tema de cores</legend>
+        <p id="descricao-tema">Escolha entre o tema claro e o escuro.</p>
+        <label><input type="radio" name="tema" value="claro" /> Claro</label>
+        <label><input type="radio" name="tema" value="escuro" /> Escuro</label>
+      </fieldset>
+      <div class="controle-tamanho-fonte" role="group" aria-labelledby="titulo-tamanho-fonte">
+        <div><strong id="titulo-tamanho-fonte">Tamanho da fonte</strong><small>Ajuste o tamanho das letras.</small></div>
+        <div class="botoes-tamanho-fonte">
+          <button type="button" id="diminuir-fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+          <output id="valor-fonte" aria-live="polite">100%</output>
+          <button type="button" id="aumentar-fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+        </div>
+      </div>
+      <fieldset class="grade-preferencias">
+        <legend class="visualmente-oculto">Recursos de acessibilidade</legend>
+        ${opcoesAcessibilidade.map(([recurso, titulo, descricao]) => `
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" role="switch" data-recurso="${recurso}" />
+            <span class="texto-preferencia"><strong>${titulo}</strong><small>${descricao}</small></span>
+            <span class="interruptor" aria-hidden="true"></span>
+          </label>
+        `).join('')}
+      </fieldset>
+      <div class="acoes-acessibilidade">
+        <button class="botao botao-primario" id="botao-ouvir-pagina" type="button" disabled>Ouvir esta página</button>
+        <button class="botao botao-secundario" id="botao-parar-leitura" type="button" disabled>Parar leitura</button>
+        <p class="nota-privacidade" id="estado-acessibilidade" aria-live="polite">Selecione os recursos que deseja usar.</p>
+      </div>`;
+    document.body.append(dialogoAcessibilidade);
+  }
+
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach((item) => {
     const button = item.querySelector('.faq-question');
@@ -59,15 +130,42 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoFecharAcessibilidade = document.querySelector('.fechar-acessibilidade');
   let temporizadorLeitura = null;
   let ultimoAlvoLido = null;
+  let alvoLeituraAtual = null;
   let idLeitura = 0;
   const suporteLeitura = 'speechSynthesis' in window
     && 'SpeechSynthesisUtterance' in window;
+  const indicadorLeitura = document.createElement('div');
+  indicadorLeitura.className = 'indicador-leitura';
+  indicadorLeitura.setAttribute('aria-hidden', 'true');
+  indicadorLeitura.innerHTML = '<span class="indicador-leitura-mao">☝</span><span>Lendo</span>';
+  document.body.append(indicadorLeitura);
+
+  const posicionarIndicadorLeitura = (x, y) => {
+    const margem = 12;
+    const largura = indicadorLeitura.offsetWidth || 88;
+    const altura = indicadorLeitura.offsetHeight || 36;
+    indicadorLeitura.style.left = `${Math.max(margem, Math.min(x + 16, window.innerWidth - largura - margem))}px`;
+    indicadorLeitura.style.top = `${Math.max(margem, Math.min(y + 16, window.innerHeight - altura - margem))}px`;
+  };
+
+  const mostrarIndicadorLeitura = () => {
+    if (!alvoLeituraAtual) return;
+    indicadorLeitura.classList.add('indicador-leitura-ativo');
+    const retangulo = alvoLeituraAtual.getBoundingClientRect();
+    posicionarIndicadorLeitura(retangulo.left + Math.min(retangulo.width, 24), retangulo.top + Math.min(retangulo.height, 24));
+  };
+
+  const ocultarIndicadorLeitura = () => {
+    indicadorLeitura.classList.remove('indicador-leitura-ativo');
+    alvoLeituraAtual = null;
+  };
 
   const pararLeitura = (mensagem) => {
     window.clearTimeout(temporizadorLeitura);
     idLeitura += 1;
     if (suporteLeitura) window.speechSynthesis.cancel();
     if (botaoParar) botaoParar.disabled = true;
+    ocultarIndicadorLeitura();
     if (mensagem && estadoAcessibilidade) estadoAcessibilidade.textContent = mensagem;
   };
 
@@ -90,9 +188,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const vozPortugues = window.speechSynthesis.getVoices()
       .find((voz) => /^pt(-|_)/i.test(voz.lang));
     if (vozPortugues) fala.voice = vozPortugues;
+    fala.onstart = () => {
+      if (leituraAtual === idLeitura) mostrarIndicadorLeitura();
+    };
     fala.onend = () => {
       if (leituraAtual !== idLeitura) return;
       if (botaoParar) botaoParar.disabled = true;
+      ocultarIndicadorLeitura();
       if (anunciarEstado && estadoAcessibilidade) {
         estadoAcessibilidade.textContent = 'Leitura concluída.';
       }
@@ -100,6 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fala.onerror = () => {
       if (leituraAtual !== idLeitura) return;
       if (botaoParar) botaoParar.disabled = true;
+      ocultarIndicadorLeitura();
       if (estadoAcessibilidade) {
         estadoAcessibilidade.textContent = 'Não foi possível concluir a leitura em voz alta.';
       }
@@ -122,6 +225,12 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const atualizarPreferencias = () => {
+    if (recursoAudio?.checked) {
+      document.body.dataset.audio = 'ativo';
+    } else {
+      delete document.body.dataset.audio;
+    }
+
     recursos.forEach((recurso) => {
       const atributo = atributosRecursos[recurso.dataset.recurso];
       if (atributo) {
@@ -226,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const copiaConteudo = conteudoPrincipal?.cloneNode(true);
     copiaConteudo?.querySelectorAll('dialog, [aria-hidden="true"], [hidden]')
       .forEach((elemento) => elemento.remove());
+    alvoLeituraAtual = botaoOuvir;
     lerTexto(copiaConteudo?.innerText ?? '');
   });
 
@@ -233,28 +343,53 @@ document.addEventListener('DOMContentLoaded', () => {
     pararLeitura('Leitura em voz alta interrompida.');
   });
 
+  const obterTextoDoAlvo = (alvo) => {
+    if (alvo.dataset.leitura) return alvo.dataset.leitura;
+    if (alvo.getAttribute('aria-label')) return alvo.getAttribute('aria-label');
+    if (alvo.matches('input, textarea, select')) {
+      const rotulo = alvo.labels?.[0];
+      if (rotulo) return rotulo.innerText;
+    }
+    if (alvo.matches('input, textarea, select')) {
+      return alvo.value || alvo.getAttribute('placeholder') || alvo.getAttribute('title') || '';
+    }
+
+    const copiaAlvo = alvo.cloneNode(true);
+    copiaAlvo.querySelectorAll('[aria-hidden="true"], [hidden]').forEach((elemento) => elemento.remove());
+    return copiaAlvo.innerText || copiaAlvo.getAttribute('alt') || copiaAlvo.getAttribute('title') || '';
+  };
+
   const lerAlvoApontado = (evento) => {
     if (!recursoAudio?.checked || evento.pointerType === 'touch') return;
+    if (!(evento.target instanceof Element)) return;
     const alvo = evento.target.closest(
-      'h1, h2, h3, h4, p, li, a, button, summary, blockquote, figcaption',
+      'h1, h2, h3, h4, p, li, a, button, summary, blockquote, figcaption, strong, small, label, textarea, input, select, output, legend, [role="button"], [data-leitura]',
     );
-    if (!alvo || !conteudoPrincipal?.contains(alvo) || alvo.closest('dialog, [aria-hidden="true"]')) return;
+    if (!alvo || alvo.closest('[aria-hidden="true"], [hidden]')) return;
     if (alvo === ultimoAlvoLido || (evento.relatedTarget && alvo.contains(evento.relatedTarget))) return;
 
     ultimoAlvoLido = alvo;
+    alvoLeituraAtual = alvo;
     window.clearTimeout(temporizadorLeitura);
     temporizadorLeitura = window.setTimeout(() => {
       temporizadorLeitura = null;
-      lerTexto(alvo.innerText, false);
+      lerTexto(obterTextoDoAlvo(alvo), false);
     }, 350);
   };
 
-  conteudoPrincipal?.addEventListener('pointerover', lerAlvoApontado);
-  conteudoPrincipal?.addEventListener('focusin', lerAlvoApontado);
-  conteudoPrincipal?.addEventListener('pointerleave', () => {
-    window.clearTimeout(temporizadorLeitura);
-    temporizadorLeitura = null;
-    ultimoAlvoLido = null;
+  document.addEventListener('pointerover', lerAlvoApontado);
+  document.addEventListener('focusin', lerAlvoApontado);
+  document.addEventListener('pointermove', (evento) => {
+    if (indicadorLeitura.classList.contains('indicador-leitura-ativo')) {
+      posicionarIndicadorLeitura(evento.clientX, evento.clientY);
+    }
+  });
+  document.addEventListener('pointerout', (evento) => {
+    if (evento.target instanceof Element
+      && (evento.target === ultimoAlvoLido || evento.target.contains(ultimoAlvoLido))
+      && (!evento.relatedTarget || !evento.target.contains(evento.relatedTarget))) {
+      ultimoAlvoLido = null;
+    }
   });
 
   document.addEventListener('keydown', (evento) => {

@@ -753,6 +753,62 @@ h3 {
   clip-path: inset(50%);
 }
 
+.indicador-leitura {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  background: #312466;
+  box-shadow: 0 5px 18px rgba(27,20,58,.28);
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(4px) scale(.96);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.indicador-leitura-ativo {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.indicador-leitura-mao {
+  font-size: 1rem;
+}
+
+body[data-audio="ativo"] h1,
+body[data-audio="ativo"] h2,
+body[data-audio="ativo"] h3,
+body[data-audio="ativo"] h4,
+body[data-audio="ativo"] p,
+body[data-audio="ativo"] li,
+body[data-audio="ativo"] a,
+body[data-audio="ativo"] button,
+body[data-audio="ativo"] summary,
+body[data-audio="ativo"] blockquote,
+body[data-audio="ativo"] figcaption,
+body[data-audio="ativo"] strong,
+body[data-audio="ativo"] small,
+body[data-audio="ativo"] label,
+body[data-audio="ativo"] textarea,
+body[data-audio="ativo"] input,
+body[data-audio="ativo"] select,
+body[data-audio="ativo"] output,
+body[data-audio="ativo"] legend,
+body[data-audio="ativo"] [role="button"],
+body[data-audio="ativo"] [data-leitura] {
+  cursor: pointer;
+}
+
 .cartao-acessibilidade {
   position: relative;
   display: flex;
