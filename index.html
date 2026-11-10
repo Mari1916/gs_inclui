@@ -115,6 +115,98 @@
           <span class="decorative-star star-two" aria-hidden="true">✦</span>
         </div>
       </section>
+
+      <section
+        class="accessibility-section section-shell"
+        id="acessibilidade"
+        aria-labelledby="accessibility-title"
+      >
+        <div class="section-heading accessibility-heading">
+          <div>
+            <p class="eyebrow">UM ESPAÇO QUE SE ADAPTA A VOCÊ</p>
+            <h2 id="accessibility-title">
+              Como podemos facilitar sua experiência?
+            </h2>
+          </div>
+          <p class="section-intro">
+            Escolha uma ou mais opções.<br />
+            Você pode mudar quando quiser.
+          </p>
+        </div>
+
+        <fieldset class="preference-grid">
+          <legend class="visually-hidden">
+            Escolha suas preferências de acessibilidade
+          </legend>
+
+          <label class="preference-card">
+            <input type="checkbox" name="preferencias" value="audio" />
+            <span class="preference-icon audio-preference-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M11 5 6 9H3v6h3l5 4V5Zm4 4a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12" />
+              </svg>
+            </span>
+            <span class="preference-copy">
+              <strong>Quero ouvir</strong>
+              <small>Navegação por voz e áudio.</small>
+            </span>
+            <span class="preference-check" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="preference-card">
+            <input type="checkbox" name="preferencias" value="libras" />
+            <span class="preference-icon sign-preference-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M7 11V5a1.5 1.5 0 0 1 3 0v5-7a1.5 1.5 0 0 1 3 0v7-5a1.5 1.5 0 0 1 3 0v6-3a1.5 1.5 0 0 1 3 0v7a7 7 0 0 1-7 7h-1c-2.2 0-3.7-1-5-3l-3-4a1.8 1.8 0 0 1 2.8-2.2L7 15" />
+              </svg>
+            </span>
+            <span class="preference-copy">
+              <strong>Quero Libras</strong>
+              <small>Conteúdo em língua de sinais.</small>
+            </span>
+            <span class="preference-check" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="preference-card">
+            <input type="checkbox" name="preferencias" value="visao" />
+            <span class="preference-icon vision-preference-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+                <path d="M4 20 20 4" />
+              </svg>
+            </span>
+            <span class="preference-copy">
+              <strong>Quero enxergar melhor</strong>
+              <small>Contraste, zoom e leitura.</small>
+            </span>
+            <span class="preference-check" aria-hidden="true">✓</span>
+          </label>
+
+          <label class="preference-card">
+            <input type="checkbox" name="preferencias" value="linguagem-simples" />
+            <span class="preference-icon simple-preference-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3 2.5 8v8L12 21l9.5-5V8L12 3Z" />
+                <path d="m2.8 8.2 9.2 5 9.2-5M12 13v8" />
+              </svg>
+            </span>
+            <span class="preference-copy">
+              <strong>Quero linguagem simples</strong>
+              <small>Textos claros e passo a passo.</small>
+            </span>
+            <span class="preference-check" aria-hidden="true">✓</span>
+          </label>
+        </fieldset>
+
+        <p class="privacy-note">
+          <svg viewBox="0 0 20 20" aria-hidden="true">
+            <rect x="4" y="8" width="12" height="9" rx="2" />
+            <path d="M7 8V5a3 3 0 0 1 6 0v3" />
+          </svg>
+          Você pode selecionar várias opções.
+        </p>
+      </section>
     </main>
   </body>
 </html>
