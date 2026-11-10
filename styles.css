@@ -1099,6 +1099,99 @@ a:focus-visible {
   text-align: center;
 }
 
+.ways-section {
+  padding: 70px 0 78px;
+  background: #faf9fc;
+}
+
+.ways-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 38px;
+}
+
+.ways-heading .eyebrow {
+  margin: 0;
+}
+
+.ways-heading h2 {
+  margin: 13px 0 0;
+  font: 750 32px/1.2 "Manrope", sans-serif;
+  letter-spacing: -.05em;
+}
+
+.ways-heading > p {
+  margin: 0 1px 5px 0;
+  color: #858191;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.ways-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.way-card {
+  position: relative;
+  min-width: 0;
+  padding-top: 7px;
+}
+
+.way-number {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  color: #b7b2c2;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.way-icon {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 14px;
+  font-size: 21px;
+}
+
+.way-audio-icon {
+  background: #eee8ff;
+  color: #6a44c5;
+}
+
+.way-sign-icon {
+  background: #fff0e7;
+  color: #bb7550;
+}
+
+.way-simple-icon {
+  background: #e7f7f0;
+  color: #438d70;
+}
+
+.way-choice-icon {
+  background: #e9f2ff;
+  color: #5685bd;
+}
+
+.way-card h3 {
+  margin: 16px 0 8px;
+  font: 700 13px/1.45 "Manrope", sans-serif;
+}
+
+.way-card p {
+  max-width: 220px;
+  margin: 0;
+  color: #898594;
+  font-size: 10px;
+  line-height: 1.7;
+}
+
 @media (max-width: 900px) {
   .site-header {
     padding-inline: 24px;
@@ -1130,6 +1223,11 @@ a:focus-visible {
 
   .understand-section {
     gap: 38px;
+  }
+
+  .ways-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 20px;
   }
 }
 
@@ -1329,6 +1427,29 @@ a:focus-visible {
 
   .understand-demo {
     padding: 17px;
+  }
+
+  .ways-section {
+    padding: 55px 0 60px;
+  }
+
+  .ways-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .ways-heading h2 {
+    font-size: 30px;
+  }
+
+  .way-card h3 {
+    font-size: 12px;
+  }
+
+  .way-card p {
+    font-size: 9px;
   }
 }
 
