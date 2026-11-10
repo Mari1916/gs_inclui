@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const chavePreferenciasRecursos = 'inclui-recursos-acessibilidade';
+  const chaveTamanhoFonte = 'inclui-tamanho-fonte';
   const lerTemaSalvo = () => {
     try {
       return localStorage.getItem('inclui-tema');
@@ -12,6 +14,36 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem('inclui-tema', tema);
     } catch (erro) {
       console.warn('Não foi possível salvar o tema escolhido.', erro);
+    }
+  };
+  const lerPreferenciasRecursos = () => {
+    try {
+      const salvo = localStorage.getItem(chavePreferenciasRecursos);
+      if (!salvo) return null;
+      const preferencias = JSON.parse(salvo);
+      if (!preferencias || typeof preferencias !== 'object' || Array.isArray(preferencias)) {
+        throw new TypeError('O formato salvo não é válido.');
+      }
+      return preferencias;
+    } catch (erro) {
+      console.warn('Não foi possível carregar as preferências de acessibilidade.', erro);
+      return null;
+    }
+  };
+  const salvarPreferenciasRecursos = (preferencias) => {
+    try {
+      localStorage.setItem(chavePreferenciasRecursos, JSON.stringify(preferencias));
+    } catch (erro) {
+      console.warn('Não foi possível salvar as preferências de acessibilidade.', erro);
+    }
+  };
+  const lerTamanhoFonteSalvo = () => {
+    try {
+      const salvo = Number(localStorage.getItem(chaveTamanhoFonte));
+      return Number.isFinite(salvo) && salvo >= 14 && salvo <= 24 ? salvo : 16;
+    } catch (erro) {
+      console.warn('Não foi possível carregar o tamanho de fonte salvo.', erro);
+      return 16;
     }
   };
   const imagensLogo = document.querySelectorAll('[data-logo-claro][data-logo-escuro]');
@@ -48,7 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
       ['contraste', 'Alto contraste', 'Aumenta o contraste de textos, botões e bordas.'],
       ['espacamento', 'Mais espaço entre letras', 'Aumenta o espaço entre letras e linhas.'],
       ['fonte-legivel', 'Fonte mais legível', 'Usa uma fonte simples e sem enfeites.'],
-      ['linguagem-simples', 'Linguagem simples', 'Registra preferência por palavras comuns e instruções diretas.'],
+      ['linguagem-simples', 'Apoio para leitura simples', 'Destaca exemplos e orientações em linguagem simples disponíveis no INCLUI.'],
+      ['imagens', 'Apoio visual', 'Destaca ícones e etapas numeradas das orientações.'],
       ['sem-animacoes', 'Reduzir animações', 'Reduz movimentos decorativos.'],
       ['leitura-facil', 'Modo de leitura', 'Reduz enfeites e limita a largura do texto.'],
     ];
@@ -258,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoDiminuirFonte = document.querySelector('#diminuir-fonte');
   const botaoAumentarFonte = document.querySelector('#aumentar-fonte');
   const valorFonte = document.querySelector('#valor-fonte');
-  let tamanhoFonte = 16;
+  let tamanhoFonte = lerTamanhoFonteSalvo();
   const painelAcessibilidade = document.querySelector('#acessibilidade');
   const gatilhosAcessibilidade = document.querySelectorAll(
     '#abrir-acessibilidade-flutuante, a[href="#acessibilidade"]',
@@ -290,6 +323,16 @@ document.addEventListener('DOMContentLoaded', () => {
       console.warn('Não foi possível salvar a preferência de Libras.', erro);
     }
   };
+
+  const preferenciasRecursosSalvas = lerPreferenciasRecursos();
+  recursos.forEach((recurso) => {
+    const nome = recurso.dataset.recurso;
+    if (typeof preferenciasRecursosSalvas?.[nome] === 'boolean') {
+      recurso.checked = preferenciasRecursosSalvas[nome];
+    } else if (nome === 'libras') {
+      recurso.checked = lerPreferenciaLibras();
+    }
+  });
 
   const sincronizarVisibilidadeVlibras = () => {
     const ativo = recursoLibras?.checked;
@@ -374,10 +417,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mensagem && estadoAcessibilidade) estadoAcessibilidade.textContent = mensagem;
   };
 
-  const lerTexto = (texto, anunciarEstado = true) => {
+  const lerTexto = (texto, anunciarEstado = true, statusDestino = estadoAcessibilidade) => {
     if (!suporteLeitura) {
-      if (anunciarEstado && estadoAcessibilidade) {
-        estadoAcessibilidade.textContent = 'A leitura em voz alta não está disponível neste navegador.';
+      if (anunciarEstado && statusDestino) {
+        statusDestino.textContent = 'A leitura em voz alta não está disponível neste navegador.';
       }
       return;
     }
@@ -400,23 +443,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (leituraAtual !== idLeitura) return;
       if (botaoParar) botaoParar.disabled = true;
       ocultarIndicadorLeitura();
-      if (anunciarEstado && estadoAcessibilidade) {
-        estadoAcessibilidade.textContent = 'Leitura concluída.';
+      if (anunciarEstado && statusDestino) {
+        statusDestino.textContent = 'Leitura concluída.';
       }
     };
     fala.onerror = () => {
       if (leituraAtual !== idLeitura) return;
       if (botaoParar) botaoParar.disabled = true;
       ocultarIndicadorLeitura();
-      if (estadoAcessibilidade) {
-        estadoAcessibilidade.textContent = 'Não foi possível concluir a leitura em voz alta.';
+      if (statusDestino) {
+        statusDestino.textContent = 'Não foi possível concluir a leitura em voz alta.';
       }
     };
 
     window.speechSynthesis.speak(fala);
     if (botaoParar) botaoParar.disabled = false;
-    if (anunciarEstado && estadoAcessibilidade) {
-      estadoAcessibilidade.textContent = 'Lendo o conteúdo da página em voz alta.';
+    if (anunciarEstado && statusDestino) {
+      statusDestino.textContent = 'Lendo o conteúdo em voz alta.';
     }
   };
 
@@ -425,8 +468,25 @@ document.addEventListener('DOMContentLoaded', () => {
     contraste: ['contraste', 'alto'],
     espacamento: ['espacamento', 'amplo'],
     'fonte-legivel': ['fonte', 'simples'],
+    'linguagem-simples': ['linguagem', 'simples'],
+    imagens: ['visuais', 'ativo'],
     'sem-animacoes': ['animacao', 'reduzida'],
     'leitura-facil': ['leitura', 'foco'],
+  };
+
+  const sincronizarEscolhasAcesso = () => {
+    const escolhas = {
+      audio: recursos.length && document.querySelector('[data-recurso="audio"]')?.checked,
+      libras: recursoLibras?.checked,
+      visao: document.querySelector('[data-recurso="contraste"]')?.checked
+        && document.querySelector('[data-recurso="fonte-legivel"]')?.checked
+        && tamanhoFonte >= 18,
+      imagens: document.querySelector('[data-recurso="imagens"]')?.checked
+        && document.querySelector('[data-recurso="linguagem-simples"]')?.checked,
+    };
+    document.querySelectorAll('[data-perfil-acesso]').forEach((opcao) => {
+      opcao.checked = Boolean(escolhas[opcao.dataset.perfilAcesso]);
+    });
   };
 
   const atualizarPreferencias = () => {
@@ -434,6 +494,11 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.dataset.audio = 'ativo';
     } else {
       delete document.body.dataset.audio;
+    }
+
+    const avisoLinguagemSimples = document.querySelector('[data-aviso-linguagem-simples]');
+    if (avisoLinguagemSimples) {
+      avisoLinguagemSimples.hidden = !document.querySelector('[data-recurso="linguagem-simples"]')?.checked;
     }
 
     recursos.forEach((recurso) => {
@@ -465,6 +530,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (recursoAudio?.checked) {
       mensagem += ' Passe o mouse sobre um texto ou use Tab para ouvi-lo.';
     }
+    salvarPreferenciasRecursos(Object.fromEntries(
+      [...recursos].map((recurso) => [recurso.dataset.recurso, recurso.checked]),
+    ));
+    sincronizarEscolhasAcesso();
     if (estadoAcessibilidade) estadoAcessibilidade.textContent = mensagem;
     if (botaoOuvir) botaoOuvir.disabled = !recursoAudio?.checked;
     if (!recursoAudio?.checked) {
@@ -486,9 +555,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const aplicarTamanhoFonte = () => {
     document.documentElement.style.fontSize = `${tamanhoFonte}px`;
     document.body.style.fontSize = `${tamanhoFonte}px`;
+    try {
+      localStorage.setItem(chaveTamanhoFonte, String(tamanhoFonte));
+    } catch (erro) {
+      console.warn('Não foi possível salvar o tamanho de fonte escolhido.', erro);
+    }
     if (valorFonte) valorFonte.value = `${Math.round((tamanhoFonte / 16) * 100)}%`;
     if (botaoDiminuirFonte) botaoDiminuirFonte.disabled = tamanhoFonte <= 14;
     if (botaoAumentarFonte) botaoAumentarFonte.disabled = tamanhoFonte >= 24;
+    sincronizarEscolhasAcesso();
   };
 
   botaoDiminuirFonte?.addEventListener('click', () => {
@@ -499,6 +574,48 @@ document.addEventListener('DOMContentLoaded', () => {
   botaoAumentarFonte?.addEventListener('click', () => {
     tamanhoFonte = Math.min(24, tamanhoFonte + 2);
     aplicarTamanhoFonte();
+  });
+
+  atualizarPreferencias();
+  aplicarTamanhoFonte();
+
+  const botaoAplicarEscolhasAcesso = document.querySelector('#aplicar-escolhas-acesso');
+  const estadoEscolhasAcesso = document.querySelector('#estado-escolhas-acesso');
+  botaoAplicarEscolhasAcesso?.addEventListener('click', () => {
+    const opcoesAcesso = [...document.querySelectorAll('[data-perfil-acesso]')];
+    const visaoEstavaAtiva = opcoesAcesso.find((opcao) => opcao.dataset.perfilAcesso === 'visao')?.checked;
+    const recursosPorPerfil = {
+      audio: ['audio'],
+      libras: ['libras'],
+      visao: ['contraste', 'fonte-legivel', 'espacamento'],
+      imagens: ['imagens', 'linguagem-simples', 'leitura-facil'],
+    };
+    const nomesControlados = new Set(Object.values(recursosPorPerfil).flat());
+    const selecionados = new Set(
+      opcoesAcesso.filter((opcao) => opcao.checked).map((opcao) => opcao.dataset.perfilAcesso),
+    );
+
+    recursos.forEach((recurso) => {
+      if (!nomesControlados.has(recurso.dataset.recurso)) return;
+      recurso.checked = Object.entries(recursosPorPerfil).some(([perfil, nomes]) => (
+        selecionados.has(perfil) && nomes.includes(recurso.dataset.recurso)
+      ));
+    });
+
+    if (selecionados.has('visao')) {
+      tamanhoFonte = Math.max(tamanhoFonte, 20);
+      aplicarTamanhoFonte();
+    } else if (visaoEstavaAtiva) {
+      tamanhoFonte = 16;
+      aplicarTamanhoFonte();
+    }
+
+    atualizarPreferencias();
+    if (estadoEscolhasAcesso) {
+      estadoEscolhasAcesso.textContent = selecionados.size
+        ? 'Pronto! Suas escolhas foram aplicadas e ficam salvas somente neste navegador. Você pode ajustar cada recurso no botão Acessibilidade.'
+        : 'Tudo certo. Você pode navegar sem ativar recursos ou escolher novamente quando quiser.';
+    }
   });
 
   seletorTema.forEach((opcao) => {
@@ -536,6 +653,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  document.querySelector('#abrir-traducao-libras')?.addEventListener('click', (evento) => {
+    evento.preventDefault();
+    abrirPainelAcessibilidade();
+    if (!recursoLibras) {
+      if (estadoComunicacao) estadoComunicacao.textContent = 'A opção Libras não está disponível nesta página.';
+      return;
+    }
+    if (!recursoLibras.checked) {
+      recursoLibras.checked = true;
+      recursoLibras.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    recursoLibras.focus();
+    if (estadoComunicacao) {
+      estadoComunicacao.textContent = 'VLibras ativado. Use o avatar que aparece na página e selecione o texto da mensagem para ver a tradução. A tradução automática pode ter limitações.';
+    }
+  });
+
   botaoFecharAcessibilidade?.addEventListener('click', () => {
     painelAcessibilidade?.close();
   });
@@ -560,6 +694,187 @@ document.addEventListener('DOMContentLoaded', () => {
 
   botaoParar?.addEventListener('click', () => {
     pararLeitura('Leitura em voz alta interrompida.');
+  });
+
+  const botaoBuscarVoz = document.querySelector('#buscar-por-voz');
+  const estadoBuscaVoz = document.querySelector('#estado-busca-voz');
+  const campoBuscaServicos = document.querySelector('#campo-busca-servicos');
+  botaoBuscarVoz?.addEventListener('click', () => {
+    const ReconhecedorDeVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!ReconhecedorDeVoz) {
+      if (estadoBuscaVoz) {
+        estadoBuscaVoz.textContent = 'A busca por voz não está disponível neste navegador. Você pode digitar o que precisa no campo de busca.';
+      }
+      return;
+    }
+
+    const reconhecimento = new ReconhecedorDeVoz();
+    reconhecimento.lang = 'pt-BR';
+    reconhecimento.interimResults = false;
+    reconhecimento.maxAlternatives = 1;
+    botaoBuscarVoz.setAttribute('aria-pressed', 'true');
+    reconhecimento.onstart = () => {
+      if (estadoBuscaVoz) estadoBuscaVoz.textContent = 'Pode falar o assunto que está procurando. O microfone só é usado enquanto esta busca está ativa.';
+    };
+    reconhecimento.onresult = (evento) => {
+      const transcricao = evento.results[0]?.[0]?.transcript?.trim();
+      if (!transcricao || !campoBuscaServicos) {
+        if (estadoBuscaVoz) estadoBuscaVoz.textContent = 'Não entendi a busca. Tente novamente ou digite o assunto.';
+        return;
+      }
+      campoBuscaServicos.value = transcricao;
+      campoBuscaServicos.dispatchEvent(new Event('input', { bubbles: true }));
+      if (estadoBuscaVoz) estadoBuscaVoz.textContent = `Busca reconhecida: “${transcricao}”. Confira os resultados e escolha o serviço.`;
+    };
+    reconhecimento.onerror = (evento) => {
+      const mensagem = evento.error === 'not-allowed'
+        ? 'O acesso ao microfone não foi permitido. Você pode digitar o assunto no campo de busca.'
+        : 'Não foi possível reconhecer a fala. Tente novamente ou digite o assunto.';
+      if (estadoBuscaVoz) estadoBuscaVoz.textContent = mensagem;
+    };
+    reconhecimento.onend = () => {
+      botaoBuscarVoz.setAttribute('aria-pressed', 'false');
+    };
+    try {
+      reconhecimento.start();
+    } catch (erro) {
+      botaoBuscarVoz.setAttribute('aria-pressed', 'false');
+      console.warn('Não foi possível iniciar a busca por voz.', erro);
+      if (estadoBuscaVoz) estadoBuscaVoz.textContent = 'Não foi possível iniciar o microfone. Digite o assunto no campo de busca.';
+    }
+  });
+
+  const fraseComunicacao = document.querySelector('#frase-comunicacao-selecionada');
+  const estadoComunicacao = document.querySelector('#estado-comunicacao');
+  const botaoOuvirFrase = document.querySelector('#ouvir-frase-comunicacao');
+  const idiomaTraducaoComunicacao = document.querySelector('#idioma-traducao-comunicacao');
+  const botaoTraduzirFrase = document.querySelector('#traduzir-frase-comunicacao');
+  const resultadoTraducaoComunicacao = document.querySelector('#resultado-traducao-comunicacao');
+  let botaoComunicacaoSelecionado = null;
+  document.querySelectorAll('[data-frase-comunicacao]').forEach((botao) => {
+    botao.setAttribute('aria-pressed', 'false');
+    botao.addEventListener('click', () => {
+      document.querySelectorAll('[data-frase-comunicacao]').forEach((opcao) => {
+        opcao.setAttribute('aria-pressed', String(opcao === botao));
+      });
+      botaoComunicacaoSelecionado = botao;
+      if (fraseComunicacao) fraseComunicacao.textContent = botao.dataset.fraseComunicacao;
+      if (botaoOuvirFrase) botaoOuvirFrase.disabled = false;
+      if (idiomaTraducaoComunicacao) idiomaTraducaoComunicacao.disabled = false;
+      if (idiomaTraducaoComunicacao) idiomaTraducaoComunicacao.value = '';
+      if (botaoTraduzirFrase) botaoTraduzirFrase.disabled = false;
+      if (resultadoTraducaoComunicacao) {
+        resultadoTraducaoComunicacao.hidden = true;
+        resultadoTraducaoComunicacao.textContent = '';
+        resultadoTraducaoComunicacao.lang = 'pt-BR';
+      }
+      if (estadoComunicacao) estadoComunicacao.textContent = 'Mensagem selecionada. Você pode mostrá-la ou pedir para o navegador falar.';
+    });
+  });
+  botaoOuvirFrase?.addEventListener('click', () => {
+    if (fraseComunicacao?.textContent) {
+      if (estadoComunicacao) estadoComunicacao.textContent = 'Lendo a mensagem em português com a mesma voz de “Ouvir o conteúdo”.';
+      lerTexto(fraseComunicacao.textContent, true, estadoComunicacao);
+    }
+  });
+  botaoTraduzirFrase?.addEventListener('click', () => {
+    const idioma = idiomaTraducaoComunicacao?.value;
+    const atributoTraducao = idioma === 'en' ? 'traducaoEn' : idioma === 'es' ? 'traducaoEs' : '';
+    const traducao = atributoTraducao && botaoComunicacaoSelecionado?.dataset[atributoTraducao];
+    if (!traducao || !resultadoTraducaoComunicacao) {
+      if (estadoComunicacao) estadoComunicacao.textContent = 'Escolha uma mensagem e um idioma para ver a tradução.';
+      idiomaTraducaoComunicacao?.focus();
+      return;
+    }
+    resultadoTraducaoComunicacao.textContent = traducao;
+    resultadoTraducaoComunicacao.lang = idioma === 'en' ? 'en' : 'es';
+    resultadoTraducaoComunicacao.hidden = false;
+    if (estadoComunicacao) estadoComunicacao.textContent = `Tradução de apoio exibida em ${idioma === 'en' ? 'inglês' : 'espanhol'}.`;
+  });
+
+  const exemplosEntenda = {
+    documentos: {
+      origem: 'Exemplo: confira as instruções do órgão para saber quais documentos são necessários e quais etapas seguir.',
+      passos: [
+        'Abra a página oficial do serviço.',
+        'Confira a lista de documentos e as etapas.',
+        'Se algo não estiver claro, pergunte ao órgão responsável antes de continuar.',
+      ],
+    },
+    protocolo: {
+      origem: 'Exemplo: depois de fazer um pedido, guarde o protocolo para consultar o andamento.',
+      passos: [
+        'Anote ou guarde o número do protocolo.',
+        'Veja qual canal o órgão indica para acompanhar o pedido.',
+        'Consulte o andamento por esse canal.',
+      ],
+    },
+  };
+  const seletorExemplo = document.querySelector('#selecionar-exemplo-entenda');
+  const botaoExplicarExemplo = document.querySelector('#explicar-exemplo');
+  const botaoOrganizarTexto = document.querySelector('#organizar-texto');
+  const botaoLimparTexto = document.querySelector('#limpar-texto-entenda');
+  const campoTextoEntenda = document.querySelector('#texto-para-simplificar');
+  const resultadoEntenda = document.querySelector('#resultado-entenda');
+  const origemEntenda = document.querySelector('#origem-entenda');
+  const passosEntenda = document.querySelector('#passos-entenda');
+  const estadoEntenda = document.querySelector('#estado-entenda');
+  const botaoOuvirExplicacao = document.querySelector('#ouvir-explicacao');
+
+  const mostrarPassosEntenda = (origem, passos) => {
+    if (!resultadoEntenda || !origemEntenda || !passosEntenda) return;
+    origemEntenda.textContent = origem;
+    passosEntenda.replaceChildren(...passos.map((passo) => {
+      const item = document.createElement('li');
+      item.textContent = passo;
+      return item;
+    }));
+    resultadoEntenda.hidden = false;
+  };
+
+  botaoExplicarExemplo?.addEventListener('click', () => {
+    const exemplo = exemplosEntenda[seletorExemplo?.value];
+    if (!exemplo) {
+      if (estadoEntenda) estadoEntenda.textContent = 'Escolha um exemplo para ver a explicação.';
+      seletorExemplo?.focus();
+      return;
+    }
+    mostrarPassosEntenda(exemplo.origem, exemplo.passos);
+    if (estadoEntenda) estadoEntenda.textContent = 'Exemplo preparado pelo INCLUI. Confira sempre as instruções atualizadas do órgão responsável.';
+    resultadoEntenda?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  botaoOrganizarTexto?.addEventListener('click', () => {
+    const texto = campoTextoEntenda?.value.trim();
+    if (!texto) {
+      if (estadoEntenda) estadoEntenda.textContent = 'Cole um texto sem dados pessoais para separar em partes.';
+      campoTextoEntenda?.focus();
+      return;
+    }
+    const paragrafoEmFrases = texto.split(/\n+/).flatMap((paragrafo) => (
+      paragrafo.match(/[^.!?]+[.!?]?/g) || []
+    ));
+    const partes = paragrafoEmFrases.map((parte) => parte.trim()).filter(Boolean);
+    mostrarPassosEntenda('Seu texto, separado em frases. O conteúdo não foi simplificado nem verificado.', partes);
+    if (estadoEntenda) estadoEntenda.textContent = `${partes.length} parte${partes.length === 1 ? '' : 's'} organizadas somente nesta página.`;
+    resultadoEntenda?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  botaoLimparTexto?.addEventListener('click', () => {
+    if (campoTextoEntenda) campoTextoEntenda.value = '';
+    if (seletorExemplo) seletorExemplo.value = '';
+    if (resultadoEntenda) resultadoEntenda.hidden = true;
+    if (passosEntenda) passosEntenda.replaceChildren();
+    if (estadoEntenda) estadoEntenda.textContent = 'Texto e resultado apagados desta página.';
+    campoTextoEntenda?.focus();
+  });
+
+  botaoOuvirExplicacao?.addEventListener('click', () => {
+    const passos = [...(passosEntenda?.querySelectorAll('li') || [])]
+      .map((passo) => passo.textContent);
+    if (origemEntenda?.textContent && passos.length) {
+      lerTexto(`${origemEntenda.textContent} ${passos.join('. ')}`, true, estadoEntenda);
+    }
   });
 
   const obterTextoDoAlvo = (alvo) => {

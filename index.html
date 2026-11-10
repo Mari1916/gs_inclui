@@ -77,8 +77,8 @@
             formas de acessar a informação.
           </p>
           <div class="acoes-destaque">
-            <a class="botao botao-primario" href="#acessibilidade">
-              Conheça as formas de acesso <span aria-hidden="true">↓</span>
+            <a class="botao botao-primario" href="#escolha-acesso">
+              Escolha como acessar <span aria-hidden="true">↓</span>
             </a>
             <a class="botao botao-secundario" href="#sobre">
               Entenda como funciona
@@ -133,6 +133,48 @@
           </div>
           <span class="estrela-decorativa estrela-um" aria-hidden="true">✳</span>
           <span class="estrela-decorativa estrela-dois" aria-hidden="true">✦</span>
+        </div>
+      </section>
+
+      <section class="secao-escolhas-acesso" id="escolha-acesso" aria-labelledby="titulo-escolha-acesso">
+        <div class="limite-secao">
+          <div class="cabecalho-escolhas-acesso">
+            <div>
+              <p class="chamada">INCLUI PARA VOCÊ</p>
+              <h2 id="titulo-escolha-acesso">Olá! Como podemos facilitar sua experiência?</h2>
+              <p>Escolha uma ou mais opções. Você pode mudar de ideia quando quiser.</p>
+            </div>
+          </div>
+          <fieldset class="grade-escolhas-acesso">
+            <legend class="visualmente-oculto">Escolha os recursos que deseja ativar</legend>
+            <label class="opcao-escolha-acesso">
+              <input type="checkbox" data-perfil-acesso="audio" />
+              <span class="icone-escolha-acesso" aria-hidden="true">♫</span>
+              <span><strong>Quero ouvir</strong><small>Ativa leitura de textos por voz e leitura da página.</small></span>
+            </label>
+            <label class="opcao-escolha-acesso">
+              <input type="checkbox" data-perfil-acesso="libras" />
+              <span class="icone-escolha-acesso" aria-hidden="true">手</span>
+              <span><strong>Quero Libras</strong><small>Abre o VLibras, que traduz textos com um avatar virtual.</small></span>
+            </label>
+            <label class="opcao-escolha-acesso">
+              <input type="checkbox" data-perfil-acesso="visao" />
+              <span class="icone-escolha-acesso" aria-hidden="true">Aa</span>
+              <span><strong>Quero enxergar melhor</strong><small>Ativa alto contraste, fonte simples e aumenta o tamanho do texto.</small></span>
+            </label>
+            <label class="opcao-escolha-acesso">
+              <input type="checkbox" data-perfil-acesso="imagens" />
+              <span class="icone-escolha-acesso" aria-hidden="true">▣</span>
+              <span><strong>Quero imagens e passos</strong><small>Destaca ícones, orientações visuais e explicações simples disponíveis.</small></span>
+            </label>
+          </fieldset>
+          <div class="acoes-escolhas-acesso">
+            <button class="botao botao-primario" id="aplicar-escolhas-acesso" type="button">Aplicar minhas escolhas</button>
+            <a class="botao botao-secundario" href="#acessibilidade" aria-haspopup="dialog">Modo personalizado: escolher outros recursos</a>
+          </div>
+          <p class="estado-escolhas-acesso" id="estado-escolhas-acesso" role="status" aria-live="polite">
+            Suas escolhas são salvas somente neste navegador. Não é preciso escolher nada para continuar.
+          </p>
         </div>
       </section>
 
@@ -250,7 +292,14 @@
           <label class="cartao-acessibilidade">
             <input type="checkbox" role="switch" data-recurso="linguagem-simples" />
             <span class="icone-preferencia icone-preferencia-simples" aria-hidden="true"><span class="sigla-icone">Aa</span></span>
-            <span class="texto-preferencia"><strong>Linguagem simples</strong><small>Registra sua preferência por palavras comuns e instruções diretas, úteis para entender informações novas ou complexas.</small></span>
+            <span class="texto-preferencia"><strong>Apoio para leitura simples</strong><small>Destaca exemplos e orientações em linguagem simples disponíveis no INCLUI. Não reescreve automaticamente textos de outros sites.</small></span>
+            <span class="interruptor" aria-hidden="true"></span>
+          </label>
+
+          <label class="cartao-acessibilidade">
+            <input type="checkbox" role="switch" data-recurso="imagens" />
+            <span class="icone-preferencia icone-preferencia-simples" aria-hidden="true"><span class="sigla-icone">▣</span></span>
+            <span class="texto-preferencia"><strong>Apoio visual</strong><small>Destaca ícones e etapas numeradas que ajudam a acompanhar as orientações.</small></span>
             <span class="interruptor" aria-hidden="true"></span>
           </label>
 
@@ -306,8 +355,14 @@
               autocomplete="off"
               aria-controls="lista-pilares"
             />
+            <button class="botao-busca-voz" id="buscar-por-voz" type="button" aria-pressed="false">
+              <span aria-hidden="true">🎙</span> Buscar por voz
+            </button>
             <span class="dica-busca">Busque por tema</span>
           </div>
+          <p class="aviso-busca-voz" id="estado-busca-voz" role="status" aria-live="polite">
+            A busca por voz depende do navegador e do microfone. Ao iniciar, o navegador pode processar o áudio; nada é gravado pelo INCLUI.
+          </p>
 
           <p class="estado-busca" id="estado-busca-servicos" role="status" aria-live="polite">
             3 temas disponíveis. Escolha um para ver o guia.
@@ -362,6 +417,54 @@
         </div>
       </section>
 
+      <section class="secao-comunicacao limite-secao" aria-labelledby="titulo-comunicacao">
+        <div class="cabecalho-secao">
+          <div>
+            <p class="chamada">VOCÊ PODE SE COMUNICAR DO SEU JEITO</p>
+            <h2 id="titulo-comunicacao">Escolha uma mensagem para mostrar, ouvir ou traduzir</h2>
+          </div>
+          <p class="introducao-secao">Um quadro simples de comunicação. Escolha uma frase para ela aparecer em destaque; se quiser, peça ao navegador para falar.</p>
+        </div>
+        <div class="grade-comunicacao" aria-label="Mensagens disponíveis">
+          <button class="botao-comunicacao" type="button" data-frase-comunicacao="Preciso de ajuda, por favor." data-traducao-en="I need help, please." data-traducao-es="Necesito ayuda, por favor.">
+            <span aria-hidden="true">🙋</span><strong>Preciso de ajuda</strong>
+          </button>
+          <button class="botao-comunicacao" type="button" data-frase-comunicacao="Quero ouvir esta orientação." data-traducao-en="I want to hear these instructions." data-traducao-es="Quiero escuchar estas instrucciones.">
+            <span aria-hidden="true">🔊</span><strong>Quero ouvir</strong>
+          </button>
+          <button class="botao-comunicacao" type="button" data-frase-comunicacao="Quero falar com uma pessoa." data-traducao-en="I want to speak with someone." data-traducao-es="Quiero hablar con una persona.">
+            <span aria-hidden="true">👥</span><strong>Quero falar com alguém</strong>
+          </button>
+          <button class="botao-comunicacao" type="button" data-frase-comunicacao="Quero fazer isso com autonomia." data-traducao-en="I want to do this independently." data-traducao-es="Quiero hacerlo de forma independiente.">
+            <span aria-hidden="true">🧭</span><strong>Quero fazer sozinho(a)</strong>
+          </button>
+          <button class="botao-comunicacao" type="button" data-frase-comunicacao="Preciso de mais tempo para entender." data-traducao-en="I need more time to understand." data-traducao-es="Necesito más tiempo para entender.">
+            <span aria-hidden="true">⏳</span><strong>Preciso de mais tempo</strong>
+          </button>
+          <button class="botao-comunicacao" type="button" data-frase-comunicacao="Quero uma explicação mais simples." data-traducao-en="I want a simpler explanation." data-traducao-es="Quiero una explicación más sencilla.">
+            <span aria-hidden="true">💬</span><strong>Quero uma explicação simples</strong>
+          </button>
+        </div>
+        <div class="resultado-comunicacao" aria-live="polite" aria-atomic="true">
+          <p id="frase-comunicacao-selecionada">Escolha uma mensagem acima.</p>
+          <button class="botao botao-secundario" id="ouvir-frase-comunicacao" type="button" disabled>Ouvir mensagem em português</button>
+        </div>
+        <div class="acoes-traducao-comunicacao">
+          <label for="idioma-traducao-comunicacao">Traduzir frase para</label>
+          <select id="idioma-traducao-comunicacao" disabled>
+            <option value="">Escolha uma mensagem primeiro</option>
+            <option value="en">Inglês</option>
+            <option value="es">Espanhol</option>
+          </select>
+          <button class="botao botao-secundario" id="traduzir-frase-comunicacao" type="button" disabled>Traduzir mensagem</button>
+          <a class="botao botao-secundario" href="#acessibilidade" id="abrir-traducao-libras" aria-haspopup="dialog">Usar tradução em Libras</a>
+        </div>
+        <p class="resultado-traducao-comunicacao" id="resultado-traducao-comunicacao" lang="pt-BR" aria-live="polite" hidden></p>
+        <p class="nota-traducao-comunicacao">As traduções para inglês e espanhol são frases prontas de apoio, não uma tradução automática de qualquer texto. Para Libras, ative o VLibras no painel; é necessária internet e a tradução automática pode ter limitações.</p>
+        <p class="estado-comunicacao" id="estado-comunicacao" role="status" aria-live="polite"></p>
+        <p class="nota-comunicacao">As mensagens ficam nesta página e não são enviadas a ninguém. Os símbolos são apoio visual; cada pessoa pode interpretá-los de um jeito.</p>
+      </section>
+
       <section class="secao-glossario limite-secao" id="glossario" aria-labelledby="titulo-glossario">
         <div class="cabecalho-secao">
           <div>
@@ -405,13 +508,15 @@
             <span>A gente explica.</span>
           </h2>
           <p class="descricao-compreensao">
-            Orientações públicas podem vir cheias de palavras complicadas.
-            A proposta do INCLUI é apresentar a informação em passos mais fáceis de entender.
+            Veja uma explicação de exemplo preparada para esta demonstração. Você também pode separar um texto em partes, sem enviar ou salvar o conteúdo.
+          </p>
+          <p class="aviso-linguagem-simples" data-aviso-linguagem-simples hidden>
+            Em palavras simples: escolha um exemplo para ver passos curtos. Um texto próprio só será separado em frases, não interpretado nem reescrito.
           </p>
           <ul class="beneficios-compreensao">
-            <li><span aria-hidden="true">✓</span> Explicações com palavras mais simples</li>
-            <li><span aria-hidden="true">✓</span> Instruções organizadas passo a passo</li>
-            <li><span aria-hidden="true">✓</span> Mais clareza para saber o que fazer</li>
+            <li><span aria-hidden="true">✓</span> Exemplos revisados e organizados em passos</li>
+            <li><span aria-hidden="true">✓</span> Leitura em voz alta pelo navegador</li>
+            <li><span aria-hidden="true">✓</span> Seu texto permanece no dispositivo</li>
           </ul>
         </div>
 
@@ -436,23 +541,34 @@
           <textarea
             id="texto-para-simplificar"
             rows="4"
-            placeholder="Cole aqui uma orientação ou um texto que você quer entender melhor..."
+            maxlength="3000"
+            aria-describedby="privacidade-texto"
+            placeholder="Cole aqui um trecho sem dados pessoais. Limite de 3.000 caracteres."
           ></textarea>
 
-          <details class="detalhes-exemplo">
-            <summary>Ver um exemplo de texto</summary>
-            <p>
-              Exemplo genérico, sem relação com um serviço específico:
-              confira as instruções do órgão responsável antes de iniciar uma solicitação.
-            </p>
-          </details>
-
-          <button class="botao botao-primario botao-explicar" type="button" disabled>
-            ✳ Simplificar texto — em breve
-          </button>
-          <p class="observacao-exemplo">
-            Esta é uma prévia da funcionalidade. O texto digitado não é enviado nem salvo.
+          <label class="rotulo-exemplo" for="selecionar-exemplo-entenda">Ou veja uma explicação preparada:</label>
+          <div class="acoes-entenda">
+            <select id="selecionar-exemplo-entenda">
+              <option value="">Escolha um exemplo</option>
+              <option value="documentos">Conferir documentos e etapas</option>
+              <option value="protocolo">Acompanhar uma solicitação</option>
+            </select>
+            <button class="botao botao-primario botao-explicar" id="explicar-exemplo" type="button">Ver explicação</button>
+          </div>
+          <div class="acoes-entenda acoes-entenda-texto">
+            <button class="botao botao-secundario" id="organizar-texto" type="button">Separar meu texto em partes</button>
+            <button class="botao botao-secundario" id="limpar-texto-entenda" type="button">Apagar</button>
+          </div>
+          <p class="observacao-exemplo" id="privacidade-texto">
+            Não é IA e não lê fotos ou PDFs: os exemplos são textos preparados. Seu texto é apenas separado em frases neste navegador; não é enviado nem guardado. Evite colar CPF, endereço, senha ou outros dados pessoais.
           </p>
+          <p class="estado-entenda" id="estado-entenda" role="status" aria-live="polite"></p>
+          <section class="resultado-entenda" id="resultado-entenda" aria-labelledby="titulo-resultado-entenda" hidden>
+            <h3 id="titulo-resultado-entenda">Explicação em partes</h3>
+            <p class="origem-entenda" id="origem-entenda"></p>
+            <ol id="passos-entenda"></ol>
+            <button class="botao botao-secundario" id="ouvir-explicacao" type="button">Ouvir esta explicação</button>
+          </section>
         </div>
       </section>
 
@@ -463,10 +579,7 @@
               <p class="chamada">ACESSIBILIDADE NÃO É UM BOTÃO</p>
               <h2 id="titulo-caminhos">É poder chegar junto.</h2>
             </div>
-            <p>
-              O mesmo direito. Diferentes caminhos.<br />
-              Você escolhe o seu.
-            </p>
+            <p>“Se a tecnologia é para todos, por que nem todos conseguem utilizá-la?”<br />O mesmo direito. Diferentes caminhos.</p>
           </div>
 
           <div class="grade-caminhos">
@@ -481,14 +594,14 @@
               <span class="numero-caminho">02</span>
               <span class="icone-caminho icone-caminho-libras" aria-hidden="true">手</span>
               <h3>Veja em Libras</h3>
-              <p>Conteúdos visuais, legendas e materiais em língua de sinais.</p>
+              <p>Ative o VLibras para ver uma tradução automática dos textos, com os limites desse recurso.</p>
             </article>
 
             <article class="cartao-caminho">
               <span class="numero-caminho">03</span>
               <span class="icone-caminho icone-caminho-simples" aria-hidden="true">✳</span>
               <h3>Entenda com clareza</h3>
-              <p>Informação simples, com exemplos e instruções passo a passo.</p>
+              <p>Veja exemplos preparados e organize textos em partes sem enviar o conteúdo.</p>
             </article>
 
             <article class="cartao-caminho">
