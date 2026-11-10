@@ -97,6 +97,45 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.append(dialogoAcessibilidade);
   }
 
+  const cabecalhos = document.querySelectorAll('.cabecalho-site');
+  cabecalhos.forEach((cabecalho) => {
+    const botaoMenu = cabecalho.querySelector('.botao-menu-mobile');
+    const navegacao = cabecalho.querySelector('.navegacao-principal');
+    if (!botaoMenu || !navegacao) return;
+
+    const fecharMenu = (devolverFoco = false) => {
+      cabecalho.classList.remove('menu-aberto');
+      botaoMenu.setAttribute('aria-expanded', 'false');
+      botaoMenu.setAttribute('aria-label', 'Abrir menu');
+      if (devolverFoco) botaoMenu.focus();
+    };
+
+    botaoMenu.addEventListener('click', () => {
+      const aberto = botaoMenu.getAttribute('aria-expanded') === 'true';
+      cabecalho.classList.toggle('menu-aberto', !aberto);
+      botaoMenu.setAttribute('aria-expanded', String(!aberto));
+      botaoMenu.setAttribute('aria-label', aberto ? 'Abrir menu' : 'Fechar menu');
+    });
+
+    navegacao.addEventListener('click', (evento) => {
+      if (evento.target instanceof Element && evento.target.closest('a')) fecharMenu();
+    });
+
+    document.addEventListener('click', (evento) => {
+      if (evento.target instanceof Node && !cabecalho.contains(evento.target)) fecharMenu();
+    });
+
+    document.addEventListener('keydown', (evento) => {
+      if (evento.key === 'Escape' && cabecalho.classList.contains('menu-aberto')) {
+        fecharMenu(true);
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 740) fecharMenu();
+    });
+  });
+
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach((item) => {
     const button = item.querySelector('.faq-question');

@@ -31,17 +31,26 @@
         />
       </a>
 
-      <nav class="navegacao-principal" aria-label="Navegação principal">
+      <button
+        class="botao-menu-mobile"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="navegacao-principal"
+      >
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="navegacao-principal" id="navegacao-principal" aria-label="Navegação principal">
         <a href="index.html#inicio">Início</a>
         <a href="sobre.html">Sobre o INCLUI</a>
         <a href="index.html#servicos">Serviços</a>
         <a href="integrantes.html" aria-current="page">Integrantes</a>
         <a href="faq.html">Perguntas frequentes</a>
+        <a class="link-cabecalho" href="contato.html">
+          Fale com a gente <span aria-hidden="true">↗</span>
+        </a>
       </nav>
-
-      <a class="link-cabecalho" href="contato.html">
-        Fale com a gente <span aria-hidden="true">↗</span>
-      </a>
     </header>
 
     <main id="conteudo">

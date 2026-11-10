@@ -3030,3 +3030,109 @@ body[data-tema="escuro"] .integrante-links a:hover {
     width: 100%;
   }
 }
+
+.botao-menu-mobile {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .cabecalho-site {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    min-height: 72px;
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding: 8px 18px;
+  }
+
+  .botao-menu-mobile {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-left: auto;
+    padding: 0;
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    background: var(--superficie);
+    color: var(--texto);
+    cursor: pointer;
+  }
+
+  .botao-menu-mobile span {
+    display: block;
+    width: 19px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 180ms ease, opacity 180ms ease;
+  }
+
+  .cabecalho-site.menu-aberto .botao-menu-mobile span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .cabecalho-site.menu-aberto .botao-menu-mobile span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .cabecalho-site.menu-aberto .botao-menu-mobile span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .cabecalho-site .navegacao-principal {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 21;
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    overflow: visible;
+    padding: 8px 18px 16px;
+    border-bottom: 1px solid var(--borda);
+    background: var(--superficie);
+    box-shadow: 0 16px 26px rgba(36, 34, 57, .12);
+    font-size: .92rem;
+    white-space: normal;
+  }
+
+  .cabecalho-site.menu-aberto .navegacao-principal {
+    display: flex;
+  }
+
+  .navegacao-principal>a:not(.link-cabecalho) {
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .cabecalho-site .navegacao-principal .link-cabecalho {
+    justify-content: flex-start;
+    margin: 10px 0 0;
+    padding: 11px 14px;
+    border-radius: 10px;
+    background: var(--lavanda);
+    color: var(--roxo-escuro);
+    font-size: .9rem;
+  }
+
+  body[data-tema="escuro"] .botao-menu-mobile,
+  body[data-tema="escuro"] .cabecalho-site .navegacao-principal {
+    border-color: var(--borda);
+    background: var(--superficie);
+    color: var(--texto);
+  }
+
+  body[data-tema="escuro"] .cabecalho-site .navegacao-principal .link-cabecalho {
+    background: #332d4b;
+    color: #e1d8ff;
+  }
+}
