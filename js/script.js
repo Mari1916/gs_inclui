@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoOuvir = document.querySelector('#botao-ouvir-pagina');
   const botaoParar = document.querySelector('#botao-parar-leitura');
   const recursoAudio = document.querySelector('[data-recurso="audio"]');
+  const botaoDiminuirFonte = document.querySelector('#diminuir-fonte');
+  const botaoAumentarFonte = document.querySelector('#aumentar-fonte');
+  const valorFonte = document.querySelector('#valor-fonte');
+  let tamanhoFonte = 16;
+  const painelAcessibilidade = document.querySelector('#acessibilidade');
+  const gatilhosAcessibilidade = document.querySelectorAll(
+    '#abrir-acessibilidade-flutuante, a[href="#acessibilidade"]',
+  );
+  const botaoFecharAcessibilidade = document.querySelector('.fechar-acessibilidade');
   const atributosRecursos = {
     daltonismo: ['paleta', 'daltonismo'],
     contraste: ['contraste', 'alto'],
@@ -37,10 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!recurso.checked) delete document.body.dataset[atributo[0]];
       }
 
-      if (recurso.dataset.recurso === 'fonte-grande') {
-        document.documentElement.style.fontSize = recurso.checked ? '19px' : '';
-        document.body.style.fontSize = recurso.checked ? '19px' : '';
-      }
     });
 
     const selecionados = [...recursos].filter((recurso) => recurso.checked);
@@ -65,10 +70,69 @@ document.addEventListener('DOMContentLoaded', () => {
 
   recursos.forEach((recurso) => recurso.addEventListener('change', atualizarPreferencias));
 
+  const aplicarTamanhoFonte = () => {
+    document.documentElement.style.fontSize = `${tamanhoFonte}px`;
+    document.body.style.fontSize = `${tamanhoFonte}px`;
+    if (valorFonte) valorFonte.value = `${Math.round((tamanhoFonte / 16) * 100)}%`;
+    if (botaoDiminuirFonte) botaoDiminuirFonte.disabled = tamanhoFonte <= 14;
+    if (botaoAumentarFonte) botaoAumentarFonte.disabled = tamanhoFonte >= 24;
+  };
+
+  botaoDiminuirFonte?.addEventListener('click', () => {
+    tamanhoFonte = Math.max(14, tamanhoFonte - 2);
+    aplicarTamanhoFonte();
+  });
+
+  botaoAumentarFonte?.addEventListener('click', () => {
+    tamanhoFonte = Math.min(24, tamanhoFonte + 2);
+    aplicarTamanhoFonte();
+  });
+
   seletorTema.forEach((opcao) => {
     opcao.addEventListener('change', () => {
-      if (opcao.checked) document.body.dataset.tema = opcao.value;
+      if (opcao.checked) {
+        document.body.dataset.tema = opcao.value;
+        seletorTema.forEach((tema) => {
+          tema.checked = tema.value === opcao.value;
+        });
+      }
     });
+  });
+
+  const abrirPainelAcessibilidade = () => {
+    if (!painelAcessibilidade) return;
+    if (!painelAcessibilidade.open) {
+      if (typeof painelAcessibilidade.showModal === 'function') {
+        painelAcessibilidade.showModal();
+      } else {
+        painelAcessibilidade.setAttribute('open', '');
+      }
+      const temaAtual = document.body.dataset.tema || 'claro';
+      seletorTema.forEach((tema) => {
+        tema.checked = tema.value === temaAtual;
+      });
+    }
+  };
+
+  gatilhosAcessibilidade.forEach((gatilho) => {
+    gatilho.addEventListener('click', (evento) => {
+      evento.preventDefault();
+      abrirPainelAcessibilidade();
+    });
+  });
+
+  botaoFecharAcessibilidade?.addEventListener('click', () => {
+    painelAcessibilidade?.close();
+  });
+
+  painelAcessibilidade?.addEventListener('click', (evento) => {
+    if (evento.target === painelAcessibilidade) painelAcessibilidade.close();
+  });
+
+  document.addEventListener('keydown', (evento) => {
+    if (evento.key === 'Escape' && painelAcessibilidade?.open) {
+      painelAcessibilidade.close();
+    }
   });
 
   botaoOuvir?.addEventListener('click', () => {
@@ -100,4 +164,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   atualizarPreferencias();
+  aplicarTamanhoFonte();
 });

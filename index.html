@@ -28,7 +28,6 @@
       <nav class="navegacao-principal" aria-label="Navegação principal">
         <a href="#inicio">Início</a>
         <a href="sobre.html">Sobre o INCLUI</a>
-        <a href="#acessibilidade">Acessibilidade</a>
         <a href="#servicos">Serviços</a>
         <a href="integrantes.html">Integrantes</a>
         <a href="faq.html">Perguntas frequentes</a>
@@ -38,6 +37,17 @@
         Fale com a gente <span aria-hidden="true">↗</span>
       </a>
     </header>
+
+    <button
+      class="botao-acessibilidade-flutuante"
+      id="abrir-acessibilidade-flutuante"
+      type="button"
+      aria-haspopup="dialog"
+      aria-controls="acessibilidade"
+    >
+      <span aria-hidden="true">♿</span>
+      Acessibilidade
+    </button>
 
     <main id="conteudo">
       <section class="secao-destaque limite-secao" id="inicio" aria-labelledby="titulo-destaque">
@@ -105,11 +115,12 @@
         </div>
       </section>
 
-      <section
-        class="secao-acessibilidade limite-secao"
+      <dialog
+        class="painel-acessibilidade"
         id="acessibilidade"
         aria-labelledby="titulo-acessibilidade"
       >
+        <button class="fechar-acessibilidade" type="button" aria-label="Fechar opções de acessibilidade">×</button>
         <div class="cabecalho-secao">
           <div>
             <p class="chamada">ACESSIBILIDADE EM DIFERENTES FORMAS</p>
@@ -124,111 +135,116 @@
         </div>
 
         <fieldset class="seletor-tema" aria-describedby="descricao-tema">
-          <legend>Escolha o tema da página</legend>
+          <legend>Tema de cores</legend>
           <p id="descricao-tema">O tema claro vem ativado. Você pode trocar quando quiser.</p>
           <label><input type="radio" name="tema" value="claro" checked /> Claro</label>
           <label><input type="radio" name="tema" value="escuro" /> Escuro</label>
         </fieldset>
+
+        <div class="controle-tamanho-fonte" role="group" aria-labelledby="titulo-tamanho-fonte">
+          <div>
+            <strong id="titulo-tamanho-fonte">Tamanho da fonte</strong>
+            <small>Ajuste o tamanho das letras.</small>
+          </div>
+          <div class="botoes-tamanho-fonte">
+            <button type="button" id="diminuir-fonte" aria-label="Diminuir tamanho da fonte">A−</button>
+            <output id="valor-fonte" aria-live="polite">100%</output>
+            <button type="button" id="aumentar-fonte" aria-label="Aumentar tamanho da fonte">A+</button>
+          </div>
+        </div>
 
         <fieldset class="grade-preferencias" aria-describedby="descricao-preferencias">
           <legend class="visualmente-oculto">Selecione os recursos de acessibilidade que deseja usar</legend>
           <p class="visualmente-oculto" id="descricao-preferencias">Marque ou desmarque os recursos. As alterações visuais são aplicadas na hora.</p>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="audio" />
+            <input type="checkbox" role="switch" data-recurso="audio" />
             <span class="icone-preferencia icone-preferencia-audio" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4V5Zm4 4a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12" /></svg>
             </span>
             <span class="texto-preferencia"><strong>Ouvir o conteúdo</strong><small>Ativa a leitura em voz alta da página. Pode ajudar pessoas cegas, com baixa visão ou dificuldade de leitura.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="libras" />
+            <input type="checkbox" role="switch" data-recurso="libras" />
             <span class="icone-preferencia icone-preferencia-libras" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M7 11V5a1.5 1.5 0 0 1 3 0v5-7a1.5 1.5 0 0 1 3 0v7-5a1.5 1.5 0 0 1 3 0v6-3a1.5 1.5 0 0 1 3 0v7a7 7 0 0 1-7 7h-1c-2.2 0-3.7-1-5-3l-3-4a1.8 1.8 0 0 1 2.8-2.2L7 15" /></svg>
             </span>
             <span class="texto-preferencia"><strong>Libras</strong><small>Registra sua preferência por vídeos em Língua Brasileira de Sinais, úteis para muitas pessoas surdas.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="legendas" />
+            <input type="checkbox" role="switch" data-recurso="legendas" />
             <span class="icone-preferencia icone-preferencia-libras" aria-hidden="true"><span class="sigla-icone">CC</span></span>
             <span class="texto-preferencia"><strong>Legendas</strong><small>Registra sua preferência por legendas em vídeos, que mostram falas e sons importantes.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="leitor-tela" />
+            <input type="checkbox" role="switch" data-recurso="leitor-tela" />
             <span class="icone-preferencia icone-preferencia-visao" aria-hidden="true"><span class="sigla-icone">Aa</span></span>
             <span class="texto-preferencia"><strong>Leitor de tela</strong><small>Compatibilidade com programas que transformam textos e botões em fala ou braile, usados por pessoas cegas.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="teclado" />
+            <input type="checkbox" role="switch" data-recurso="teclado" />
             <span class="icone-preferencia icone-preferencia-teclado" aria-hidden="true">
               <svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2" /><path d="M6 9h.01M9 9h.01M12 9h.01M15 9h.01M18 9h.01M6 12h.01M9 12h.01M12 12h.01M15 12h.01M18 12h.01M8 15h8" /></svg>
             </span>
             <span class="texto-preferencia"><strong>Navegar pelo teclado</strong><small>Use Tab para avançar e Enter para ativar links e botões, sem precisar de mouse ou tela sensível ao toque.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="fonte-grande" />
-            <span class="icone-preferencia icone-preferencia-visao" aria-hidden="true"><span class="sigla-icone">A+</span></span>
-            <span class="texto-preferencia"><strong>Aumentar o tamanho da fonte</strong><small>Amplia os textos da página para facilitar a leitura de pessoas com baixa visão ou que preferem letras maiores.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
-          </label>
-
-          <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="daltonismo" />
+            <input type="checkbox" role="switch" data-recurso="daltonismo" />
             <span class="icone-preferencia icone-preferencia-daltonismo" aria-hidden="true"><span class="sigla-icone">◐</span></span>
             <span class="texto-preferencia"><strong>Cores mais distinguíveis</strong><small>Usa uma paleta azul e laranja e reforça contornos, para não depender só das cores. Pode ajudar pessoas daltônicas.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="contraste" />
+            <input type="checkbox" role="switch" data-recurso="contraste" />
             <span class="icone-preferencia icone-preferencia-contraste" aria-hidden="true"><span class="sigla-icone">◑</span></span>
             <span class="texto-preferencia"><strong>Alto contraste</strong><small>Deixa textos, botões e bordas mais contrastantes para facilitar a identificação dos elementos.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="espacamento" />
+            <input type="checkbox" role="switch" data-recurso="espacamento" />
             <span class="icone-preferencia icone-preferencia-espacamento" aria-hidden="true"><span class="sigla-icone">↔</span></span>
             <span class="texto-preferencia"><strong>Mais espaço entre letras</strong><small>Aumenta o espaçamento das letras e linhas, o que pode ajudar pessoas com dislexia ou baixa visão.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="fonte-legivel" />
+            <input type="checkbox" role="switch" data-recurso="fonte-legivel" />
             <span class="icone-preferencia icone-preferencia-simples" aria-hidden="true"><span class="sigla-icone">Aa</span></span>
             <span class="texto-preferencia"><strong>Fonte mais legível</strong><small>Troca para uma fonte sem enfeites e de desenho simples, que pode facilitar a leitura.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="linguagem-simples" />
+            <input type="checkbox" role="switch" data-recurso="linguagem-simples" />
             <span class="icone-preferencia icone-preferencia-simples" aria-hidden="true"><span class="sigla-icone">Aa</span></span>
             <span class="texto-preferencia"><strong>Linguagem simples</strong><small>Registra sua preferência por palavras comuns e instruções diretas, úteis para entender informações novas ou complexas.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="sem-animacoes" />
+            <input type="checkbox" role="switch" data-recurso="sem-animacoes" />
             <span class="icone-preferencia icone-preferencia-calma" aria-hidden="true"><span class="sigla-icone">Ⅱ</span></span>
             <span class="texto-preferencia"><strong>Reduzir animações</strong><small>Remove movimentos decorativos para pessoas que sentem desconforto ou distração com animações.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
 
           <label class="cartao-acessibilidade">
-            <input type="checkbox" data-recurso="leitura-facil" />
+            <input type="checkbox" role="switch" data-recurso="leitura-facil" />
             <span class="icone-preferencia icone-preferencia-teclado" aria-hidden="true"><span class="sigla-icone">¶</span></span>
             <span class="texto-preferencia"><strong>Modo de leitura</strong><small>Esconde enfeites e limita a largura do texto para ajudar a manter o foco na leitura.</small></span>
-            <span class="indicador-selecao" aria-hidden="true">✓</span>
+            <span class="interruptor" aria-hidden="true"></span>
           </label>
         </fieldset>
 
@@ -239,7 +255,7 @@
             Selecione os recursos que deseja usar; suas escolhas ficam ativas enquanto esta página estiver aberta.
           </p>
         </div>
-      </section>
+      </dialog>
 
       <section class="secao-servicos" id="servicos" aria-labelledby="titulo-servicos">
         <div class="limite-secao">
