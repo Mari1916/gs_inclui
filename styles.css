@@ -1192,6 +1192,142 @@ a:focus-visible {
   line-height: 1.7;
 }
 
+.closing-section {
+  position: relative;
+  display: flex;
+  min-height: 212px;
+  align-items: center;
+  gap: 25px;
+  margin-top: 68px;
+  margin-bottom: 68px;
+  padding: 34px 42px;
+  overflow: hidden;
+  border-radius: 17px;
+  background: linear-gradient(110deg, #4a239f 0%, #6330c8 61%, #7542d7 100%);
+  color: #fff;
+}
+
+.closing-section::after {
+  position: absolute;
+  top: -115px;
+  right: 120px;
+  width: 360px;
+  height: 360px;
+  border: 1px solid #ffffff20;
+  border-radius: 50%;
+  content: "";
+}
+
+.closing-mark {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 67px;
+  height: 67px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid #ffffff45;
+  border-radius: 19px;
+  background: #ffffff10;
+}
+
+.closing-mark span {
+  font: 800 46px/1 "Manrope", sans-serif;
+}
+
+.closing-mark i {
+  position: absolute;
+  right: 14px;
+  bottom: 15px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c7a8ff;
+}
+
+.closing-copy {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+}
+
+.closing-copy .eyebrow {
+  margin: 0;
+  color: #d2c1ff;
+}
+
+.closing-copy h2 {
+  max-width: 560px;
+  margin: 11px 0 0;
+  font: 750 23px/1.35 "Manrope", sans-serif;
+  letter-spacing: -.035em;
+}
+
+.button-light {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  background: #fff;
+  color: #5631a6;
+  font-size: 11px;
+}
+
+.button-light:hover {
+  background: #f5f0ff;
+}
+
+.site-footer {
+  border-top: 1px solid #f0eef4;
+}
+
+.footer-inner {
+  display: flex;
+  min-height: 90px;
+  align-items: center;
+  gap: 22px;
+}
+
+.footer-brand .brand-mark {
+  width: 31px;
+  height: 31px;
+}
+
+.footer-brand .brand-name {
+  font-size: 19px;
+}
+
+.footer-tagline {
+  margin: 0;
+  color: #898594;
+  font-size: 10px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 19px;
+  margin-left: auto;
+}
+
+.footer-nav a {
+  color: #5f5b6d;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.footer-nav a:hover {
+  color: var(--purple);
+}
+
+.footer-note {
+  color: #aaa6b2;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.footer-note span {
+  color: var(--purple);
+}
+
 @media (max-width: 900px) {
   .site-header {
     padding-inline: 24px;
@@ -1228,6 +1364,15 @@ a:focus-visible {
   .ways-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px 20px;
+  }
+
+  .footer-inner {
+    flex-wrap: wrap;
+    padding-block: 18px;
+  }
+
+  .footer-note {
+    margin-left: auto;
   }
 }
 
@@ -1450,6 +1595,73 @@ a:focus-visible {
 
   .way-card p {
     font-size: 9px;
+  }
+
+  .closing-section {
+    min-height: auto;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 40px;
+    margin-bottom: 42px;
+    padding: 25px 22px;
+  }
+
+  .closing-mark {
+    width: 51px;
+    height: 51px;
+    border-radius: 15px;
+  }
+
+  .closing-mark span {
+    font-size: 37px;
+  }
+
+  .closing-mark i {
+    right: 10px;
+    bottom: 10px;
+    width: 6px;
+    height: 6px;
+  }
+
+  .closing-copy {
+    width: calc(100% - 70px);
+    flex: 1;
+  }
+
+  .closing-copy .eyebrow {
+    font-size: 7px;
+  }
+
+  .closing-copy h2 {
+    font-size: 19px;
+  }
+
+  .button-light {
+    width: 100%;
+    min-height: 43px;
+  }
+
+  .footer-inner {
+    align-items: flex-start;
+    gap: 12px 17px;
+    padding-block: 19px;
+  }
+
+  .footer-tagline {
+    width: calc(100% - 130px);
+    padding-top: 8px;
+    font-size: 9px;
+  }
+
+  .footer-nav {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 12px 19px;
+    margin-left: 0;
+  }
+
+  .footer-note {
+    margin-left: 0;
   }
 }
 
