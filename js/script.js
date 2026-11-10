@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!document.querySelector('#acessibilidade')) {
     const opcoesAcessibilidade = [
       ['audio', 'Ouvir o conteúdo', 'Lê textos em voz alta ao passar o mouse ou navegar com o teclado.'],
-      ['libras', 'Libras', 'Registra preferência por vídeos em Língua Brasileira de Sinais, quando disponíveis.'],
+      ['libras', 'Libras', 'Ativa o VLibras para traduzir textos da página em Língua Brasileira de Sinais. Requer internet.'],
       ['legendas', 'Legendas', 'Registra preferência por legendas em vídeos, quando disponíveis.'],
       ['leitor-tela', 'Leitor de tela', 'Informações de compatibilidade com leitores de tela.'],
       ['teclado', 'Navegar pelo teclado', 'Use Tab para avançar e Enter para ativar links e botões.'],
@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoOuvir = document.querySelector('#botao-ouvir-pagina');
   const botaoParar = document.querySelector('#botao-parar-leitura');
   const recursoAudio = document.querySelector('[data-recurso="audio"]');
+  const recursoLibras = document.querySelector('[data-recurso="libras"]');
   const conteudoPrincipal = document.querySelector('main');
   const botaoDiminuirFonte = document.querySelector('#diminuir-fonte');
   const botaoAumentarFonte = document.querySelector('#aumentar-fonte');
@@ -128,12 +129,81 @@ document.addEventListener('DOMContentLoaded', () => {
     '#abrir-acessibilidade-flutuante, a[href="#acessibilidade"]',
   );
   const botaoFecharAcessibilidade = document.querySelector('.fechar-acessibilidade');
+  const chavePreferenciaLibras = 'inclui-libras';
+  let scriptVlibrasCarregado = false;
+  let erroCarregamentoVlibras = false;
   let temporizadorLeitura = null;
   let ultimoAlvoLido = null;
   let alvoLeituraAtual = null;
   let idLeitura = 0;
   const suporteLeitura = 'speechSynthesis' in window
     && 'SpeechSynthesisUtterance' in window;
+
+  const lerPreferenciaLibras = () => {
+    try {
+      return localStorage.getItem(chavePreferenciaLibras) === 'ativo';
+    } catch (erro) {
+      console.warn('Não foi possível carregar a preferência de Libras.', erro);
+      return false;
+    }
+  };
+
+  const salvarPreferenciaLibras = (ativo) => {
+    try {
+      localStorage.setItem(chavePreferenciaLibras, ativo ? 'ativo' : 'inativo');
+    } catch (erro) {
+      console.warn('Não foi possível salvar a preferência de Libras.', erro);
+    }
+  };
+
+  const sincronizarVisibilidadeVlibras = () => {
+    const ativo = recursoLibras?.checked;
+    ['#vlibras-access-wrapper', '#vlibras-app-root'].forEach((seletor) => {
+      const elemento = document.querySelector(seletor);
+      if (elemento) elemento.style.display = ativo ? '' : 'none';
+    });
+  };
+
+  const carregarVlibras = () => {
+    if (scriptVlibrasCarregado || document.querySelector('script[data-inclusao-vlibras]')) return;
+    scriptVlibrasCarregado = true;
+    erroCarregamentoVlibras = false;
+    const scriptVlibras = document.createElement('script');
+    scriptVlibras.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+    scriptVlibras.async = true;
+    scriptVlibras.dataset.inclusaoVlibras = 'true';
+    scriptVlibras.onload = () => {
+      window.setTimeout(() => {
+        if (document.querySelector('#vlibras-access-wrapper')) {
+          sincronizarVisibilidadeVlibras();
+          return;
+        }
+        erroCarregamentoVlibras = true;
+        scriptVlibrasCarregado = false;
+        scriptVlibras.remove();
+        if (estadoAcessibilidade) {
+          estadoAcessibilidade.textContent = 'O VLibras não conseguiu iniciar. Verifique sua conexão e tente novamente.';
+        }
+      }, 500);
+    };
+    scriptVlibras.onerror = () => {
+      erroCarregamentoVlibras = true;
+      scriptVlibrasCarregado = false;
+      scriptVlibras.remove();
+      salvarPreferenciaLibras(false);
+      if (recursoLibras) recursoLibras.checked = false;
+      sincronizarVisibilidadeVlibras();
+      if (estadoAcessibilidade) {
+        estadoAcessibilidade.textContent = 'Não foi possível carregar o VLibras. Verifique sua conexão e tente novamente.';
+      }
+    };
+    document.body.append(scriptVlibras);
+  };
+
+  const observadorVlibras = new MutationObserver(sincronizarVisibilidadeVlibras);
+  observadorVlibras.observe(document.body, { childList: true });
+
+  if (recursoLibras) recursoLibras.checked = lerPreferenciaLibras();
   const indicadorLeitura = document.createElement('div');
   indicadorLeitura.className = 'indicador-leitura';
   indicadorLeitura.setAttribute('aria-hidden', 'true');
@@ -242,14 +312,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const selecionados = [...recursos].filter((recurso) => recurso.checked);
     const preferencias = selecionados
-      .filter((recurso) => ['libras', 'legendas'].includes(recurso.dataset.recurso))
-      .map((recurso) => recurso.dataset.recurso === 'libras' ? 'Libras' : 'legendas');
+      .filter((recurso) => recurso.dataset.recurso === 'legendas')
+      .map(() => 'legendas');
     let mensagem = selecionados.length
       ? `${selecionados.length} recurso${selecionados.length === 1 ? '' : 's'} selecionado${selecionados.length === 1 ? '' : 's'}.`
       : 'Nenhum recurso adicional selecionado.';
 
     if (preferencias.length) {
       mensagem += ` Preferência por ${preferencias.join(' e ')} registrada para conteúdos quando disponíveis.`;
+    }
+
+    if (recursoLibras?.checked) {
+      if (!erroCarregamentoVlibras) carregarVlibras();
+      mensagem += ' VLibras ativado. Use o botão do VLibras que aparece na página para escolher um avatar e iniciar a tradução.';
     }
 
     if (recursoAudio?.checked) {
@@ -263,6 +338,15 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   recursos.forEach((recurso) => recurso.addEventListener('change', atualizarPreferencias));
+  recursoLibras?.addEventListener('change', () => {
+    salvarPreferenciaLibras(recursoLibras.checked);
+    if (recursoLibras.checked) {
+      erroCarregamentoVlibras = false;
+      carregarVlibras();
+    } else {
+      sincronizarVisibilidadeVlibras();
+    }
+  });
 
   const aplicarTamanhoFonte = () => {
     document.documentElement.style.fontSize = `${tamanhoFonte}px`;
