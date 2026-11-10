@@ -744,6 +744,173 @@ a:focus-visible {
   stroke-linejoin: round;
 }
 
+.services-section {
+  padding: 68px 0 76px;
+  background: #faf9fc;
+}
+
+.services-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 25px;
+}
+
+.services-heading .eyebrow {
+  margin: 0;
+}
+
+.services-heading h2 {
+  margin: 13px 0 0;
+  font: 750 32px/1.2 "Manrope", sans-serif;
+  letter-spacing: -.05em;
+}
+
+.services-intro {
+  margin: 0 1px 5px 0;
+  color: #858191;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.service-search {
+  display: flex;
+  width: min(680px, 100%);
+  min-height: 57px;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 24px;
+  padding: 0 16px;
+  border: 1px solid #e9e6ef;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 12px #28203b08;
+}
+
+.service-search:focus-within {
+  border-color: #9e7ce9;
+  box-shadow: 0 0 0 3px #ede5ff;
+}
+
+.service-search > svg {
+  width: 19px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: #898496;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+}
+
+.service-search input {
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+}
+
+.service-search input::placeholder {
+  color: #aaa6b2;
+}
+
+.search-hint {
+  flex: 0 0 auto;
+  padding-left: 12px;
+  border-left: 1px solid #efedf3;
+  color: #928d9d;
+  font-size: 9px;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.service-card {
+  display: flex;
+  min-height: 104px;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid #eeecf2;
+  border-radius: 11px;
+  background: #fff;
+}
+
+.service-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 12px;
+}
+
+.service-icon svg {
+  width: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.document-icon {
+  background: #f0eaff;
+  color: #7956cf;
+}
+
+.benefits-icon {
+  background: #fff0e7;
+  color: #cc8055;
+}
+
+.health-icon {
+  background: #e7f7f0;
+  color: #509980;
+}
+
+.work-icon {
+  background: #eaf3ff;
+  color: #5d8bc5;
+}
+
+.service-copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.service-category {
+  color: #898397;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .1em;
+}
+
+.service-copy h3 {
+  margin: 5px 0;
+  font: 700 12px/1.4 "Manrope", sans-serif;
+}
+
+.service-copy p {
+  margin: 0;
+  color: #8c8897;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.service-arrow {
+  align-self: flex-start;
+  color: #a39eae;
+  font-size: 15px;
+}
+
 @media (max-width: 900px) {
   .site-header {
     padding-inline: 24px;
@@ -767,6 +934,10 @@ a:focus-visible {
 
   .preference-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-grid {
+    gap: 10px;
   }
 }
 
@@ -892,6 +1063,65 @@ a:focus-visible {
 
   .preference-copy small {
     font-size: 8px;
+  }
+
+  .services-section {
+    padding: 51px 0 56px;
+  }
+
+  .services-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 19px;
+  }
+
+  .services-heading h2 {
+    font-size: 28px;
+  }
+
+  .services-intro {
+    margin: 0;
+  }
+
+  .service-search {
+    min-height: 53px;
+    gap: 9px;
+    margin-bottom: 18px;
+    padding-inline: 12px;
+  }
+
+  .service-search input {
+    height: 44px;
+    font-size: 10px;
+  }
+
+  .search-hint {
+    display: none;
+  }
+
+  .service-grid {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .service-card {
+    min-height: 82px;
+    gap: 12px;
+    padding: 12px;
+  }
+
+  .service-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .service-copy h3 {
+    font-size: 11px;
+  }
+
+  .service-copy p {
+    font-size: 9px;
   }
 }
 
