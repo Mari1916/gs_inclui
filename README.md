@@ -4,7 +4,7 @@ Projeto front-end estático em português do Brasil, com foco em inclusão, aces
 
 ## Páginas e recursos
 
-- `index.html` — página principal, escolha de recursos, busca por tema e voz, demonstração “Entenda por mim” e glossário pesquisável
+- `index.html` — página principal com apresentação do impacto social, perfis atendidos, simulador de persona, escolhas de acessibilidade, busca por tema e voz, demonstração “Entenda por mim”, comparação ilustrativa antes/depois e glossário pesquisável
 - `sobre.html` — página institucional
 - `integrantes.html` — apresentação do time
 - `faq.html` — perguntas frequentes
@@ -13,11 +13,11 @@ Projeto front-end estático em português do Brasil, com foco em inclusão, aces
 - `cursos-gratuitos.html` — orientação para consultar cursos gratuitos do Aprenda Mais (MEC)
 - `servicos-digitais.html` — passo a passo para encontrar serviços no gov.br, conferir requisitos, lidar com barreiras de acesso e apoiar familiares sem compartilhar credenciais
 - `css/style.css` — estilos e responsividade
-- `js/script.js` — navegação, preferências de acessibilidade, leitura em voz alta, busca por voz, demonstração “Entenda por mim” e checklists locais
+- `js/script.js` — navegação, preferências de acessibilidade, leitura em voz alta, busca por voz, simulador de persona, demonstração “Entenda por mim”, animações leves e checklists locais
 - `assets/images/` — pasta para imagens
 - `assets/icons/` — pasta para ícones
 
-As listas de verificação e preferências de acessibilidade guardam somente configurações neste navegador, usando `localStorage`. O site não possui backend, contas de usuário nem banco de dados. A busca por voz usa o reconhecimento de fala disponível no navegador e só começa após a pessoa ativar o microfone; o fornecedor do navegador pode processar o áudio. O recurso “Entenda por mim” apresenta exemplos fixos e pode separar texto em frases no próprio dispositivo: não usa IA, não lê imagens ou PDFs, não verifica o conteúdo e não envia nem salva o texto. Não cole dados pessoais. O formulário de contato apenas prepara um e-mail para revisão e envio pela própria pessoa. Os links de serviços levam ao canal oficial responsável, onde requisitos, prazos e disponibilidade devem ser confirmados. Ao publicar o site, use HTTPS.
+As listas de verificação e preferências de acessibilidade guardam somente configurações neste navegador, usando `localStorage`. O simulador de persona aplica combinações de recursos disponíveis; a comparação antes/depois é um exemplo escrito pela equipe, não uma conversão automática. O site não possui backend, contas de usuário nem banco de dados. A busca por voz usa o reconhecimento de fala disponível no navegador e só começa após a pessoa ativar o microfone; o fornecedor do navegador pode processar o áudio. O recurso “Entenda por mim” apresenta exemplos fixos e pode separar texto em frases no próprio dispositivo: não usa IA, não lê imagens ou PDFs, não verifica o conteúdo e não envia nem salva o texto. Não cole dados pessoais. O formulário de contato apenas prepara um e-mail para revisão e envio pela própria pessoa. Os links de serviços levam ao canal oficial responsável, onde requisitos, prazos e disponibilidade devem ser confirmados. Ao publicar o site, use HTTPS.
 
 VLibras é carregado do serviço oficial e depende de conexão. O avatar é uma tradução automática de apoio, não substitui intérprete humano. Legendas e vídeos em Libras só podem ser oferecidos quando houver material correspondente revisado. Os recursos de acessibilidade do protótipo não garantem que sites de terceiros sejam acessíveis; o sistema operacional, o navegador e tecnologias assistivas também podem oferecer ajustes.
 

@@ -470,6 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'fonte-legivel': ['fonte', 'simples'],
     'linguagem-simples': ['linguagem', 'simples'],
     imagens: ['visuais', 'ativo'],
+    teclado: ['teclado', 'ativo'],
     'sem-animacoes': ['animacao', 'reduzida'],
     'leitura-facil': ['leitura', 'foco'],
   };
@@ -534,6 +535,19 @@ document.addEventListener('DOMContentLoaded', () => {
       [...recursos].map((recurso) => [recurso.dataset.recurso, recurso.checked]),
     ));
     sincronizarEscolhasAcesso();
+    [
+      ['audio', 'Áudio', recursoAudio?.checked],
+      ['libras', 'Libras', recursoLibras?.checked],
+      ['contraste', 'Alto contraste', document.querySelector('[data-recurso="contraste"]')?.checked],
+    ].forEach(([nome, titulo, ativo]) => {
+      const indicador = document.querySelector(`[data-status-recurso="${nome}"]`);
+      if (!indicador) return;
+      const verbo = nome === 'libras'
+        ? (ativo ? 'ativada' : 'desativada')
+        : (ativo ? 'ativado' : 'desativado');
+      indicador.textContent = `${ativo ? '✓ ' : ''}${titulo} ${verbo}`;
+      indicador.classList.toggle('recurso-ativo', Boolean(ativo));
+    });
     if (estadoAcessibilidade) estadoAcessibilidade.textContent = mensagem;
     if (botaoOuvir) botaoOuvir.disabled = !recursoAudio?.checked;
     if (!recursoAudio?.checked) {
@@ -616,6 +630,47 @@ document.addEventListener('DOMContentLoaded', () => {
         ? 'Pronto! Suas escolhas foram aplicadas e ficam salvas somente neste navegador. Você pode ajustar cada recurso no botão Acessibilidade.'
         : 'Tudo certo. Você pode navegar sem ativar recursos ou escolher novamente quando quiser.';
     }
+  });
+
+  const botaoAplicarPersona = document.querySelector('#aplicar-persona');
+  const estadoPersona = document.querySelector('#estado-persona');
+  botaoAplicarPersona?.addEventListener('click', () => {
+    const personaSelecionada = document.querySelector('input[name="persona"]:checked');
+    const recursosPorPersona = {
+      idosa: ['contraste', 'fonte-legivel', 'espacamento'],
+      surda: ['libras', 'legendas'],
+      cega: ['audio'],
+      leitura: ['linguagem-simples', 'imagens', 'leitura-facil'],
+      intelectual: ['linguagem-simples', 'imagens', 'espacamento'],
+      motora: ['teclado'],
+    };
+    if (!personaSelecionada) {
+      if (estadoPersona) estadoPersona.textContent = 'Escolha um perfil para aplicar uma experiência personalizada.';
+      document.querySelector('input[name="persona"]')?.focus();
+      return;
+    }
+
+    const recursosControlados = new Set(Object.values(recursosPorPersona).flat());
+    const recursosAtivos = new Set(recursosPorPersona[personaSelecionada.value] || []);
+    recursos.forEach((recurso) => {
+      if (!recursosControlados.has(recurso.dataset.recurso)) return;
+      recurso.checked = recursosAtivos.has(recurso.dataset.recurso);
+      recurso.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+
+    if (personaSelecionada.value === 'idosa') {
+      tamanhoFonte = 20;
+      aplicarTamanhoFonte();
+    } else {
+      tamanhoFonte = 16;
+      aplicarTamanhoFonte();
+    }
+
+    const nomePersona = personaSelecionada.nextElementSibling?.textContent?.trim() || 'Perfil escolhido';
+    if (estadoPersona) {
+      estadoPersona.textContent = `Experiência personalizada aplicada para ${nomePersona}. Os recursos ficam salvos somente neste navegador e podem ser ajustados no botão Acessibilidade.`;
+    }
+    document.querySelector('#escolha-acesso')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
   seletorTema.forEach((opcao) => {
@@ -890,4 +945,21 @@ document.addEventListener('DOMContentLoaded', () => {
   aplicarTamanhoFonte();
 
   if (window.location.hash === '#acessibilidade') abrirPainelAcessibilidade();
+
+  const elementosRevelar = document.querySelectorAll('[data-revelar]');
+  const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    || document.body.dataset.animacao === 'reduzida';
+  if (elementosRevelar.length && 'IntersectionObserver' in window && !movimentoReduzido) {
+    document.body.dataset.revelacao = 'ativa';
+    const observadorRevelacao = new IntersectionObserver((entradas, observador) => {
+      entradas.forEach((entrada) => {
+        if (!entrada.isIntersecting) return;
+        entrada.target.classList.add('revelar-visivel');
+        observador.unobserve(entrada.target);
+      });
+    }, { threshold: 0.12 });
+    elementosRevelar.forEach((elemento) => observadorRevelacao.observe(elemento));
+  } else {
+    elementosRevelar.forEach((elemento) => elemento.classList.add('revelar-visivel'));
+  }
 });
