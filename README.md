@@ -66,44 +66,32 @@ gs_inclui/
 
 ## Como executar o projeto
 
-### Opção 1
 Abra o arquivo `index.html` em qualquer navegador.
-
-### Opção 2
-Use um servidor local simples:
-
-```bash
-python -m http.server 8000
-```
-
-Depois acesse:
-
-```text
-http://localhost:8000
-```
-
----
 
 ## Autores e identificação
 
+![Ana Julia](assets/images/ana.png)
 ### Ana Julia Castilho Soares
 - RM: 576018
 - Turma: 1TDSPS
 - GitHub: https://github.com/AnaJu1203
 - LinkedIn: https://www.linkedin.com/in/ana-julia-castilho-13b8a02b3
 
+![Maria Eduarda](assets/images/duda.png)
 ### Maria Eduarda Alcantara dos Santos
 - RM: 575092
 - Turma: 1TDSPS
 - GitHub: https://github.com/DuAlcantara
 - LinkedIn: https://www.linkedin.com/in/maria-eduarda-alcantara-dos-santos-213596389/
 
+![Mariana](assets/images/mari.png)
 ### Mariana da Silva Freitas
 - RM: 574261
 - Turma: 1TDSPS
 - GitHub: https://github.com/Mari1916
 - LinkedIn: https://www.linkedin.com/in/mariana-freitas-3b756433a
 
+![Vitor](assets/images/vitor.png)
 ### Vitor Hugo Silva Rodrigues
 - RM: 575804
 - Turma: 1TDSPS
@@ -115,14 +103,6 @@ http://localhost:8000
 ## Imagens do projeto
 
 ![Logo INCLUI](assets/images/logo.png)
-
-![Ana Julia](assets/images/ana.png)
-
-![Maria Eduarda](assets/images/duda.png)
-
-![Mariana](assets/images/mari.png)
-
-![Vitor](assets/images/vitor.png)
 
 ---
 
