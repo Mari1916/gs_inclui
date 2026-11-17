@@ -1,7 +1,13 @@
+// Aguarda o HTML ser carregado antes de iniciar os recursos da página.
 document.addEventListener('DOMContentLoaded', () => {
+  // Chaves usadas para guardar as preferências no armazenamento local do navegador.
   const chavePreferenciasRecursos = 'inclui-recursos-acessibilidade';
   const chaveTamanhoFonte = 'inclui-tamanho-fonte';
+  // Chaves específicas identificam cada preferência salva no localStorage.
+
+  // Lê o tema salvo sem interromper o site caso o armazenamento esteja indisponível.
   const lerTemaSalvo = () => {
+    // try/catch evita que navegadores sem suporte ao localStorage travem o site.
     try {
       return localStorage.getItem('inclui-tema');
     } catch (erro) {
@@ -17,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   const lerPreferenciasRecursos = () => {
+    // JSON.parse converte a string salva em objeto; dados inválidos são ignorados.
     try {
       const salvo = localStorage.getItem(chavePreferenciasRecursos);
       if (!salvo) return null;
@@ -38,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
   const lerTamanhoFonteSalvo = () => {
+    // Number valida o tamanho salvo e aplica 16 px como padrão seguro.
     try {
       const salvo = Number(localStorage.getItem(chaveTamanhoFonte));
       return Number.isFinite(salvo) && salvo >= 14 && salvo <= 24 ? salvo : 16;
@@ -46,7 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return 16;
     }
   };
+
+  // Troca a imagem da marca conforme o tema claro ou escuro escolhido.
   const imagensLogo = document.querySelectorAll('[data-logo-claro][data-logo-escuro]');
+  // querySelectorAll encontra todas as imagens que podem trocar conforme o tema.
   const aplicarLogoDoTema = (tema) => {
     imagensLogo.forEach((imagem) => {
       imagem.src = imagem.dataset[tema === 'escuro' ? 'logoEscuro' : 'logoClaro'];
@@ -58,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   aplicarLogoDoTema(document.body.dataset.tema);
 
+  // Cria o botão flutuante de acessibilidade em páginas que ainda não possuem ele no HTML.
   if (!document.querySelector('#abrir-acessibilidade-flutuante')) {
     const botaoAcessibilidade = document.createElement('button');
     botaoAcessibilidade.className = 'botao-acessibilidade-flutuante';
@@ -69,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.append(botaoAcessibilidade);
   }
 
+  // Monta o painel de acessibilidade quando ele não foi declarado diretamente na página.
   if (!document.querySelector('#acessibilidade')) {
     const opcoesAcessibilidade = [
       ['audio', 'Ouvir o conteúdo', 'Lê textos em voz alta ao passar o mouse ou navegar com o teclado.'],
@@ -130,7 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.append(dialogoAcessibilidade);
   }
 
+  // Controla o menu principal no formato responsivo de cada cabeçalho.
   const cabecalhos = document.querySelectorAll('.cabecalho-site');
+  // Cada cabeçalho recebe comportamento independente para abrir e fechar o menu móvel.
   cabecalhos.forEach((cabecalho) => {
     const botaoMenu = cabecalho.querySelector('.botao-menu-mobile');
     const navegacao = cabecalho.querySelector('.navegacao-principal');
@@ -172,13 +187,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const yearNode = document.querySelector('[data-current-year]');
   if (yearNode) yearNode.textContent = new Date().getFullYear();
 
+  // Remove acentos e padroniza textos para tornar as buscas mais tolerantes.
   const normalizarTextoBusca = (texto) => texto
+    // normalize separa letras de acentos; a expressão regular remove os acentos.
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLocaleLowerCase('pt-BR')
     .trim();
 
   const configurarBusca = (seletorCampo, seletorItens, idEstado, rotulo) => {
+    // O filtro compara o campo digitado com o texto e os dados-termos de cada item.
     const campo = document.querySelector(seletorCampo);
     const itens = [...document.querySelectorAll(seletorItens)];
     const estado = document.querySelector(`#${idEstado}`);
@@ -209,7 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
   configurarBusca('#campo-busca-servicos', '.cartao-servico[data-termos]', 'estado-busca-servicos', 'tema');
   configurarBusca('#busca-glossario', '.termo-glossario[data-termos]', 'estado-busca-glossario', 'termo');
 
+  // Mantém as listas de verificação marcadas somente no navegador do usuário.
   document.querySelectorAll('[data-lista-verificacao]').forEach((lista) => {
+    // forEach cria uma lista persistente separada para cada bloco de verificação.
     const nomeLista = lista.dataset.listaVerificacao;
     const chaveArmazenamento = `inclui-lista-verificacao-${nomeLista}`;
     const estado = lista.querySelector('[data-status-lista-verificacao]');
@@ -254,7 +274,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Prepara o formulário de contato para abrir o aplicativo de e-mail do usuário.
   const formularioContato = document.querySelector('#formulario-contato');
+  // submit impede o envio convencional e abre um link mailto com os dados preenchidos.
   const estadoFormularioContato = document.querySelector('#estado-formulario-contato');
   formularioContato?.addEventListener('submit', (evento) => {
     evento.preventDefault();
@@ -280,7 +302,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Obtém os elementos do painel antes de sincronizar recursos e preferências.
   const recursos = document.querySelectorAll('[data-recurso]');
+  // data-recurso identifica os interruptores exibidos no painel de acessibilidade.
   const seletorTema = document.querySelectorAll('input[name="tema"]');
   const estadoAcessibilidade = document.querySelector('#estado-acessibilidade');
   const botaoOuvir = document.querySelector('#botao-ouvir-pagina');
@@ -306,7 +330,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let idLeitura = 0;
   const suporteLeitura = 'speechSynthesis' in window
     && 'SpeechSynthesisUtterance' in window;
+  // A constante indica se o navegador oferece API de síntese de voz em português.
 
+  // Leitura e persistência da preferência específica do VLibras.
   const lerPreferenciaLibras = () => {
     try {
       return localStorage.getItem(chavePreferenciaLibras) === 'ativo';
@@ -324,6 +350,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Restaura cada interruptor com base nas preferências salvas localmente.
   const preferenciasRecursosSalvas = lerPreferenciasRecursos();
   recursos.forEach((recurso) => {
     const nome = recurso.dataset.recurso;
@@ -334,7 +361,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Oculta ou mostra os elementos do VLibras conforme a escolha do usuário.
   const sincronizarVisibilidadeVlibras = () => {
+    // checked indica se o usuário ativou Libras; os elementos do widget seguem esse estado.
     const ativo = recursoLibras?.checked;
     ['#vlibras-access-wrapper', '#vlibras-app-root'].forEach((seletor) => {
       const elemento = document.querySelector(seletor);
@@ -342,7 +371,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Carrega o script oficial do VLibras somente quando o recurso é ativado.
   const carregarVlibras = () => {
+    // createElement('script') adiciona o VLibras externamente apenas sob demanda.
     if (scriptVlibrasCarregado || document.querySelector('script[data-inclusao-vlibras]')) return;
     scriptVlibrasCarregado = true;
     erroCarregamentoVlibras = false;
@@ -379,6 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const observadorVlibras = new MutationObserver(sincronizarVisibilidadeVlibras);
+  // MutationObserver detecta quando o widget oficial é inserido no <body>.
   observadorVlibras.observe(document.body, { childList: true });
 
   if (recursoLibras) recursoLibras.checked = lerPreferenciaLibras();
@@ -388,7 +420,9 @@ document.addEventListener('DOMContentLoaded', () => {
   indicadorLeitura.innerHTML = '<span class="indicador-leitura-mao">☝</span><span>Lendo</span>';
   document.body.append(indicadorLeitura);
 
+  // Posiciona o indicador visual próximo ao texto que está sendo lido.
   const posicionarIndicadorLeitura = (x, y) => {
+    // offsetWidth e offsetHeight calculam o limite seguro para o indicador na janela.
     const margem = 12;
     const largura = indicadorLeitura.offsetWidth || 88;
     const altura = indicadorLeitura.offsetHeight || 36;
@@ -408,7 +442,9 @@ document.addEventListener('DOMContentLoaded', () => {
     alvoLeituraAtual = null;
   };
 
+  // Interrompe leitura em voz alta, limpa estados e atualiza o aviso ao usuário.
   const pararLeitura = (mensagem) => {
+    // cancel encerra a fala atual e o temporizador; incrementa o id para invalidar callbacks antigos.
     window.clearTimeout(temporizadorLeitura);
     idLeitura += 1;
     if (suporteLeitura) window.speechSynthesis.cancel();
@@ -417,7 +453,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mensagem && estadoAcessibilidade) estadoAcessibilidade.textContent = mensagem;
   };
 
+  // Usa a síntese de voz do navegador para ler um texto em português.
   const lerTexto = (texto, anunciarEstado = true, statusDestino = estadoAcessibilidade) => {
+    // SpeechSynthesisUtterance cria a fala; getVoices procura uma voz compatível com pt-BR.
     if (!suporteLeitura) {
       if (anunciarEstado && statusDestino) {
         statusDestino.textContent = 'A leitura em voz alta não está disponível neste navegador.';
@@ -464,6 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const atributosRecursos = {
+    // Cada chave liga um recurso a um atributo data-* aplicado no elemento <body>.
     daltonismo: ['paleta', 'daltonismo'],
     contraste: ['contraste', 'alto'],
     espacamento: ['espacamento', 'amplo'],
@@ -475,6 +514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'leitura-facil': ['leitura', 'foco'],
   };
 
+  // Sincroniza opções rápidas da página inicial com os recursos detalhados do painel.
   const sincronizarEscolhasAcesso = () => {
     const escolhas = {
       audio: recursos.length && document.querySelector('[data-recurso="audio"]')?.checked,
@@ -490,7 +530,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Aplica os atributos de acessibilidade no <body> e salva as escolhas.
   const atualizarPreferencias = () => {
+    // Percorre os interruptores, altera atributos CSS e informa o status em aria-live.
     if (recursoAudio?.checked) {
       document.body.dataset.audio = 'ativo';
     } else {
@@ -566,7 +608,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Atualiza o tamanho da fonte em toda a página e salva o valor escolhido.
   const aplicarTamanhoFonte = () => {
+    // style.fontSize usa um número entre 14 e 24 px e o output mostra a porcentagem.
     document.documentElement.style.fontSize = `${tamanhoFonte}px`;
     document.body.style.fontSize = `${tamanhoFonte}px`;
     try {
@@ -595,6 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const botaoAplicarEscolhasAcesso = document.querySelector('#aplicar-escolhas-acesso');
   const estadoEscolhasAcesso = document.querySelector('#estado-escolhas-acesso');
+  // Aplica uma combinação rápida de recursos escolhida na página inicial.
   botaoAplicarEscolhasAcesso?.addEventListener('click', () => {
     const opcoesAcesso = [...document.querySelectorAll('[data-perfil-acesso]')];
     const visaoEstavaAtiva = opcoesAcesso.find((opcao) => opcao.dataset.perfilAcesso === 'visao')?.checked;
@@ -633,7 +678,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const botaoAplicarPersona = document.querySelector('#aplicar-persona');
+  // Perspectivas pré-definidas combinam recursos para perfis com necessidades diferentes.
   const estadoPersona = document.querySelector('#estado-persona');
+  // Aplica um conjunto predefinido de recursos baseado no perfil selecionado.
   botaoAplicarPersona?.addEventListener('click', () => {
     const personaSelecionada = document.querySelector('input[name="persona"]:checked');
     const recursosPorPersona = {
@@ -686,7 +733,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Abre o painel como modal quando o navegador suporta <dialog>.
   const abrirPainelAcessibilidade = () => {
+    // showModal cria uma camada modal; o fallback open permite compatibilidade com navegadores antigos.
     if (!painelAcessibilidade) return;
     if (!painelAcessibilidade.open) {
       if (typeof painelAcessibilidade.showModal === 'function') {
@@ -739,7 +788,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Monta uma cópia limpa do conteúdo principal e inicia sua leitura completa.
   botaoOuvir?.addEventListener('click', () => {
+    // cloneNode cria uma cópia para remover elementos ocultos antes da leitura.
     const copiaConteudo = conteudoPrincipal?.cloneNode(true);
     copiaConteudo?.querySelectorAll('dialog, [aria-hidden="true"], [hidden]')
       .forEach((elemento) => elemento.remove());
@@ -754,7 +805,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoBuscarVoz = document.querySelector('#buscar-por-voz');
   const estadoBuscaVoz = document.querySelector('#estado-busca-voz');
   const campoBuscaServicos = document.querySelector('#campo-busca-servicos');
+  // Usa o reconhecimento de voz do navegador para preencher a busca por serviços.
   botaoBuscarVoz?.addEventListener('click', () => {
+    // SpeechRecognition recebe a fala, entrega uma transcrição e dispara o filtro do campo.
     const ReconhecedorDeVoz = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!ReconhecedorDeVoz) {
       if (estadoBuscaVoz) {
@@ -800,6 +853,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const exemplosEntenda = {
+    // Objeto local guarda exemplos prontos sem enviar dados pessoais para nenhum servidor.
     documentos: {
       origem: 'Exemplo: confira as instruções do órgão para saber quais documentos são necessários e quais etapas seguir.',
       passos: [
@@ -829,6 +883,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const botaoOuvirExplicacao = document.querySelector('#ouvir-explicacao');
 
   const mostrarPassosEntenda = (origem, passos) => {
+    // replaceChildren substitui os itens anteriores por uma nova lista de elementos <li>.
     if (!resultadoEntenda || !origemEntenda || !passosEntenda) return;
     origemEntenda.textContent = origem;
     passosEntenda.replaceChildren(...passos.map((passo) => {
@@ -839,6 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
     resultadoEntenda.hidden = false;
   };
 
+  // Formata um exemplo pré-definido como uma sequência simples de passos.
   botaoExplicarExemplo?.addEventListener('click', () => {
     const exemplo = exemplosEntenda[seletorExemplo?.value];
     if (!exemplo) {
@@ -851,7 +907,9 @@ document.addEventListener('DOMContentLoaded', () => {
     resultadoEntenda?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 
+  // Organiza um texto informado pelo usuário separando suas frases em passos.
   botaoOrganizarTexto?.addEventListener('click', () => {
+    // split divide parágrafos e expressões regulares separaram frases por pontuação.
     const texto = campoTextoEntenda?.value.trim();
     if (!texto) {
       if (estadoEntenda) estadoEntenda.textContent = 'Cole um texto sem dados pessoais para separar em partes.';
@@ -884,7 +942,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Obtém uma descrição utilizável para ler elementos apontados ou focados.
   const obterTextoDoAlvo = (alvo) => {
+    // A prioridade busca data-leitura, aria-label, rótulo, valor ou texto visível do elemento.
     if (alvo.dataset.leitura) return alvo.dataset.leitura;
     if (alvo.getAttribute('aria-label')) return alvo.getAttribute('aria-label');
     if (alvo.matches('input, textarea, select')) {
@@ -901,6 +961,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const lerAlvoApontado = (evento) => {
+    // pointerover e focusin chamam esta função para ler apenas elementos elegíveis e diferentes do último.
     if (!recursoAudio?.checked || evento.pointerType === 'touch') return;
     if (!(evento.target instanceof Element)) return;
     const alvo = evento.target.closest(
@@ -921,6 +982,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('pointerover', lerAlvoApontado);
   document.addEventListener('focusin', lerAlvoApontado);
   document.addEventListener('pointermove', (evento) => {
+    // Enquanto o indicador estiver ativo, o ponteiro atualiza sua posição na tela.
     if (indicadorLeitura.classList.contains('indicador-leitura-ativo')) {
       posicionarIndicadorLeitura(evento.clientX, evento.clientY);
     }
@@ -933,7 +995,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Permite cancelar a leitura em voz alta com a tecla Escape.
   document.addEventListener('keydown', (evento) => {
+    // Escape cancela a leitura em execução e limpa o temporizador pendente.
     if (evento.key === 'Escape'
       && suporteLeitura
       && (window.speechSynthesis.speaking || temporizadorLeitura !== null)) {
@@ -946,7 +1010,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (window.location.hash === '#acessibilidade') abrirPainelAcessibilidade();
 
+  // Revela cartões conforme entram na área visível da página.
   const elementosRevelar = document.querySelectorAll('[data-revelar]');
+  // IntersectionObserver adiciona a classe revelada somente ao aproximar o elemento da tela.
   const movimentoReduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     || document.body.dataset.animacao === 'reduzida';
   if (elementosRevelar.length && 'IntersectionObserver' in window && !movimentoReduzido) {

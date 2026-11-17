@@ -1,4 +1,8 @@
+/* ==============================
+   Variáveis globais e base do site
+   ============================== */
 :root {
+  /* Variáveis globais: centralizam cores, superfícies e sombras usadas em todo o site. */
   color-scheme: light;
   --fundo: #faf9ff;
   --fundo-alternado: #f1eff9;
@@ -14,15 +18,18 @@
 }
 
 * {
+  /* O seletor universal aplica o cálculo de largura inclusive de padding e bordas. */
   box-sizing: border-box;
 }
 
 html {
+  /* Habilita rolagem suave e posiciona âncoras abaixo do cabeçalho fixo. */
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
 }
 
 body {
+  /* Define margens, fundo, cor, fonte e suavização da renderização do texto. */
   margin: 0;
   background: var(--fundo);
   color: var(--texto);
@@ -38,6 +45,7 @@ textarea {
 }
 
 a {
+  /* Links herdam a cor do texto e não recebem sublinhado por padrão. */
   color: inherit;
   text-decoration: none;
 }
@@ -49,9 +57,11 @@ textarea {
 }
 
 svg {
+  /* Remove o alinhamento extra que alguns navegadores adicionam a SVGs. */
   display: block;
 }
 
+/* Estados visíveis de foco reforçam a navegação por teclado em elementos interativos. */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -64,10 +74,12 @@ label:has(input:focus-visible) {
 }
 
 .limite-secao {
+  /* Limita a largura do conteúdo e o centraliza dentro da janela. */
   width: min(1160px, calc(100% - 48px));
   margin-inline: auto;
 }
 
+/* Link visível apenas ao navegar por teclado para pular diretamente ao conteúdo. */
 .link-pular {
   position: fixed;
   z-index: 20;
@@ -84,6 +96,7 @@ label:has(input:focus-visible) {
   transform: translateY(0);
 }
 
+/* Cabeçalho fixo e navegação principal compartilhada pelas páginas. */
 .cabecalho-site {
   position: sticky;
   z-index: 10;
@@ -100,12 +113,14 @@ label:has(input:focus-visible) {
 }
 
 .marca {
+  /* Agrupa a imagem da marca sem permitir que ela seja comprimida no cabeçalho. */
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
 }
 
 .navegacao-principal {
+  /* Organiza os links e centraliza a navegação no cabeçalho. */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,6 +132,7 @@ label:has(input:focus-visible) {
 
 .navegacao-principal a,
 .link-cabecalho {
+  /* Anima suavemente a mudança de cor dos links ao receber o cursor. */
   transition: color 180ms ease;
 }
 
@@ -140,6 +156,7 @@ label:has(input:focus-visible) {
 }
 
 .secao-destaque {
+  /* Seção principal: cria duas colunas, alinha o conteúdo e define altura mínima. */
   display: grid;
   min-height: 660px;
   grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
@@ -154,6 +171,7 @@ label:has(input:focus-visible) {
 }
 
 .chamada {
+  /* Texto pequeno usado como rótulo introdutório de seções. */
   display: flex;
   align-items: center;
   gap: 10px;
@@ -178,6 +196,7 @@ h1,
 h2,
 h3,
 p {
+  /* Remove a margem superior padrão dos títulos e parágrafos. */
   margin-top: 0;
 }
 
@@ -216,6 +235,7 @@ h3 {
 }
 
 .botao {
+  /* Base compartilhada por botões e links que parecem botões. */
   display: inline-flex;
   min-height: 50px;
   align-items: center;
@@ -284,6 +304,7 @@ h3 {
 }
 
 .visual-destaque {
+  /* Contém a ilustração principal e permite posicionar elementos decorativos. */
   position: relative;
   display: grid;
   min-height: 0;
@@ -592,6 +613,7 @@ h3 {
   font-size: 1.3rem;
 }
 
+/* Estrutura compartilhada dos títulos e introduções das seções. */
 .cabecalho-secao,
 .cabecalho-servicos,
 .cabecalho-caminhos {
@@ -626,6 +648,7 @@ h3 {
   font-size: .9rem;
 }
 
+/* Controles do painel de acessibilidade: tema, fonte e recursos disponíveis. */
 .seletor-tema {
   display: flex;
   align-items: center;
@@ -1008,6 +1031,7 @@ body[data-audio="ativo"] [data-leitura] {
   margin: 2px 0 0;
 }
 
+/* Painel modal criado pelo JavaScript e usado em todas as páginas. */
 .painel-acessibilidade {
   width: min(780px, calc(100% - 32px));
   max-width: none;
@@ -1082,6 +1106,7 @@ body[data-audio="ativo"] [data-leitura] {
   margin-top: 16px;
 }
 
+/* Botão permanente para abrir o painel de acessibilidade. */
 .botao-acessibilidade-flutuante {
   position: fixed;
   z-index: 12;
@@ -1110,6 +1135,7 @@ body[data-audio="ativo"] [data-leitura] {
   font-size: 1.15rem;
 }
 
+/* Escolhas rápidas de perfil de acesso exibidas na página inicial. */
 .secao-escolhas-acesso {
   padding-block: 62px 68px;
   background: var(--superficie);
@@ -1218,6 +1244,7 @@ body[data-audio="ativo"] [data-leitura] {
   font-size: .8rem;
 }
 
+/* Área de busca e cartões dos principais serviços públicos. */
 .secao-servicos {
   padding-block: 82px 92px;
   background: #f1eff9;
@@ -1620,6 +1647,7 @@ body[data-audio="ativo"] [data-leitura] {
   display: none;
 }
 
+/* Resumo visual dos caminhos de acesso disponíveis no projeto. */
 .secao-caminhos {
   padding-block: 82px 96px;
   background: #f1eff9;
@@ -1792,6 +1820,8 @@ body[data-audio="ativo"] [data-leitura] {
   color: #d66f93;
 }
 
+/* Ajustes para tablets e telas intermediárias. */
+/* Layout em telas intermediárias: reduz espaços e transforma grades em duas colunas. */
 @media (max-width: 1000px) {
   .cabecalho-site {
     gap: 20px;
@@ -1814,6 +1844,7 @@ body[data-audio="ativo"] [data-leitura] {
   }
 }
 
+/* Layout móvel: empilha seções, amplia áreas tocáveis e reduz textos decorativos. */
 @media (max-width: 740px) {
   html {
     scroll-padding-top: 20px;
@@ -1915,6 +1946,7 @@ body[data-audio="ativo"] [data-leitura] {
   }
 }
 
+/* Ajustes finais para celulares pequenos: uma coluna e largura quase integral. */
 @media (max-width: 480px) {
   .limite-secao {
     width: calc(100% - 32px);
@@ -2125,6 +2157,7 @@ body[data-audio="ativo"] [data-leitura] {
   }
 }
 
+/* Respeita usuários que configuraram o sistema para reduzir movimentos. */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -2137,6 +2170,7 @@ body[data-audio="ativo"] [data-leitura] {
   }
 }
 
+/* Tema escuro: substitui as variáveis e ajusta componentes específicos. */
 body[data-tema="escuro"] {
   color-scheme: dark;
   --fundo: #171622;
@@ -2330,6 +2364,7 @@ body[data-tema="escuro"] .icone-trabalho {
   color: #ffd1a0;
 }
 
+/* Modificadores visuais ativados pelas opções de acessibilidade. */
 body[data-paleta="daltonismo"] {
   --roxo: #075b9c;
   --roxo-escuro: #064477;
@@ -2353,6 +2388,7 @@ body[data-paleta="daltonismo"] .icone-preferencia {
   outline: 1px solid currentColor;
 }
 
+/* Alto contraste: substitui as cores principais por preto, branco e bordas fortes. */
 body[data-contraste="alto"] {
   --fundo: #fff;
   --superficie: #fff;
@@ -2375,6 +2411,7 @@ body[data-contraste="alto"] .cartao-acessibilidade {
   border: 2px solid currentColor;
 }
 
+/* Variante escura do alto contraste, priorizando fundo preto e texto branco. */
 body[data-tema="escuro"][data-contraste="alto"] {
   --fundo: #000;
   --superficie: #000;
@@ -2385,6 +2422,7 @@ body[data-tema="escuro"][data-contraste="alto"] {
   --borda: #fff;
 }
 
+/* Espaçamento amplo: aumenta o respiro entre letras e linhas. */
 body[data-espacamento="amplo"] {
   letter-spacing: .04em;
   line-height: 1.85;
@@ -2395,11 +2433,13 @@ body[data-espacamento="amplo"] li {
   line-height: 1.9;
 }
 
+/* Fonte simples: substitui fontes decorativas por Arial e Helvetica. */
 body[data-fonte="simples"],
 body[data-fonte="simples"] * {
   font-family: Arial, Helvetica, sans-serif !important;
 }
 
+/* Redução de animação: remove movimentos e transições dos elementos ativos. */
 body[data-animacao="reduzida"] *,
 body[data-animacao="reduzida"] *::before,
 body[data-animacao="reduzida"] *::after {
@@ -2408,6 +2448,7 @@ body[data-animacao="reduzida"] *::after {
   transition: none !important;
 }
 
+/* Modo de leitura: remove ornamentos e limita o conteúdo visual. */
 body[data-leitura="foco"] .orbita-visual,
 body[data-leitura="foco"] .estrela-decorativa,
 body[data-leitura="foco"] .cartao-flutuante {
@@ -2447,6 +2488,7 @@ body[data-linguagem="simples"] .secao-compreensao .beneficios-compreensao li {
   line-height: 1.8;
 }
 
+/* Conteúdo adicional da página inicial sobre impacto e público. */
 .frase-impacto {
   max-width: 470px;
   margin: 0 0 16px;
@@ -2964,6 +3006,7 @@ body[data-tema="escuro"] .simulador-persona {
   }
 }
 
+/* Estilos das páginas institucionais e informativas. */
 .pagina-sobre {
   background: var(--fundo);
 }
@@ -3318,6 +3361,7 @@ body[data-tema="escuro"] .simulador-persona {
   }
 }
 
+/* Apresentação da equipe e cartões dos integrantes. */
 .pagina-integrantes {
   min-height: 100vh;
   background: var(--fundo);
@@ -3704,6 +3748,7 @@ body[data-tema="escuro"] .integrante-links a:hover {
   }
 }
 
+/* Navegação móvel com botão hambúrguer e painel recolhido. */
 .botao-menu-mobile {
   display: none;
 }
@@ -3810,6 +3855,7 @@ body[data-tema="escuro"] .integrante-links a:hover {
   }
 }
 
+/* Página de contato e formulário que prepara uma mensagem no e-mail. */
 .pagina-contato {
   min-height: 100vh;
   background: var(--fundo);
@@ -4112,6 +4158,7 @@ body[data-tema="escuro"] .campo-contato textarea::placeholder {
   }
 }
 
+/* Perguntas frequentes em elementos <details>. */
 .pagina-faq {
   min-height: 100vh;
   background: var(--fundo);
@@ -4491,6 +4538,7 @@ body[data-tema="escuro"] .faq-answer a {
   font-size: .9rem;
 }
 
+/* Estilos compartilhados pelos guias de vacinação, cursos e serviços digitais. */
 .pagina-guia {
   min-height: 100vh;
   background: var(--fundo);
