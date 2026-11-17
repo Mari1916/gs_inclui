@@ -1,73 +1,27 @@
-# INCLUI
+﻿# INCLUI
 
-Projeto front-end estático em português do Brasil, com foco em inclusão, acessibilidade e orientação para serviços públicos.
+Projeto front-end estático em HTML, CSS e JavaScript, desenvolvido para facilitar o acesso a informações e serviços públicos com linguagem clara, visual acessível e suporte a diferentes formas de leitura e compreensão.
 
-## Visão geral
+## Descrição do problema, propósito e solução
 
-O INCLUI é um guia digital pensado para aproximar pessoas de informações e serviços do dia a dia com linguagem mais clara, recursos de acessibilidade e caminhos simples de compreensão.
+O INCLUI nasceu para responder a um problema real: muitas pessoas encontram barreiras ao buscar informações e serviços do governo, sobretudo quando a interface digital é pouco acessível, confusa ou pouco clara.
 
-A proposta do projeto é ajudar pessoas a encontrar orientações sobre temas como saúde, educação, serviços digitais do governo e acesso às informações públicas, com atenção especial à acessibilidade e à autonomia da pessoa usuária.
-
----
-
-## Páginas e recursos
-
-- `index.html` — página principal com apresentação do impacto social, perfis atendidos, simulador de persona, escolhas de acessibilidade, busca por tema e voz, demonstração “Entenda por mim”, comparação ilustrativa antes/depois e glossário pesquisável
-- `sobre.html` — página institucional com a proposta, princípios e objetivos do projeto
-- `integrantes.html` — apresentação da equipe responsável pelo INCLUI
-- `faq.html` — perguntas frequentes sobre o projeto, acessibilidade e uso do site
-- `contato.html` — formulário que prepara uma mensagem no aplicativo de e-mail; não envia dados ao site
-- `vacinacao.html` — guia informativo sobre vacinação no SUS
-- `cursos-gratuitos.html` — guia para consultar cursos gratuitos do Aprenda Mais (MEC)
-- `servicos-digitais.html` — passo a passo para encontrar serviços do gov.br, conferir requisitos e apoiar pessoas sem compartilhar credenciais
-- `css/style.css` — estilos, identidade visual e responsividade
-- `js/script.js` — navegação, preferências de acessibilidade, leitura em voz alta, busca por voz, simulador de persona, demonstração “Entenda por mim”, animações leves e checklists locais
-- `assets/images/` — pasta para imagens do projeto
-- `assets/icons/` — pasta para ícones e elementos visuais
+A proposta do projeto é aproximar as pessoas de orientações sobre saúde, educação, serviços digitais e cidadania, usando uma experiência simples, acessível e intuitiva. A solução desenvolvida apresenta conteúdos organizados, recursos de acessibilidade, explicações em linguagem compreensível e caminhos práticos para facilitar a navegação.
 
 ---
 
-## Funcionalidades principais
+## Tecnologias utilizadas
 
-- Acessibilidade com opções de leitura em voz alta, contraste, fonte maior e integração com VLibras
-- Simulador de perfil para demonstrar diferentes necessidades de uso
-- Busca por tema e busca por voz, quando disponível no navegador
-- “Entenda por mim” para transformar explicações em linguagem mais simples
-- Guias práticos para serviços digitais, vacinação e cursos gratuitos
-- Formulário de contato que prepara um e-mail para envio manual pela pessoa usuária
-- Experiência front-end estática sem backend, banco de dados ou autenticação
-
----
-
-## Importante sobre dados e privacidade
-
-As listas de verificação e preferências de acessibilidade são armazenadas somente no navegador, usando `localStorage`.
-
-O simulador de persona aplica combinações de recursos disponíveis; a comparação antes/depois é um exemplo ilustrativo, não uma conversão automática.
-
-O site não possui backend, contas de usuário nem banco de dados.
-
-A busca por voz usa o reconhecimento de fala disponível no navegador e só começa após a pessoa ativar o microfone; o fornecedor do navegador pode processar o áudio.
-
-O recurso “Entenda por mim” apresenta exemplos fixos e pode separar texto em frases no próprio dispositivo: não usa IA, não lê imagens ou PDFs, não verifica o conteúdo e não envia nem salva o texto. Não cole dados pessoais.
-
-O formulário de contato apenas prepara um e-mail para revisão e envio pela própria pessoa.
-
-Os links de serviços levam ao canal oficial responsável, onde requisitos, prazos e disponibilidade devem ser confirmados.
-
-Ao publicar o site, use HTTPS.
-
-VLibras é carregado do serviço oficial e depende de conexão. O avatar é uma tradução automática de apoio, não substitui intérprete humano.
+- HTML5
+- CSS3
+- JavaScript
+- LocalStorage para salvar preferências de acessibilidade no navegador
+- Recursos de acessibilidade como leitura em voz alta, contraste, VLibras e ajustes visuais
+- Arquivos estáticos e organização em pastas específicas
 
 ---
 
-## Como visualizar
-
-Você pode abrir o arquivo `index.html` diretamente em um navegador ou rodar um servidor local simples.
-
-- Abra `index.html` no navegador.
-
-## Estrutura do projeto
+## Estrutura de pastas
 
 ```text
 gs_inclui/
@@ -86,36 +40,115 @@ gs_inclui/
 ├── assets/
 │   ├── icons/
 │   └── images/
+│       ├── ana.png
+│       ├── duda.png
+│       ├── mari.png
+│       ├── vitor.png
+│       ├── logo.png
+│       └── logo-escuro.png
 ├── README.md
-└── .gitignore
 ```
 
 ---
 
-## Objetivo do projeto
+## Páginas principais
 
-O INCLUI busca:
-
-- ampliar o acesso à informação pública
-- reduzir barreiras de leitura, compreensão e navegação
-- apoiar pessoas com diferentes perfis de uso e acessibilidade
-- tornar serviços digitais mais compreensíveis e informativos
-- estimular autonomia e cidadania digital
-
----
-
-## Desenvolvimento
-
-Este é um protótipo front-end acadêmico e experimental, desenvolvido para demonstrar uma interface acessível com foco em orientação para serviços públicos e inclusão digital.
+- `index.html` — página inicial com apresentação do projeto, acessibilidade, guia e destaque para as principais áreas
+- `sobre.html` — visão geral do INCLUI e sua proposta
+- `integrantes.html` — apresentação da equipe
+- `faq.html` — perguntas frequentes
+- `contato.html` — formulário de contato com simulação de envio
+- `vacinacao.html` — guia sobre vacinação no SUS
+- `cursos-gratuitos.html` — orientações sobre cursos gratuitos do Aprenda Mais
+- `servicos-digitais.html` — guia para acessar serviços do gov.br e entender requisitos
 
 ---
 
-## Licença
+## Como executar o projeto
 
-Este projeto possui finalidade acadêmica e educacional.
+### Opção 1
+Abra o arquivo `index.html` em qualquer navegador.
+
+### Opção 2
+Use um servidor local simples:
+
+```bash
+python -m http.server 8000
+```
+
+Depois acesse:
+
+```text
+http://localhost:8000
+```
 
 ---
 
-## INCLUI
+## Autores e identificação
 
-“Se a tecnologia é para todos, por que nem todos conseguem utilizá-la?”
+### Ana Julia Castilho Soares
+- RM: 576018
+- Turma: 1TDSPS
+- GitHub: https://github.com/AnaJu1203
+- LinkedIn: https://www.linkedin.com/in/ana-julia-castilho-13b8a02b3
+
+### Maria Eduarda Alcantara dos Santos
+- RM: 575092
+- Turma: 1TDSPS
+- GitHub: https://github.com/DuAlcantara
+- LinkedIn: https://www.linkedin.com/in/maria-eduarda-alcantara-dos-santos-213596389/
+
+### Mariana da Silva Freitas
+- RM: 574261
+- Turma: 1TDSPS
+- GitHub: https://github.com/Mari1916
+- LinkedIn: https://www.linkedin.com/in/mariana-freitas-3b756433a
+
+### Vitor Hugo Silva Rodrigues
+- RM: 575804
+- Turma: 1TDSPS
+- GitHub: https://github.com/VitorHugo226
+- LinkedIn: https://www.linkedin.com/in/vitor-hugo-rodrigues-765921300/
+
+---
+
+## Imagens do projeto
+
+![Logo INCLUI](assets/images/logo.png)
+
+![Ana Julia](assets/images/ana.png)
+
+![Maria Eduarda](assets/images/duda.png)
+
+![Mariana](assets/images/mari.png)
+
+![Vitor](assets/images/vitor.png)
+
+---
+
+## Repositório GitHub
+
+Link oficial do projeto:
+
+https://github.com/Mari1916/gs_inclui
+
+---
+
+## Contato
+
+Para falar com a equipe, utilize a página de contato do projeto em `contato.html` ou abra uma issue no repositório oficial do GitHub.
+
+---
+
+## Observações importantes
+
+- O projeto é um front-end estático, com HTML, CSS e JavaScript.
+- Não há backend, autenticação, banco de dados ou integração com servidor.
+- As preferências de acessibilidade são salvas apenas no navegador por meio do `localStorage`.
+- Os conteúdos e links externos devem ser conferidos na fonte oficial antes de uso final.
+
+---
+
+## Conclusão
+
+O INCLUI tem como objetivo tornar a informação pública mais clara, acessível e útil para diferentes perfis de usuários, promovendo maior autonomia digital e inclusão.
